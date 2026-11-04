@@ -17,7 +17,7 @@ workflowSteps.forEach(step=>{
   showWorkflowStep(button.dataset.go);
  }));
 });
-try{const savedStep=Number(sessionStorage.getItem(workflowStepStorageKey));if(savedStep!==2&&savedStep!==6&&workflowSteps.some(step=>Number(step.dataset.step)===savedStep))showWorkflowStep(savedStep,false)}catch{}
+try{const savedStep=Number(sessionStorage.getItem(workflowStepStorageKey));if(savedStep!==2&&savedStep!==5&&savedStep!==6&&workflowSteps.some(step=>Number(step.dataset.step)===savedStep))showWorkflowStep(savedStep,false)}catch{}
 $('workflowBackup').onclick=()=>$('downloadProject').click();
 $('workflowExport').onclick=()=>$('export').click();
 function refreshAnimationPanels(){

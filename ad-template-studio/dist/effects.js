@@ -1,7 +1,8 @@
 // Deterministic timeline effects: preview, scrubbing and export share the same clock.
 let effectsBasePass=false,effectBuffer=null;
 function effectAmount(){return Math.max(0,Math.min(1,Number($('effectIntensity').value)/100))}
-function effectEnabled(name){const chosen=$('effects').value;return effectAmount()>0&&(chosen==='all'||chosen===name||(chosen==='endcard'&&['hearts','sparkle'].includes(name)))}
+function uploadOrLoadingScene(t=motionClock){const p=Math.max(0,Math.min(1,t/duration()));return state.template==='collage'&&$('uploadScene').checked&&p>=.5&&p<.88||state.template==='styles'&&p<.46||p>=effectEnd()}
+function effectEnabled(name){const chosen=$('effects').value;return !uploadOrLoadingScene()&&effectAmount()>0&&(chosen==='all'||chosen===name||(chosen==='endcard'&&['hearts','sparkle'].includes(name)))}
 function effectEnd(){if(state.template==='framed')return framedEndStart()/duration();return state.template==='collage'&&$('uploadScene').checked?.94:.82}
 function effectCuts(){if(state.template==='framed')return framedCuts();let values;
  if(state.template==='collage')values=$('uploadScene').checked?[0,.185,.37,.5,.88,.94]:[0,.185,.37,.56,.82];
@@ -20,7 +21,7 @@ function effectEndBackground(w,h){if(!effectEnabled('endcard'))return;let g=ctx.
 function render(t){
  deferredTypography=[];effectsBasePass=true;try{renderBase(t)}finally{effectsBasePass=false}
  const typography=deferredTypography;deferredTypography=null;const [w,h]=layoutSize();drawOverlayGradient(w,h);drawingForegroundTypography=true;try{for(const command of typography)text(...command)}finally{drawingForegroundTypography=false}const p=t/duration(),strength=effectAmount(),speed=Number($('effectSpeed').value)||1,color=$('effectColor').value;
- if(strength&&$('effects').value!=='none'){
+ if(!uploadOrLoadingScene(t)&&strength&&$('effects').value!=='none'){
   ctx.save();setLayoutTransform();ctx.globalAlpha=1;ctx.globalCompositeOperation='source-over';
   if(effectEnabled('blur')){let age=t;for(const cut of effectCuts())if(cut<=t)age=t-cut;let blur=(1-easeLoader(age/(.65/speed)))*11*strength;
    if(blur>.05){if(!effectBuffer)effectBuffer=document.createElement('canvas');if(effectBuffer.width!==canvas.width||effectBuffer.height!==canvas.height){effectBuffer.width=canvas.width;effectBuffer.height=canvas.height}let b=effectBuffer.getContext('2d');b.clearRect(0,0,canvas.width,canvas.height);b.drawImage(canvas,0,0);ctx.save();ctx.setTransform(1,0,0,1,0,0);ctx.filter=`blur(${blur}px)`;ctx.drawImage(effectBuffer,0,0);ctx.restore()}}
@@ -44,6 +45,5 @@ function render(t){
 }
 function prepareEffect(){if(['upload','loader'].includes($('effects').value)){state.template='collage';$('uploadScene').checked=true;buildTemplates();updateTimeline()}if($('effects').value==='all')$('uploadScene').checked=true;}
 $('effects').addEventListener('input',()=>{prepareEffect();changed()});
-$('previewEffect').onclick=()=>{if(exporting)return;prepareEffect();const chosen=$('effects').value;if(['hearts','sparkle','endcard'].includes(chosen))time=duration()*effectEnd();else if(chosen==='upload')time=duration()*.5;else if(chosen==='loader')time=duration()*(.5+.38*.45);else if(chosen==='blur'||chosen==='zoom'||chosen==='all'||chosen==='none')time=0;else if(chosen==='fade')time=duration()*(state.template==='collage'&&$('uploadScene').checked?.5:effectEnd())-.4;else time=Math.max(0,effectCuts()[1]-.18);playing=true;last=0;$('play').textContent='Ⅱ';render(time);};
 
 buildTemplates();updateTimeline();refreshClipEditor();render(0);// Project recovery is handled by project-library.js.
