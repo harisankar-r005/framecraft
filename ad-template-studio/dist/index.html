@@ -28,14 +28,16 @@
 <div class="section-title">01 / CHOOSE A TEMPLATE</div>
 <div id="templates">
 </div>
+<section class="sidebar-projects" aria-label="Project storage and recovery">
 <div class="local-note">
-<span>◈</span>
-<div>
+<span class="local-note-icon" aria-hidden="true">◇</span>
+<div class="local-note-copy">
 <strong>Your images stay here.</strong>
-<br>Editing and rendering happen in your browser.</div>
+<span>Editing and rendering happen in your browser.</span>
 </div>
-<details class="workspace-tools">
-<summary>Projects &amp; recovery</summary>
+</div>
+<details class="workspace-tools project-library-panel">
+<summary><span class="project-summary-icon" aria-hidden="true">▶</span><span>Projects &amp; recovery</span><span class="project-summary-chevron" aria-hidden="true">⌄</span></summary>
 <label>Saved projects<select id="projectLibrary">
 <option value="">Choose a project</option>
 </select>
@@ -50,10 +52,11 @@
 <p class="hint">Share the package to include images, videos, music, voiceover and SFX. JSON backup stores settings and images only.</p>
 </details>
 <div class="project-actions">
-<button id="downloadProject">↓ Project backup</button>
-<label class="button">Open project<input type="file" id="openProject" accept="application/json,.json,.zip,.framecraft" hidden>
+<button id="downloadProject" class="project-action">↓ <span>Project backup</span></button>
+<label class="button project-action">↗ <span>Open project</span><input type="file" id="openProject" accept="application/json,.json,.zip,.framecraft" hidden>
 </label>
 </div>
+</section>
 </aside>
 <section class="stage">
 <div class="stage-top">
