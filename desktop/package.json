@@ -1,0 +1,24 @@
+{
+  "name": "framecraft-desktop",
+  "productName": "Framecraft",
+  "version": "1.0.1",
+  "description": "Offline app-promo video studio",
+  "main": "main.cjs",
+  "private": true,
+  "scripts": {
+    "prepare-app": "node scripts/prepare-app.cjs",
+    "start": "node scripts/prepare-app.cjs && electron .",
+    "dist": "node scripts/prepare-app.cjs && electron-builder --win nsis",
+    "pack": "node scripts/prepare-app.cjs && electron-builder --dir"
+  },
+  "devDependencies": { "electron": "^36.0.0", "electron-builder": "^26.0.12" },
+  "build": {
+    "appId": "com.framecraft.studio",
+    "productName": "Framecraft",
+    "artifactName": "Framecraft-Setup-${version}.${ext}",
+    "directories": { "output": "release" },
+    "files": ["main.cjs", "preload.cjs", "app/**/*"],
+    "win": { "target": ["nsis"], "icon": "app/assets/brand-icon.png" },
+    "nsis": { "oneClick": false, "allowToChangeInstallationDirectory": true, "createDesktopShortcut": true, "createStartMenuShortcut": true }
+  }
+}
