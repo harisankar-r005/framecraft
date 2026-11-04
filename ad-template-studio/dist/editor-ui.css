@@ -1,0 +1,90 @@
+/* Readable editor chrome. Canvas text styles remain project settings. */
+:root{font-family:'Open Sans',Arial,sans-serif;font-size:14px;color:#233026}
+body,button,input,select,textarea{font-family:'Open Sans',Arial,sans-serif}
+button,.button{font-size:14px;min-height:38px}
+.brand{font-family:'Open Sans',Arial,sans-serif;font-size:25px;letter-spacing:-1px}
+header{padding-inline:24px}
+.header-actions{gap:8px}
+#saveState{font-size:12px;color:#52634d;margin-right:8px}
+#undo,#redo{font-size:12px;padding:9px 11px}
+.pill{font:600 11px 'Open Sans',Arial,sans-serif;letter-spacing:.6px}
+main{grid-template-columns:260px minmax(320px,1fr) 380px}
+main>aside{padding:22px 20px}
+h1{font:700 23px/1.35 'Open Sans',Arial,sans-serif;letter-spacing:-.6px;margin:14px 0 10px}
+h1 span{color:#66735f}
+.intro{font-size:13px;color:#58664f;line-height:1.7;margin-bottom:24px}
+.eyebrow,.section-title{font-size:11px;color:#58694f;letter-spacing:1px}
+.template{padding:12px 10px;gap:10px;min-height:76px}
+.template .mini{flex:0 0 36px;width:36px;height:44px}
+.template strong{font-size:14px;line-height:1.35}
+.template small{font-size:12px;color:#596b52;line-height:1.5;margin-top:4px}
+.local-note,.project-actions button,.project-actions .button{font-size:12px}
+.local-note{color:#5f6c57}
+.inspector{padding:22px 20px 32px}
+.inspector>.hint{font-size:12px;color:#59694f}
+.workflow-progress{font-size:13px;line-height:1.5;color:#415937;padding:12px;margin:16px 0}
+.workflow-step>summary{padding:16px 14px;gap:12px}
+.workflow-step>summary strong{font-size:14px;line-height:1.4}
+.workflow-step>summary small{font-size:12px;line-height:1.5;color:#617155}
+.step-number{font-size:12px;padding:7px}
+.step-content{padding:0 14px 16px}
+label{font-size:13px;line-height:1.5;color:#465b3d}
+input:not([type=checkbox],[type=file],[type=range]),select{font-size:14px;min-height:42px;padding:10px 12px;background:#fff}
+input[type=file]{font-size:12px;color:#526548;line-height:1.6}
+.hint,.workspace-tools .hint,.animation-group>summary small,.animation-overview .hint{font-size:12px;color:#596b51;line-height:1.65}
+.workspace-tools>summary,.workspace-tools>strong,.animation-group>summary,.heading-style-panel summary{font-size:13px;line-height:1.5}
+.workspace-tools{padding:14px}
+.workspace-tools label{margin-top:14px}
+.check{font-size:13px;line-height:1.5;align-items:flex-start}
+.check input{width:17px;height:17px;flex-shrink:0;margin-top:2px}
+.wide,.step-navigation button,.tool-buttons button,.cue-presets button{font-size:13px;line-height:1.45}
+.text-button{font-size:12px;min-height:30px}
+.cue-card>strong,.tabs,.optional{font-size:12px}
+.upload-zone strong{font-size:14px}
+.upload-zone small{font-size:12px;color:#596d4f;line-height:1.6}
+.stage{background:radial-gradient(#cbd4c5 .6px,transparent .6px) 0 0/15px 15px;background-color:#f7f9f4}
+.stage-top{font-size:14px;gap:12px}
+.stage-top .muted{font-size:12px;color:#596a50}
+.transport{font-size:12px;color:#4d5f44;width:min(100%,600px);gap:12px;margin:16px 0 10px}
+.transport button{min-width:38px;min-height:38px;font-size:14px}
+.guide-toggle{font-size:12px;color:#4a5f40;margin:8px 0 12px;gap:10px}
+.guide-toggle select{font-size:12px;min-height:36px;margin-top:0;max-width:310px}
+.scene-panel{width:min(100%,760px);background:#fff;border:1px solid #dce4d4;border-radius:14px;padding:14px;box-shadow:0 4px 16px #22331b05;margin-top:2px}
+.scene-panel-heading{display:flex;align-items:center;justify-content:space-between;gap:12px;line-height:1.5;margin-bottom:10px}
+.scene-panel-heading strong{font-size:14px;font-weight:700;color:#2e4225}
+#sceneSummary{font-size:12px;color:#5b6d51}
+.scene-duration-rail{display:flex;gap:3px;width:100%;height:7px;margin-bottom:12px;overflow:hidden;border-radius:4px;background:#edf2e7}
+.scene-duration-rail span{display:block;min-width:1px;background:#d4dfc7;border-radius:2px;transition:background .15s}
+.scene-duration-rail span[data-active=true]{background:#6f8d4f}
+.timeline{display:grid;grid-template-columns:repeat(auto-fit,minmax(125px,1fr));width:100%;gap:8px;flex-wrap:initial}
+.timeline .scene-button{display:grid;grid-template-columns:22px minmax(0,1fr);grid-template-rows:1fr auto;column-gap:7px;row-gap:5px;align-items:start;min-width:0;min-height:82px;padding:11px 9px;text-align:left;border:1px solid #e0e6d9;border-radius:9px;background:#f7f9f3;color:#344b2a;overflow-wrap:normal;transition:background .15s,border-color .15s}
+.timeline .scene-button:hover{background:#edf4e3;border-color:#a9bd90}
+.timeline .scene-button[aria-current=true]{background:#edf5df;border-color:#89a963;box-shadow:inset 0 0 0 1px #89a963}
+.scene-number{grid-column:1;grid-row:1/3;font-size:11px;font-weight:700;color:#687c57;padding-top:2px;line-height:1.6}
+.scene-name{grid-column:2;grid-row:1;font-size:13px;font-weight:600;line-height:1.45;word-break:normal;overflow-wrap:normal}
+.scene-length{grid-column:2;grid-row:2;font-size:12px;font-variant-numeric:tabular-nums;color:#5d704f;line-height:1.4;white-space:nowrap}
+.scene-panel-hint{font-size:12px;color:#607153;line-height:1.5;margin:10px 0 0}
+#status{font-size:12px;color:#54664b;max-width:650px;line-height:1.65}
+#downloads{font-size:13px}
+#downloads a{font-size:13px}
+@media(min-width:801px){.stage{padding:18px 20px;--preview-space:max(160px,calc(100dvh - 410px))}.stage-top{margin-bottom:16px}}
+@media(min-width:1600px){main{grid-template-columns:280px minmax(360px,1fr) 400px}.inspector{padding-inline:24px}}
+@media(min-width:801px) and (max-width:1150px){main{grid-template-columns:215px minmax(290px,1fr) 330px}main>aside{padding-inline:15px}.template{padding-inline:7px;gap:8px}.template .mini{flex-basis:28px;width:28px}.template strong{font-size:13px}.brand .pill,#saveState{display:none}}
+@media(max-width:800px){header{padding:12px;gap:12px}.brand{font-size:23px}.header-actions button{font-size:13px;padding:9px 11px}.header-actions{gap:6px}.stage{padding:20px 16px}.template{min-width:188px;min-height:78px;padding:10px}.template strong{font-size:14px}.template small{font-size:12px}.template .mini{flex-basis:30px;width:30px}.inspector{padding:22px 18px}.guide-toggle{flex-wrap:wrap;justify-content:center}.scene-panel{padding:12px}.timeline{grid-template-columns:repeat(auto-fit,minmax(125px,1fr))}.timeline .scene-button{min-height:86px}.stage-top{font-size:13px}.stage-top .muted{font-size:12px}}
+@media(max-width:420px){.header-actions{width:100%;justify-content:flex-start}.scene-panel-heading{align-items:baseline}#sceneSummary{font-size:12px}.guide-toggle select{max-width:100%;width:100%}.scene-panel-hint{font-size:12px}.stage-top .muted{display:none}}
+
+/* Comfortable default text sizes for everyday editing. */
+label{font-size:14px}input:not([type=checkbox],[type=file],[type=range]),select{font-size:15px}.hint,.workspace-tools .hint,.inspector>.hint,.intro{font-size:13px}.template small{font-size:13px}.workflow-step>summary strong{font-size:15px}.workflow-step>summary small{font-size:13px}.wide,.step-navigation button{font-size:14px}.scene-name{font-size:14px}.scene-length{font-size:13px}
+
+/* Keep transport and guides together, leaving room for readable scene cards. */
+.preview-toolbar{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;width:min(100%,760px);margin:14px 0 12px}
+.preview-toolbar .transport{flex:1 1 280px;width:auto;margin:0;gap:10px}
+.preview-toolbar .guide-toggle{flex:0 1 auto;margin:0;gap:8px;font-size:12px;flex-wrap:nowrap}
+.preview-toolbar .guide-toggle select{width:145px;min-width:0;max-width:145px}
+.timeline{grid-template-columns:repeat(auto-fit,minmax(104px,1fr))}
+.timeline .scene-button{grid-template-columns:1fr auto;grid-template-rows:auto 1fr;gap:7px;min-height:90px;padding:11px 10px}
+.scene-number{grid-column:1;grid-row:1;padding-top:0}
+.scene-length{grid-column:2;grid-row:1;font-size:12px}
+.scene-name{grid-column:1/-1;grid-row:2;font-size:14px}
+.scene-panel-hint{display:none}
+@media(max-width:800px){.preview-toolbar .transport{flex-basis:100%}.preview-toolbar .guide-toggle{margin-left:auto}.timeline{grid-template-columns:repeat(auto-fit,minmax(118px,1fr))}.scene-length{font-size:13px}}

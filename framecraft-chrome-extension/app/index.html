@@ -1,0 +1,892 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Framecraft Offline — Ad Studio</title>
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="editor-ui.css">
+<link rel="icon" type="image/png" href="assets/brand-logo.png">
+</head>
+<body>
+<header>
+<a class="brand" href="#">
+<img class="brand-icon" src="assets/brand-logo.png" alt="Framecraft logo" width="42" height="42"> framecraft<span class="pill">OFFLINE</span>
+</a>
+<div class="header-actions">
+<span id="saveState">Your creative workspace</span>
+<button id="undo" title="Undo · Ctrl+Z" disabled>↶ Undo</button>
+<button id="redo" title="Redo · Ctrl+Shift+Z" disabled>↷ Redo</button>
+<button id="save">Save project</button>
+<button id="cancelExport" hidden type="button">Cancel export</button>
+<button id="export" class="primary">↓ Export video</button>
+</div>
+</header>
+<main>
+<aside>
+<div class="eyebrow">YOUR WORKSPACE</div>
+<h1>Make more.<br>
+<span>Start with a frame.</span>
+</h1>
+<p class="intro">Reusable templates for your next great app ad.</p>
+<div class="section-title">01 / CHOOSE A TEMPLATE</div>
+<div id="templates">
+</div>
+<div class="local-note">
+<span>◈</span>
+<div>
+<strong>Your images stay here.</strong>
+<br>Editing and rendering happen in your browser.</div>
+</div>
+<details class="workspace-tools">
+<summary>Projects &amp; recovery</summary>
+<label>Saved projects<select id="projectLibrary">
+<option value="">Choose a project</option>
+</select>
+</label>
+<div class="tool-buttons">
+<button id="loadLibrary">Open selected</button>
+<button id="newProject">New project</button>
+<button id="duplicateProject">Save a copy</button>
+</div>
+<p class="hint" id="storageStatus">Autosave includes attached media on this browser.</p>
+<button id="packageProject" class="wide">↓ Complete project package</button>
+<p class="hint">Share the package to include images, videos, music, voiceover and SFX. JSON backup stores settings and images only.</p>
+</details>
+<div class="project-actions">
+<button id="downloadProject">↓ Project backup</button>
+<label class="button">Open project<input type="file" id="openProject" accept="application/json,.json,.zip,.framecraft" hidden>
+</label>
+</div>
+</aside>
+<section class="stage">
+<div class="stage-top">
+<div>
+<span class="live-dot">
+</span> <strong id="templateName">Couple collage</strong>
+<span class="muted"> / Live preview</span>
+</div>
+<span class="pill" id="aspectBadge">9:16 PORTRAIT</span>
+</div>
+<div class="canvas-wrap">
+<canvas id="preview" width="720" height="1280" aria-label="Video ad preview">
+</canvas>
+<div class="fullscreen-controls">
+<button id="fullscreenPlay" aria-label="Play or pause full-screen preview">▶ Play / Pause</button>
+<button id="fullscreenExit">Exit full screen · Esc</button>
+</div>
+</div>
+<div class="preview-toolbar"><div class="transport">
+<button id="play" aria-label="Play preview">▶</button>
+<span id="time">00:00</span>
+<input id="scrub" type="range" min="0" max="12" value="0" step="0.01" aria-label="Preview timeline">
+<span id="endTime">00:12</span>
+<button id="restart" aria-label="Restart preview">↺</button>
+<button id="fullscreenPreview" aria-label="Full-screen preview" title="Full-screen preview">⛶</button>
+</div>
+<label class="guide-toggle">Guides<select id="safeGuides">
+<option value="none">Off</option>
+<option value="vertical">Vertical ads · conservative UI margins</option>
+<option value="square">Square ads · conservative margins</option>
+<option value="landscape">Landscape ads · conservative margins</option>
+</select>
+</label></div>
+<p class="hint guide-hint" id="guideHint" hidden>Guides are preview-only estimates. Verify placement with your ad platform.</p>
+<section class="scene-panel" aria-label="Video scenes"><div class="scene-panel-heading"><strong>Scenes</strong><span id="sceneSummary"></span></div><div id="sceneDurationRail" class="scene-duration-rail" aria-hidden="true"></div><div id="timeline" class="timeline" role="group" aria-label="Jump to a scene"></div><p class="scene-panel-hint">Select a scene to preview it.</p></section>
+<p id="status" role="status">Demo artwork · Replace with your own images to export.</p>
+<div id="downloads">
+</div>
+</section>
+<aside class="inspector">
+<div class="section-title">02–09 / CREATE YOUR VIDEO</div>
+<p class="hint">Start with a template on the left, then follow these steps. Click any step to revisit it.</p>
+<div id="workflowProgress" class="workflow-progress" role="status">Step 2 of 9 · Video setup</div>
+<details class="workflow-step" data-step="2" open>
+<summary>
+<span class="step-number">02</span>
+<span>
+<strong>Video setup</strong>
+<small>Name, dimensions and duration</small>
+</span>
+</summary>
+<div class="step-content">
+<label>Video size<select id="resolution">
+<option value="portrait">Portrait · 1080 × 1920</option>
+<option value="square">Square · 1080 × 1080</option>
+<option value="landscape">Landscape · 1920 × 1080</option>
+<option value="custom">Custom · enter width and height</option>
+</select>
+</label>
+<div id="customSizePanel" hidden>
+<div class="row">
+<label>Width (pixels)<input id="customWidth" type="number" min="256" max="3840" step="2" value="1080">
+</label>
+<label>Height (pixels)<input id="customHeight" type="number" min="256" max="3840" step="2" value="1350">
+</label>
+</div>
+<label>Content layout<select id="customLayout">
+<option value="auto">Auto · closest standard layout</option>
+<option value="portrait">Portrait layout</option>
+<option value="square">Square layout</option>
+<option value="landscape">Landscape layout</option>
+</select>
+</label>
+<p id="customSizeHint" class="hint">Use even dimensions from 256 to 3840 pixels, up to 8.29 megapixels. The layout fits without stretching; extra space uses the background color.</p>
+</div>
+<details class="workspace-tools">
+<summary>Brand presets</summary>
+<label>Saved brand<select id="brandPreset">
+<option value="">Choose a brand</option>
+</select>
+</label>
+<label>Preset name<input id="brandName" maxlength="60" placeholder="e.g. Funswap">
+</label>
+<div class="tool-buttons">
+<button id="saveBrand">Save brand</button>
+<button id="applyBrand">Apply brand</button>
+</div>
+<p class="hint">Includes logo, app name, CTA, fonts, colors and watermark. Your photos and timing stay as they are.</p>
+</details>
+<label>Project name<input id="projectName" value="My first app ad" maxlength="60">
+</label>
+<div class="row">
+<label>Duration<select id="duration">
+<option value="8">8 seconds</option>
+<option value="12" selected>12 seconds</option>
+<option value="15">15 seconds</option>
+<option value="20">20 seconds</option>
+<option value="25">25 seconds</option>
+<option value="30">30 seconds</option>
+<option value="45">45 seconds</option>
+<option value="60">60 seconds</option>
+</select>
+</label>
+<label>Image fit<select id="fit">
+<option value="cover">Fill frame</option>
+<option value="contain">Show full image</option>
+</select>
+</label>
+</div>
+<details class="workspace-tools" id="sceneTimingPanel">
+<summary>Scene durations</summary>
+<div id="sceneTimingRows">
+</div>
+<p class="hint" id="sceneTimingTotal">
+</p>
+<button id="resetSceneTiming">Reset to template timing</button>
+<p class="hint">Change each scene in seconds. Captions and manually timed sounds keep their absolute times.</p>
+</details>
+<div class="divider">
+</div>
+<div class="step-navigation">
+<button type="button" class="primary" data-go="3">Next step →</button>
+</div>
+</div>
+</details>
+<details class="workflow-step" data-step="3">
+<summary>
+<span class="step-number">03</span>
+<span>
+<strong>Add your images</strong>
+<small>Finished results and original photos</small>
+</span>
+</summary>
+<div class="step-content">
+<div class="tabs">
+<span class="active">Assets & content</span>
+<span id="resolutionLabel">1080 × 1920</span>
+</div>
+<div id="imageAssetsGroup">
+<label class="upload-zone" tabindex="0"> <span class="upload-icon">＋</span>
+<strong>Add result images</strong>
+<small>Click or drop JPG, PNG, WebP · up to 12</small>
+<input id="upload" type="file" accept="image/jpeg,image/png,image/webp" multiple hidden>
+</label>
+<div id="assets" class="assets">
+</div>
+</div>
+<div id="cropEditor" class="workspace-tools">
+<strong>Crop &amp; position images</strong>
+<label>Image to adjust<select id="cropAsset">
+<option value="">Add an image first</option>
+</select>
+</label>
+<div class="row">
+<label>Zoom<input id="cropZoom" type="number" min="100" max="300" step="5" value="100">
+</label>
+<label>Horizontal position %<input id="cropX" type="number" min="0" max="100" value="50">
+</label>
+<label>Vertical position %<input id="cropY" type="number" min="0" max="100" value="50">
+</label>
+</div>
+<button id="resetCrop">Reset crop</button>
+<p class="hint">Position 0 = left/top, 100 = right/bottom. Crop applies wherever this image appears.</p>
+<canvas id="cropPreview" width="270" height="270" aria-label="Selected image crop preview">
+</canvas>
+</div>
+<div id="framedAssetsGroup">
+<div class="divider">
+</div>
+<div class="section-title">FRAMED COUPLE VIDEO · CLIPS</div>
+<label>Add result video clips<input id="clipUpload" type="file" accept="video/mp4,video/webm,video/quicktime" multiple>
+</label>
+<div id="clipRows">
+</div>
+<p class="hint">Up to 6 clips. Choose Framed Couple Video on the left. Each scene uses its own clip, heading and two input portraits. Clip audio is muted; add music/SFX in step 8. Clip files must be reattached after reopening a project.</p>
+</div>
+<p class="hint" id="imageAssetsHint">Use finished results or collages. Drag cards to reorder. The tool animates your images; it does not generate new poses.</p>
+<div id="originalsGroup">
+<label>Original / before photo <span class="optional">optional</span>
+<input id="beforeUpload" type="file" accept="image/jpeg,image/png,image/webp">
+</label>
+<div id="beforeInfo" class="hint">
+</div>
+<label id="partnerPhotoLabel">Partner / second person photo<input id="partnerUpload" type="file" accept="image/jpeg,image/png,image/webp">
+</label>
+<div id="partnerInfo" class="hint">
+</div>
+</div>
+<div class="step-navigation">
+<button type="button" data-go="2">← Back</button>
+<button type="button" class="primary" data-go="4">Next step →</button>
+</div>
+</div>
+</details>
+<details class="workflow-step" data-step="4">
+<summary>
+<span class="step-number">04</span>
+<span>
+<strong>Edit the main text</strong>
+<small>Headings, fonts, alignment and colors</small>
+</span>
+</summary>
+<div class="step-content">
+<div class="row">
+<label>Text alignment<select id="textAlign">
+<option value="template">Template default</option>
+<option value="left">Left</option>
+<option value="center">Center</option>
+<option value="right">Right</option>
+</select>
+</label>
+<label>Text font<select id="textFont">
+<option value="Open Sans">Open Sans</option>
+<option value="DM Sans">DM Sans · modern</option>
+<option value="Arial">Arial · clean</option>
+<option value="Arial Black">Arial Black · bold</option>
+<option value="Georgia">Georgia · serif</option>
+<option value="Impact">Impact · headline</option>
+<option value="Verdana">Verdana · readable</option>
+<option value="Trebuchet MS">Trebuchet MS · friendly</option>
+</select>
+</label>
+</div>
+<p class="hint">Alignment applies within each heading or message area. Fonts use local fallbacks when unavailable.</p>
+<div class="divider">
+</div>
+<div class="section-title">TIMED CAPTIONS</div>
+<label class="check">
+<input id="captionsEnabled" type="checkbox" checked> Show captions</label>
+<button id="addCaption" class="wide">＋ Add caption</button>
+<label>Import captions (.srt)<input id="captionImport" type="file" accept=".srt,text/plain">
+</label>
+<div id="captionRows">
+</div>
+<div class="row">
+<label>Caption color<input id="captionColor" type="color" value="#ffffff">
+</label>
+<label>Caption background<input id="captionBackground" type="color" value="#000000">
+</label>
+<label>Caption font size<input id="captionSize" type="number" min="18" max="64" value="32">
+</label>
+<label>Caption position<select id="captionPosition">
+<option value="bottom">Bottom</option>
+<option value="middle">Middle</option>
+<option value="top">Top</option>
+</select>
+</label>
+</div>
+<p class="hint">Enter start and end times in seconds. Captions use the selected main text font and are burned into the export. SRT import is supported; automatic transcription is not included.</p>
+<label>Opening hook<input id="hook" value="Your photos. A whole new story." maxlength="100">
+</label>
+<label>Instruction / supporting line<input id="instruction" value="Upload your photos. Choose your look." maxlength="110">
+</label>
+<div class="row">
+<label>App name<input id="appName" value="Your App" maxlength="28">
+</label>
+<label>Call to action<input id="cta" value="Try it now" maxlength="28">
+</label>
+</div>
+<div class="row">
+<label>Text color<input id="textColor" type="color" value="#253025">
+</label>
+<label class="check">
+<input id="customTextColor" type="checkbox"> Use selected color for main text</label>
+<label class="check">
+<input id="textOutline" type="checkbox"> Add text border</label>
+<label>Text border color<input id="textOutlineColor" type="color" value="#000000">
+</label>
+<label>Text border thickness<select id="textOutlineWidth">
+<option value="1">Thin</option>
+<option value="2" selected>Medium</option>
+<option value="4">Thick</option>
+<option value="6">Extra thick</option>
+</select>
+</label>
+<label>Accent color<input id="accent" type="color" value="#d6ff62">
+</label>
+<label>Background<input id="background" type="color" value="#f6f4ef">
+</label>
+</div>
+<div class="step-navigation">
+<button type="button" data-go="3">← Back</button>
+<button type="button" class="primary" data-go="5">Next step →</button>
+</div>
+</div>
+</details>
+<details class="workflow-step" data-step="5">
+<summary>
+<span class="step-number">05</span>
+<span>
+<strong>Edit the watermark</strong>
+<small>Independent text and appearance</small>
+</span>
+</summary>
+<div class="step-content">
+<label class="check">
+<input id="disclosure" type="checkbox" checked> Show watermark</label>
+<label>Watermark text<input id="watermarkText" value="AI generated" maxlength="60">
+</label>
+<div class="row">
+<label>Watermark font<select id="watermarkFont">
+<option value="Open Sans">Open Sans</option>
+<option value="DM Sans">DM Sans · modern</option>
+<option value="Arial">Arial · clean</option>
+<option value="Arial Black">Arial Black · bold</option>
+<option value="Georgia">Georgia · serif</option>
+<option value="Impact">Impact · headline</option>
+<option value="Verdana">Verdana · readable</option>
+<option value="Trebuchet MS">Trebuchet MS · friendly</option>
+</select>
+</label>
+<label>Watermark color<input id="watermarkColor" type="color" value="#ffffff">
+</label>
+<label>Watermark size<input id="watermarkSize" type="number" min="10" max="36" value="17">
+</label>
+<label>Watermark position<select id="watermarkPosition">
+<option value="bottom-right">Bottom right</option>
+<option value="bottom-center">Bottom center</option>
+<option value="bottom-left">Bottom left</option>
+<option value="top-right">Top right</option>
+<option value="top-left">Top left</option>
+</select>
+</label>
+<label>Watermark opacity<input id="watermarkOpacity" type="range" min="10" max="100" value="85">
+</label>
+</div>
+<label class="check">
+<input id="watermarkOutline" type="checkbox" checked> Watermark border</label>
+<label>Watermark border color<input id="watermarkOutlineColor" type="color" value="#000000">
+</label>
+<p class="hint">Main text font, alignment, color and border do not change the watermark.</p>
+<div class="divider">
+</div>
+<div class="step-navigation">
+<button type="button" data-go="4">← Back</button>
+<button type="button" class="primary" data-go="6">Next step →</button>
+</div>
+</div>
+</details>
+<details class="workflow-step" data-step="6">
+<summary>
+<span class="step-number">06</span>
+<span>
+<strong>Choose animations</strong>
+<small>Loading effects, transitions and movement</small>
+</span>
+</summary>
+<div class="step-content">
+<div class="animation-overview">
+<strong id="animationTemplateLabel">Animations for your template</strong>
+<p id="animationTemplateHint" class="hint">
+</p>
+<button id="previewAnimationTemplate" class="primary wide">▶ Preview this template</button>
+</div>
+<details class="animation-group" id="generalAnimationGroup" open>
+<summary>1. Motion & transitions <small>How images move and scenes change</small>
+</summary>
+<div class="animation-group-body">
+<label>Animation style<select id="motion">
+<option value="smooth">Smooth · soft fades and gentle movement</option>
+<option value="punchy">Energetic · faster reveals and stronger motion</option>
+<option value="none">Minimal · no added entrance or transition motion</option>
+</select>
+</label>
+<label>Extra visual effect (optional)<select id="effects">
+<option value="none">Off · clean video</option>
+<option value="all">Mix of effects · advanced</option>
+<option value="blur">Blur-to-sharp reveal</option>
+<option value="zoom">Slow zoom and reframing</option>
+<option value="flash">Camera flash + horizontal flare</option>
+<option value="white">White flash wipe</option>
+<option value="fade">Fade through black</option>
+<option value="upload" hidden>Photo upload entrance</option>
+<option value="loader" hidden>Colored dots merging into a blob</option>
+<option value="leak">Multicolor light leak</option>
+<option value="gold">Golden light sweep</option>
+<option value="hearts">Floating hearts</option>
+<option value="sparkle">Sparkling text reveal</option>
+<option value="endcard">Animated end card · hearts, logo and sparkles</option>
+</select>
+</label>
+<label>Effect intensity<input id="effectIntensity" type="range" min="0" max="100" value="65" aria-label="Effect intensity">
+</label>
+<div class="row">
+<label>Effect speed<select id="effectSpeed">
+<option value="0.7">Slow</option>
+<option value="1" selected>Normal</option>
+<option value="1.5">Fast</option>
+</select>
+</label>
+<label>Effect color<input id="effectColor" type="color" value="#ffc35a">
+</label>
+</div>
+<button id="previewEffect" class="wide">▶ Preview selected effect</button>
+<p id="effectHint" class="hint">Effects are rendered into your video export. Flashing effects can be intense; lower the intensity or select Off.</p>
+</div>
+</details>
+<details class="animation-group" id="uploadAnimationGroup">
+<summary>2. Photo upload & loading <small>Photo slots, heading and loading animation</small>
+</summary>
+<div class="animation-group-body">
+<div class="divider">
+</div>
+<label class="check">
+<input id="uploadScene" type="checkbox" checked> Include animated upload scene</label>
+<label>Upload layout<select id="uploadLayout">
+<option value="auto" selected>Auto · based on uploaded photos</option>
+<option value="one">One photo · centered</option>
+<option value="two">Two photos · side by side</option>
+</select>
+</label>
+<label>Upload scene heading<input id="uploadHeading" value="Upload photos of you with your partner" maxlength="100">
+</label>
+<details class="heading-style-panel">
+<summary>Upload heading style</summary>
+<label class="check">
+<input id="uploadHeadingVisible" type="checkbox" checked> Show upload heading</label>
+<div class="row">
+<label>Font<select id="uploadHeadingFont">
+<option value="Open Sans">Open Sans</option>
+<option value="DM Sans">DM Sans</option>
+<option value="Arial">Arial</option>
+<option value="Arial Black">Arial Black</option>
+<option value="Georgia">Georgia</option>
+<option value="Impact">Impact</option>
+<option value="Verdana">Verdana</option>
+<option value="Trebuchet MS">Trebuchet MS</option>
+</select>
+</label>
+<label>Text size<input id="uploadHeadingSize" type="number" min="18" max="72" value="42">
+</label>
+<label>Text color<input id="uploadHeadingColor" type="color" value="#ffffff">
+</label>
+<label>Alignment<select id="uploadHeadingAlign">
+<option value="left">Left</option>
+<option value="center" selected>Center</option>
+<option value="right">Right</option>
+</select>
+</label>
+</div>
+<label>Position from top (%)<input id="uploadHeadingY" type="range" min="5" max="35" value="18">
+<output id="uploadHeadingYValue">18%</output>
+</label>
+<label class="check">
+<input id="uploadHeadingBox" type="checkbox"> Background box</label>
+<div class="row">
+<label>Background color<input id="uploadHeadingBoxColor" type="color" value="#92ed20">
+</label>
+<label>Background opacity (%)<input id="uploadHeadingBoxOpacity" type="number" min="0" max="100" value="100">
+</label>
+</div>
+<label class="check">
+<input id="uploadHeadingBorder" type="checkbox"> Text border</label>
+<div class="row">
+<label>Border color<input id="uploadHeadingBorderColor" type="color" value="#000000">
+</label>
+<label>Border thickness<select id="uploadHeadingBorderWidth">
+<option value="1">Thin</option>
+<option value="2" selected>Medium</option>
+<option value="4">Thick</option>
+</select>
+</label>
+</div>
+<p class="hint">Only the upload-scene heading changes. Main text and watermark settings stay separate.</p>
+<button id="previewUploadHeading" class="wide">▶ Preview heading</button>
+</details>
+<div class="section-title">LOADING EFFECT</div>
+<label>Loading animation<select id="loaderStyle">
+<option value="merge">Fluid merge · original</option>
+<option value="orbit">Orbiting dots</option>
+<option value="ring">Liquid ring</option>
+<option value="bounce">Bouncing bubbles</option>
+<option value="morph">Morphing blob</option>
+<option value="scan">Photo scan</option>
+<option value="sparkle">Sparkle reveal</option>
+</select>
+</label>
+<div class="row">
+<label>Animation speed<select id="loaderSpeed">
+<option value="0.65">Slow</option>
+<option value="1" selected>Normal</option>
+<option value="1.5">Fast</option>
+</select>
+</label>
+<label>Animation size<input id="loaderSize" type="range" min="60" max="160" step="5" value="100" aria-label="Loading animation size">
+</label>
+</div>
+<label>Loading color style<select id="loaderColorMode">
+<option value="solid">Solid color</option>
+<option value="gradient">Two-color gradient</option>
+</select>
+</label>
+<div class="row">
+<label>Color 1 / solid color<input id="loaderColor" type="color" value="#80ed13">
+</label>
+<label>Gradient color 2<input id="loaderColor2" type="color" value="#dd24ff">
+</label>
+</div>
+<label>Gradient direction<select id="loaderGradientDirection">
+<option value="horizontal">Left → Right</option>
+<option value="vertical">Top → Bottom</option>
+<option value="diagonal">Diagonal</option>
+<option value="radial">Center → Edge</option>
+</select>
+</label>
+<button id="previewLoader" class="wide">▶ Preview selected loading effect</button>
+<button id="previewUpload" class="wide">▶ Preview upload animation</button>
+<p class="hint">Upload slot(s) → your photo(s) → selected loading effect → result. One-photo mode uses Original / before photo; two-photo mode also uses Partner.</p>
+</div>
+</details>
+<div id="uploadUnavailable" class="hint animation-note">This template has no photo-upload scene. Loading effects are available in Couple collage.</div>
+<details class="animation-group" id="frameAnimationGroup">
+<summary>2. Frame layout <small>Border, tilt and background around your clips</small>
+</summary>
+<div class="animation-group-body">
+<div class="row">
+<label>Frame border color<input id="frameColor" type="color" value="#ffffff">
+</label>
+<label>Frame border width<input id="frameWidth" type="number" min="0" max="16" value="4">
+</label>
+<label>Frame tilt (degrees)<input id="frameTilt" type="number" min="-12" max="12" step="1" value="-3">
+</label>
+<label>Connector symbol<input id="frameConnector" value="+" maxlength="3">
+</label>
+<label>Gradient top<input id="frameGradientTop" type="color" value="#e2edff">
+</label>
+<label>Gradient bottom<input id="frameGradientBottom" type="color" value="#ded2ff">
+</label>
+</div>
+<label class="check">
+<input id="frameShadow" type="checkbox" checked> Frame shadow</label>
+<p class="hint">These controls apply to Framed Couple Video.</p>
+<button id="previewFrameLayout" class="wide">▶ Preview frame layout</button>
+</div>
+</details>
+<div class="step-navigation">
+<button type="button" data-go="5">← Back</button>
+<button type="button" class="primary" data-go="7">Next step →</button>
+</div>
+</div>
+</details>
+<details class="workflow-step" data-step="7">
+<summary>
+<span class="step-number">07</span>
+<span>
+<strong>Branding & end card</strong>
+<small>App logo and optional finished end card</small>
+</span>
+</summary>
+<div class="step-content">
+<div class="endcard-custom">
+<div class="section-title">END-CARD ANIMATION & PARTICLES</div>
+<div class="row">
+<label>Card entrance<select id="endEntrance">
+<option value="none">No extra entrance</option>
+<option value="fade">Fade in</option>
+<option value="zoom">Zoom in</option>
+<option value="slide">Slide up</option>
+<option value="wipe">Reveal wipe</option>
+</select>
+</label>
+<label>Entrance duration (s)<input id="endEntranceSeconds" type="number" min="0.1" max="2" step="0.1" value="0.6">
+</label>
+<label>Logo animation<select id="endLogoMotion">
+<option value="none">Still</option>
+<option value="pulse">Gentle pulse</option>
+<option value="bounce">Bounce in</option>
+<option value="spin">Spin in</option>
+<option value="fade">Fade in</option>
+</select>
+</label>
+<label>Button animation<select id="endCtaMotion">
+<option value="template">Template default</option>
+<option value="pulse">Pulse</option>
+<option value="bounce">Bounce</option>
+<option value="slide">Slide in</option>
+<option value="none">Still</option>
+</select>
+</label>
+<label>Particles<select id="endParticles">
+<option value="none">Off</option>
+<option value="sparkle">Sparkles</option>
+<option value="hearts">Floating hearts</option>
+<option value="confetti">Confetti</option>
+<option value="bubbles">Bubbles</option>
+<option value="stars">Stars</option>
+</select>
+</label>
+<label>Particle color<input id="endParticleColor" type="color" value="#ffcf63">
+</label>
+<label>Particle amount<input id="endParticleCount" type="range" min="5" max="70" value="30">
+</label>
+<label>Particle size<input id="endParticleSize" type="range" min="30" max="180" value="80">
+</label>
+<label>Particle speed<select id="endParticleSpeed">
+<option value="0.5">Slow</option>
+<option value="1" selected>Normal</option>
+<option value="1.7">Fast</option>
+</select>
+</label>
+<label>Particle opacity (%)<input id="endParticleOpacity" type="range" min="10" max="100" value="65">
+</label>
+</div>
+<p class="hint">These effects apply only during the end card. Logo and button controls apply to generated cards, not text already baked into an uploaded image or video.</p>
+<div class="section-title">END-CARD SOUND</div>
+<label>Add or replace end-card SFX<input id="endSfxUpload" type="file" accept="audio/*">
+</label>
+<p id="endSfxName" class="hint">No end-card sound attached</p>
+<div class="row">
+<label>SFX volume<input id="endSfxVolume" type="range" min="0" max="100" value="80">
+</label>
+<label>Delay after card begins (s)<input id="endSfxDelay" type="number" min="0" max="10" step="0.1" value="0">
+</label>
+<label>Trim source start (s)<input id="endSfxOffset" type="number" min="0" step="0.1" value="0">
+</label>
+<label>SFX length (s) · 0 = full<input id="endSfxLength" type="number" min="0" step="0.1" value="0">
+</label>
+</div>
+<button id="removeEndSfx" class="text-button">Remove end-card sound</button>
+<button id="previewEndEffects" class="primary wide">▶ Preview end card with sound</button>
+</div>
+<label>App logo <span class="optional">optional</span>
+<input id="logoUpload" type="file" accept="image/png,image/jpeg,image/webp">
+</label>
+<label>End-card video <span class="optional">optional · replaces image</span>
+<input id="endVideoUpload" type="file" accept="video/mp4,video/webm,video/quicktime">
+</label>
+<div id="endVideoInfo" class="hint">
+</div>
+<button id="clearEndVideo" class="text-button">Remove end-card video</button>
+<label id="framedEndDurationLabel">Framed-video end-card duration (seconds)<input id="frameEndDuration" type="number" min="1" max="10" step="0.5" value="4">
+</label>
+<label>End-card image <span class="optional">optional</span>
+<input id="endcardUpload" type="file" accept="image/png,image/jpeg,image/webp">
+</label>
+<div id="endcardInfo" class="hint">
+</div>
+<label>End-card image fit<select id="endcardFit">
+<option value="contain">Show full image</option>
+<option value="cover">Fill frame · may crop</option>
+</select>
+</label>
+<button id="previewEndcard" class="wide">▶ Preview end card</button>
+<button id="clearEndcard" class="text-button">Remove end-card image</button>
+<p class="hint">Replaces the generated end card. Use an image matching your selected video size. The watermark remains independently controlled.</p>
+<button id="clearExtras" class="text-button">Remove originals & logo</button>
+<div class="divider">
+</div>
+<div class="step-navigation">
+<button type="button" data-go="6">← Back</button>
+<button type="button" class="primary" data-go="8">Next step →</button>
+</div>
+</div>
+</details>
+<details class="workflow-step" data-step="8">
+<summary>
+<span class="step-number">08</span>
+<span>
+<strong>Audio & sound effects</strong>
+<small>Music, voiceover and animation sounds</small>
+</span>
+</summary>
+<div class="step-content">
+<label>Background music <span class="optional">optional</span>
+<input id="audioUpload" type="file" accept="audio/*">
+</label>
+<div class="audio-row">
+<span id="audioName" class="hint">Silent export by default</span>
+<button id="clearAudio" class="text-button">Remove</button>
+</div>
+<div class="row">
+<label>Background volume<input id="musicVolume" type="range" min="0" max="100" value="70">
+</label>
+<label>Trim start (seconds)<input id="musicOffset" type="number" min="0" step="0.1" value="0">
+</label>
+</div>
+<label class="check">
+<input id="musicLoop" type="checkbox"> Loop background audio</label>
+<div class="divider">
+</div>
+<details class="workspace-tools" open>
+<summary>Voiceover &amp; audio finishing</summary>
+<label>Voiceover file<input id="voiceUpload" type="file" accept="audio/*">
+</label>
+<p class="hint" id="voiceName">No voiceover attached</p>
+<button id="clearVoice">Remove voiceover</button>
+<div class="row">
+<label>Voice starts at (s)<input id="voiceStart" type="number" min="0" max="600" step="0.1" value="0">
+</label>
+<label>Source trim start (s)<input id="voiceOffset" type="number" min="0" step="0.1" value="0">
+</label>
+<label>Voice length (s) · 0 = full<input id="voiceLength" type="number" min="0" step="0.1" value="0">
+</label>
+<label>Voice volume %<input id="voiceVolume" type="number" min="0" max="100" value="100">
+</label>
+<label>Music fade in (s)<input id="musicFadeIn" type="number" min="0" max="10" step="0.1" value="0.3">
+</label>
+<label>Music fade out (s)<input id="musicFadeOut" type="number" min="0" max="10" step="0.1" value="0.5">
+</label>
+<label>Voice fade in (s)<input id="voiceFadeIn" type="number" min="0" max="5" step="0.1" value="0.05">
+</label>
+<label>Voice fade out (s)<input id="voiceFadeOut" type="number" min="0" max="5" step="0.1" value="0.1">
+</label>
+</div>
+<label class="check">
+<input id="musicDuck" type="checkbox" checked> Reduce music while voiceover plays</label>
+<label>Music level under voice %<input id="duckLevel" type="number" min="0" max="100" value="25">
+</label>
+</details>
+<div class="section-title">ANIMATION SOUND EFFECTS</div>
+<label>Add SFX files<input id="sfxUpload" type="file" accept="audio/*" multiple>
+</label>
+<div id="sfxRows">
+</div>
+<p class="hint">Set each sound’s start time, source trim, length and volume. Use the timing presets for upload, loading or reveal. Playback previews the mix; export includes it. Reattach audio files after opening a project backup.</p>
+<div class="divider">
+</div>
+<div class="divider">
+</div>
+<div class="step-navigation">
+<button type="button" data-go="7">← Back</button>
+<button type="button" class="primary" data-go="9">Next step →</button>
+</div>
+</div>
+</details>
+<details class="workflow-step" data-step="9">
+<summary>
+<span class="step-number">09</span>
+<span>
+<strong>Review & export</strong>
+<small>Preview, save a backup, then export</small>
+</span>
+</summary>
+<div class="step-content">
+<p class="hint"><a href="guide.html" target="_blank" rel="noopener">Open the updated user guide ↗</a></p><p class="hint">Play the whole preview. Check faces, text, watermark, timing and audio. Save a project backup before exporting. Keep the tab visible while exporting.</p>
+<label>Export method<select id="exportMethod">
+<option value="frames">Precise MP4 · fixed 30 fps</option>
+<option value="realtime">Browser recording · variable frame rate</option>
+</select>
+</label>
+<p id="encoderHint" class="hint">Precise export encodes every frame. Browser support is checked before export.</p>
+<label id="formatLabel">Recording format<select id="format">
+</select>
+</label>
+<p class="hint" id="formatHint">
+</p>
+<button id="variation" class="wide">↻ Create a variation</button>
+<p class="hint">Rotates image order and changes the hook. Your saved template stays available.</p>
+<details class="workspace-tools">
+<summary>Batch export</summary>
+<p class="hint">Export the current edit in selected sizes and image-order variations. All files are delivered in one ZIP.</p>
+<label class="check">
+<input id="batchPortrait" type="checkbox" checked> Portrait · 1080 × 1920</label>
+<label class="check">
+<input id="batchSquare" type="checkbox"> Square · 1080 × 1080</label>
+<label class="check">
+<input id="batchLandscape" type="checkbox"> Landscape · 1920 × 1080</label>
+<label>Number of variations<input id="batchVariations" type="number" min="1" max="20" value="1">
+</label>
+<label>Hooks · one per line, optional<textarea id="batchHooks" rows="3" placeholder="Your photos. A new story.
+Find your next look.">
+</textarea>
+</label>
+<p id="batchCount" class="hint">
+</p>
+<button id="batchExport" class="primary wide">Export batch ZIP</button>
+<p class="hint">Variations rotate result images or video scenes; hooks cycle through your list. The original edit is restored when finished.</p>
+</details>
+<button id="workflowBackup" class="wide">↓ Save project backup</button>
+<button id="workflowExport" class="primary wide">↓ Export video</button>
+<div class="step-navigation">
+<button type="button" data-go="8">← Back</button>
+</div>
+</div>
+</details>
+</aside>
+</main>
+<dialog id="trimDialog" class="trim-dialog" aria-labelledby="trimTitle">
+<div class="trim-header">
+<strong id="trimTitle">Trim video clip</strong>
+<button id="trimClose" aria-label="Close trim editor">×</button>
+</div>
+<video id="trimPreview" controls playsinline muted preload="metadata">
+</video>
+<p id="trimClock" class="hint">Source position: 0.00s</p>
+<div class="row">
+<label>Start / In (seconds)<input id="trimIn" type="number" min="0" step="0.01" value="0">
+</label>
+<label>End / Out (seconds)<input id="trimOut" type="number" min="0" step="0.01" value="7">
+</label>
+</div>
+<div class="trim-actions">
+<button id="trimMarkIn">Mark start here</button>
+<button id="trimMarkOut">Mark end here</button>
+<button id="trimPlay">▶ Play selected range</button>
+<button id="trimReset">Reset range</button>
+<button id="trimFullscreen">⛶ Full-screen video</button>
+</div>
+<p id="trimInfo" role="status">Select the portion to use.</p>
+<p class="hint">Maximum 60 seconds per scene. The selected range is used in your ad; the original file is not changed.</p>
+<button id="trimApply" class="primary wide">Use selected range</button>
+</dialog>
+<script src="vendor/jszip.min.js">
+</script>
+<script src="vendor/mediabunny.js">
+</script>
+<script src="app.js">
+</script>
+<script src="framed-video.js">
+</script>
+<script src="endcard-effects.js">
+</script>
+<script src="effects.js">
+</script>
+<script src="audio-captions.js">
+</script>
+<script src="export-controller.js">
+</script>
+<script src="workflow.js">
+</script>
+<script src="fullscreen.js">
+</script>
+<script src="studio-editing.js">
+</script>
+<script src="audio-finishing.js">
+</script>
+<script src="precise-export.js">
+</script>
+<script src="project-library.js">
+</script>
+</body>
+</html>

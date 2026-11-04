@@ -1,0 +1,33 @@
+{
+  "manifest_version": 3,
+  "name": "Framecraft Offline \u2014 Ad Studio",
+  "version": "1.0.1",
+  "description": "Create app promo videos offline with templates, captions, music, voiceover and batch exports.",
+  "minimum_chrome_version": "120",
+  "key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAspXJpknMMlhtvmdv/4PmhgRKcog1MpQ30cYjQtivDKqnv91avn7iwGWTY3pWESk5oktmiyezVswzhQwvcMKphKvM/fPkUFeCfRGNg+GIs5GgZZ0GAFye0ao7rboHdAIHv6c0VHD5xlnvLpeH4A37z6BFNUaQSgVxjJr5/94x45yT46tvoDczE3clRT7AowUG0mc9paaFHTXD0E0a8QmLWpx68EE+cch1RbRTgSW1GAVMx4OIYtsCmzJ0pg3haDEIIAkoNoFe8aFpidSyMiX7sevWG8FTXpWMLhFNo27GfTPQbBHBdXZtBkCOPne4UBsKQuoD2OYDMMaVKGiPOf7gXQIDAQAB",
+  "permissions": [
+    "unlimitedStorage"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {
+    "default_title": "Open Framecraft Offline",
+    "default_icon": {
+      "16": "icons/icon-16.png",
+      "32": "icons/icon-32.png",
+      "48": "icons/icon-48.png",
+      "128": "icons/icon-128.png"
+    }
+  },
+  "icons": {
+    "16": "icons/icon-16.png",
+    "32": "icons/icon-32.png",
+    "48": "icons/icon-48.png",
+    "128": "icons/icon-128.png"
+  },
+  "options_page": "app/guide.html",
+  "content_security_policy": {
+    "extension_pages": "default-src 'self'; script-src 'self'; object-src 'none'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; media-src 'self' blob: data:; font-src 'self'; connect-src 'none'; base-uri 'self'; frame-src 'none'; form-action 'none'"
+  }
+}

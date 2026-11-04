@@ -1,0 +1,27 @@
+Framecraft bundled dependencies (available offline)
+
+Mediabunny 1.65.1
+Copyright (c) 2026-present, Vanilagy and contributors
+License: Mozilla Public License 2.0; see vendor/mediabunny-LICENSE.txt
+Source package: https://registry.npmjs.org/mediabunny/-/mediabunny-1.65.1.tgz
+Project: https://github.com/Vanilagy/mediabunny
+The distributed browser bundle is enclosed in a small global export wrapper.
+The original source and build scripts are available in the source package above.
+
+JSZip 3.10.1
+Copyright (c) 2009-2016 Stuart Knightley, David Duponchel, Franz Buchinger, Antonio Afonso
+License: MIT or GPLv3; distributed here under MIT. See vendor/jszip-LICENSE.txt
+Source package: https://registry.npmjs.org/jszip/-/jszip-3.10.1.tgz
+Project: https://github.com/Stuk/jszip
+
+DM Sans and Manrope fonts
+License: SIL Open Font License 1.1. See assets/fonts/*-OFL.txt
+Sources: https://github.com/google/fonts/tree/main/ofl/dmsans and https://github.com/google/fonts/tree/main/ofl/manrope
+Font binaries supplied by Google Fonts and bundled locally.
+
+Open Sans font
+License: SIL Open Font License 1.1. See assets/fonts/opensans-OFL.txt
+Source: https://github.com/google/fonts/tree/main/ofl/opensans
+Font binaries supplied by Google Fonts and bundled locally.
+
+Extension build modification: JSZip setImmediate string callbacks are rejected instead of compiled dynamically, for the extension content security policy.

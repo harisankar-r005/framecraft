@@ -1,0 +1,24 @@
+# Local deployment/account configuration
+.openai/
+.codex/
+.aws/
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+
+# Local caches, scratch work and tools
+node_modules/
+.venv/
+__pycache__/
+.video-analysis-tools/
+tmp/
+*.pyc
+*.log
+.DS_Store
+Thumbs.db
+
+# Regenerable distribution archives; unpacked sources/media are tracked
+*.zip
+*.tar.gz

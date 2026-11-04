@@ -1,0 +1,1176 @@
+{
+  "project": "Framecraft",
+  "prepared_date": "2026-11-04",
+  "files": [
+    {
+      "path": ".gitignore",
+      "size_bytes": 324,
+      "sha256": "63bd56df19ec1c58a612043eddd16b05c6c552d85df9323e124f910941cf2621"
+    },
+    {
+      "path": "ad-template-studio/dist/app.js",
+      "size_bytes": 42559,
+      "sha256": "3587df864e422bc8d42c5954f57bd5f1c26e6c3fe121d1f33da316ba9500f15f"
+    },
+    {
+      "path": "ad-template-studio/dist/assets/brand-icon.png",
+      "size_bytes": 32177,
+      "sha256": "58766d7c0997b198b3ebc45874d55cf666fb9aee1346ebf89624f41aca8cbf60"
+    },
+    {
+      "path": "ad-template-studio/dist/assets/brand-logo.png",
+      "size_bytes": 32177,
+      "sha256": "58766d7c0997b198b3ebc45874d55cf666fb9aee1346ebf89624f41aca8cbf60"
+    },
+    {
+      "path": "ad-template-studio/dist/assets/fonts/dm-sans-400.ttf",
+      "size_bytes": 48280,
+      "sha256": "b0ae3e89a7d3ef2b1838bb4b1ceb0b17cc3435af061eee809d76aa623ff116e9"
+    },
+    {
+      "path": "ad-template-studio/dist/assets/fonts/dm-sans-500.ttf",
+      "size_bytes": 48308,
+      "sha256": "376427b5322148d8de1e03f263bcca4935a2d60ba71d9f94f4947ab664c711ae"
+    },
+    {
+      "path": "ad-template-studio/dist/assets/fonts/dm-sans-600.ttf",
+      "size_bytes": 48280,
+      "sha256": "b79a2ea7a38f33fd96a282fadb9ce97626bb0724a44d21075859f0e50239993a"
+    },
+    {
+      "path": "ad-template-studio/dist/assets/fonts/dm-sans-700.ttf",
+      "size_bytes": 48200,
+      "sha256": "2a8e7f713ee79fbccdef3cef5c787aff47580299f7da60144961e7db2ec08211"
+    },
+    {
+      "path": "ad-template-studio/dist/assets/fonts/dmsans-OFL.txt",
+      "size_bytes": 4482,
+      "sha256": "9af36190332437f5ecd09974de43c1f7c77a310a996cdd8ceb25628b458840e1"
+    },
+    {
+      "path": "ad-template-studio/dist/assets/fonts/manrope-400.ttf",
+      "size_bytes": 96200,
+      "sha256": "ed335894f8d954263675f7e457bf657374d8b7be629be4dc43aef97c309ad3ae"
+    },
+    {
+      "path": "ad-template-studio/dist/assets/fonts/manrope-500.ttf",
+      "size_bytes": 96300,
+      "sha256": "437dc9f921739a6893128fa4dfc299424951148475815a9a213a46457878c42b"
+    },
+    {
+      "path": "ad-template-studio/dist/assets/fonts/manrope-600.ttf",
+      "size_bytes": 96348,
+      "sha256": "68ed4be49ec7d32f07b42f9232dc01ca1df7a77be1d9b0731aac74db58235f34"
+    },
+    {
+      "path": "ad-template-studio/dist/assets/fonts/manrope-700.ttf",
+      "size_bytes": 96188,
+      "sha256": "ea1f264039fed13fd36e6d6f49fcae4fe7007def02cf2972b5c7f6d6f1349d06"
+    },
+    {
+      "path": "ad-template-studio/dist/assets/fonts/manrope-800.ttf",
+      "size_bytes": 96816,
+      "sha256": "a8291b05b2732801abdbbb6d06866c57431c3b990638462423e692151b5e0895"
+    },
+    {
+      "path": "ad-template-studio/dist/assets/fonts/manrope-OFL.txt",
+      "size_bytes": 4387,
+      "sha256": "58172e0c0fac2cda8a37b348164bb55e44b0e69051e557e92b1d3f6910141f7b"
+    },
+    {
+      "path": "ad-template-studio/dist/assets/fonts/open-sans-400.ttf",
+      "size_bytes": 122116,
+      "sha256": "47ed1cfaa7ffca04a04ab850b2938fd52c09d1b44cfa3e2980878e166b0cbd87"
+    },
+    {
+      "path": "ad-template-studio/dist/assets/fonts/open-sans-500.ttf",
+      "size_bytes": 122264,
+      "sha256": "05f24e5e4d738b9f8e8643809ebed4800287d61a75d19ac2716f12b5d26279dd"
+    },
+    {
+      "path": "ad-template-studio/dist/assets/fonts/open-sans-600.ttf",
+      "size_bytes": 122060,
+      "sha256": "733eb93b167e6d45de09aa768f6c0355647c2c26f5416dbc7407a08ed41e81c6"
+    },
+    {
+      "path": "ad-template-studio/dist/assets/fonts/open-sans-700.ttf",
+      "size_bytes": 122132,
+      "sha256": "75367e6da7d914eaed87883ba51b2a2b5816b5cdbb39f96ec5c81a5b032bfd5a"
+    },
+    {
+      "path": "ad-template-studio/dist/assets/fonts/open-sans-800.ttf",
+      "size_bytes": 122536,
+      "sha256": "8e325b2fc46c5f9ca4f8d9bde772b0f46fc7cbfbff6bc19c9570d2cd965b0954"
+    },
+    {
+      "path": "ad-template-studio/dist/assets/fonts/opensans-OFL.txt",
+      "size_bytes": 4389,
+      "sha256": "fbbbcfef55318de350562559b671360de6d597112ecc5c73881b05092db89602"
+    },
+    {
+      "path": "ad-template-studio/dist/audio-captions.js",
+      "size_bytes": 10348,
+      "sha256": "5beefd38768feed82c63f4826c9c92ed7563bc6074e6140b1bb0f4feb0dc98ba"
+    },
+    {
+      "path": "ad-template-studio/dist/audio-finishing.js",
+      "size_bytes": 7300,
+      "sha256": "88f59b302bc51aec877fc56d4d7b8b95e26011df004a6b8733c9cd385cd1a5a9"
+    },
+    {
+      "path": "ad-template-studio/dist/editor-ui.css",
+      "size_bytes": 8208,
+      "sha256": "b39ef6af2127841f81899ca209dfeca3c498aca2140518703de2768697720f03"
+    },
+    {
+      "path": "ad-template-studio/dist/effects.js",
+      "size_bytes": 7442,
+      "sha256": "387f65771df6a59daec38c3ba823d27d95e1512ca733a86bcac01ee8d5f6585a"
+    },
+    {
+      "path": "ad-template-studio/dist/endcard-effects.js",
+      "size_bytes": 4399,
+      "sha256": "c8a4c57cde561ea14dcfff96f25a3bab32bca2c6111d98c426021ef4ade21147"
+    },
+    {
+      "path": "ad-template-studio/dist/export-controller.js",
+      "size_bytes": 4728,
+      "sha256": "190ce7b1eb5b6ad328ca66b95a4e916ef0986b23ffb69b9f1beda521ff40b37f"
+    },
+    {
+      "path": "ad-template-studio/dist/framed-video.js",
+      "size_bytes": 17297,
+      "sha256": "2958b5a1f14361fda3b2dddbdef684f95875b3faf3c21d6ebccd91e46dbbc52f"
+    },
+    {
+      "path": "ad-template-studio/dist/fullscreen.js",
+      "size_bytes": 1078,
+      "sha256": "2028032dcf4e282570b2257be6ed2fc6dcd9bce75d7f069d3d5fa4256082aae4"
+    },
+    {
+      "path": "ad-template-studio/dist/guide.html",
+      "size_bytes": 8894,
+      "sha256": "11f05fc193f68ecabff911c5b8d2840f66ca4a27f73e139b88891e316bd15a98"
+    },
+    {
+      "path": "ad-template-studio/dist/index.html",
+      "size_bytes": 36962,
+      "sha256": "a1734ba2b7ec0365ca9826501783762db3df0ba94612af70996bd5857ee24098"
+    },
+    {
+      "path": "ad-template-studio/dist/precise-export.js",
+      "size_bytes": 10531,
+      "sha256": "357916a2be4e553cadcaedfc5d8c2e7079aad13a09ce2b577e391bd325cd61ce"
+    },
+    {
+      "path": "ad-template-studio/dist/project-library.js",
+      "size_bytes": 15600,
+      "sha256": "d365c29ab1d41938943748219a78c3cb314db54e75c308b307810f20a545026a"
+    },
+    {
+      "path": "ad-template-studio/dist/studio-editing.js",
+      "size_bytes": 12167,
+      "sha256": "4c89adeb212819c893540bdf31175e241ff5f1fe245297eda270cb97c52f44a6"
+    },
+    {
+      "path": "ad-template-studio/dist/style.css",
+      "size_bytes": 18362,
+      "sha256": "71792f603ef3948ce132aee486b053d17edc8ee7bb21c255bfbd35e89762e564"
+    },
+    {
+      "path": "ad-template-studio/dist/THIRD_PARTY.txt",
+      "size_bytes": 1276,
+      "sha256": "185b440fc1b3a7af36c19b071144118d49bddb3e93430726608b9d1f8ffcfbcd"
+    },
+    {
+      "path": "ad-template-studio/dist/vendor/jszip-LICENSE.txt",
+      "size_bytes": 33753,
+      "sha256": "566c953c6090b1218ca6217dd7359d45dde46581968586dc607d59a78af6a9c4"
+    },
+    {
+      "path": "ad-template-studio/dist/vendor/jszip.min.js",
+      "size_bytes": 97630,
+      "sha256": "acc7e41455a80765b5fd9c7ee1b8078a6d160bbbca455aeae854de65c947d59e"
+    },
+    {
+      "path": "ad-template-studio/dist/vendor/mediabunny-LICENSE.txt",
+      "size_bytes": 16726,
+      "sha256": "3f3d9e0024b1921b067d6f7f88deb4a60cbe7a78e76c64e3f1d7fc3b779b9d04"
+    },
+    {
+      "path": "ad-template-studio/dist/vendor/mediabunny.js",
+      "size_bytes": 724313,
+      "sha256": "8ddc35923133b1d33bf0bc903e3a592323b87ac638ea70737c51694ce2cd0fef"
+    },
+    {
+      "path": "ad-template-studio/dist/workflow.js",
+      "size_bytes": 2681,
+      "sha256": "b1e252c0ae65eac1719436d2a90850d9d653535a21e8d867790728bfab500ed0"
+    },
+    {
+      "path": "ad-template-studio/extension-src/background.js",
+      "size_bytes": 376,
+      "sha256": "06fd9cf8863c8e7f676b72e1be7b6150470e399394fdd737bbe52b0dac1176dc"
+    },
+    {
+      "path": "ad-template-studio/extension-src/icons/icon-128.png",
+      "size_bytes": 7445,
+      "sha256": "7aa5c7da94893689866637e735b2df4802ba3d37575691a6a8977e541da4821c"
+    },
+    {
+      "path": "ad-template-studio/extension-src/icons/icon-16.png",
+      "size_bytes": 747,
+      "sha256": "5076215ec04f915718c5ae13a6a47cdbedd5b03867f022e72c553e903de12799"
+    },
+    {
+      "path": "ad-template-studio/extension-src/icons/icon-32.png",
+      "size_bytes": 1730,
+      "sha256": "59744fd03ef74a4d1706fbe134dfbb2a5f0bb5ab17658da8f9930f6e7bb63e88"
+    },
+    {
+      "path": "ad-template-studio/extension-src/icons/icon-48.png",
+      "size_bytes": 2625,
+      "sha256": "8a13503894cba4b1447ee6c877b03492f53667c4e0b8b2e4c3815a46afb23c01"
+    },
+    {
+      "path": "ad-template-studio/extension-src/INSTALL.md",
+      "size_bytes": 2968,
+      "sha256": "3fe8cab8e14213713c6fc1f58696f5da4caf4e3e44f6cefdc6ec953e4aa1bea2"
+    },
+    {
+      "path": "ad-template-studio/extension-src/manifest.json",
+      "size_bytes": 1503,
+      "sha256": "87637c2d0722fbf86562859d04397b12ff034cc980f62ee6399e9f89c1631455"
+    },
+    {
+      "path": "ad-template-studio/extension-src/PRIVACY.md",
+      "size_bytes": 1136,
+      "sha256": "59099e7a22e7e22f03830e22da73160f61cc1c31d22fdfed6e3b587b05e0371a"
+    },
+    {
+      "path": "ad-template-studio/extension-src/TEST_REPORT.md",
+      "size_bytes": 2135,
+      "sha256": "b120271e88efb7fb4c886fb7427db7a5ac362fffb076fbba1961a8cc48ea2137"
+    },
+    {
+      "path": "ad-template-studio/REVIEW_UPDATE.md",
+      "size_bytes": 6002,
+      "sha256": "310ece492ddd70ee370c761e9e40edd8323ffec7906cf590af69e0d56cb404d8"
+    },
+    {
+      "path": "ad-template-studio/tests/extension-package.cjs",
+      "size_bytes": 2424,
+      "sha256": "fd7b969db9fcdff462f03fc27081cf1c0308578f53fc2ce71a2bbbf625363c55"
+    },
+    {
+      "path": "ad-template-studio/tests/loading-smoke.cjs",
+      "size_bytes": 17433,
+      "sha256": "6b4d47b41ff25bce778175eebb75308966c98b2e6d057f751ebd8e73fd63b0c6"
+    },
+    {
+      "path": "ad-template-studio/tests/studio-regression.cjs",
+      "size_bytes": 5856,
+      "sha256": "ee97eb9bd35aa62284044ba25ecd0f8dbc72af067e3f29ec64e3d9c3f6dace84"
+    },
+    {
+      "path": "ad-template-studio/tools/build-extension.cjs",
+      "size_bytes": 3191,
+      "sha256": "2bbd16ca1fb1f80f04fe559326e5fa5f3391ba55ed3485abaed873c194b4e8f7"
+    },
+    {
+      "path": "download-progress.json",
+      "size_bytes": 124,
+      "sha256": "95ad5fd96fd53aab61cda1ae74ba6cb18258ff61b6ebb7aab17ed3960ba4d8ff"
+    },
+    {
+      "path": "download-results.json",
+      "size_bytes": 179647,
+      "sha256": "cb5400be52663d10340bc54e42e102cd581c4214cf70fb221b2f25035fcaf43d"
+    },
+    {
+      "path": "download_videos.py",
+      "size_bytes": 2113,
+      "sha256": "8292eb22aac0804f3f4dc681c0932bdc954a8ccf2df33a4950af10e27dd10caf"
+    },
+    {
+      "path": "framecraft-chrome-extension/app/app.js",
+      "size_bytes": 42559,
+      "sha256": "3587df864e422bc8d42c5954f57bd5f1c26e6c3fe121d1f33da316ba9500f15f"
+    },
+    {
+      "path": "framecraft-chrome-extension/app/assets/brand-icon.png",
+      "size_bytes": 32177,
+      "sha256": "58766d7c0997b198b3ebc45874d55cf666fb9aee1346ebf89624f41aca8cbf60"
+    },
+    {
+      "path": "framecraft-chrome-extension/app/assets/brand-logo.png",
+      "size_bytes": 32177,
+      "sha256": "58766d7c0997b198b3ebc45874d55cf666fb9aee1346ebf89624f41aca8cbf60"
+    },
+    {
+      "path": "framecraft-chrome-extension/app/assets/fonts/dm-sans-400.ttf",
+      "size_bytes": 48280,
+      "sha256": "b0ae3e89a7d3ef2b1838bb4b1ceb0b17cc3435af061eee809d76aa623ff116e9"
+    },
+    {
+      "path": "framecraft-chrome-extension/app/assets/fonts/dm-sans-500.ttf",
+      "size_bytes": 48308,
+      "sha256": "376427b5322148d8de1e03f263bcca4935a2d60ba71d9f94f4947ab664c711ae"
+    },
+    {
+      "path": "framecraft-chrome-extension/app/assets/fonts/dm-sans-600.ttf",
+      "size_bytes": 48280,
+      "sha256": "b79a2ea7a38f33fd96a282fadb9ce97626bb0724a44d21075859f0e50239993a"
+    },
+    {
+      "path": "framecraft-chrome-extension/app/assets/fonts/dm-sans-700.ttf",
+      "size_bytes": 48200,
+      "sha256": "2a8e7f713ee79fbccdef3cef5c787aff47580299f7da60144961e7db2ec08211"
+    },
+    {
+      "path": "framecraft-chrome-extension/app/assets/fonts/dmsans-OFL.txt",
+      "size_bytes": 4482,
+      "sha256": "9af36190332437f5ecd09974de43c1f7c77a310a996cdd8ceb25628b458840e1"
+    },
+    {
+      "path": "framecraft-chrome-extension/app/assets/fonts/manrope-400.ttf",
+      "size_bytes": 96200,
+      "sha256": "ed335894f8d954263675f7e457bf657374d8b7be629be4dc43aef97c309ad3ae"
+    },
+    {
+      "path": "framecraft-chrome-extension/app/assets/fonts/manrope-500.ttf",
+      "size_bytes": 96300,
+      "sha256": "437dc9f921739a6893128fa4dfc299424951148475815a9a213a46457878c42b"
+    },
+    {
+      "path": "framecraft-chrome-extension/app/assets/fonts/manrope-600.ttf",
+      "size_bytes": 96348,
+      "sha256": "68ed4be49ec7d32f07b42f9232dc01ca1df7a77be1d9b0731aac74db58235f34"
+    },
+    {
+      "path": "framecraft-chrome-extension/app/assets/fonts/manrope-700.ttf",
+      "size_bytes": 96188,
+      "sha256": "ea1f264039fed13fd36e6d6f49fcae4fe7007def02cf2972b5c7f6d6f1349d06"
+    },
+    {
+      "path": "framecraft-chrome-extension/app/assets/fonts/manrope-800.ttf",
+      "size_bytes": 96816,
+      "sha256": "a8291b05b2732801abdbbb6d06866c57431c3b990638462423e692151b5e0895"
+    },
+    {
+      "path": "framecraft-chrome-extension/app/assets/fonts/manrope-OFL.txt",
+      "size_bytes": 4387,
+      "sha256": "58172e0c0fac2cda8a37b348164bb55e44b0e69051e557e92b1d3f6910141f7b"
+    },
+    {
+      "path": "framecraft-chrome-extension/app/assets/fonts/open-sans-400.ttf",
+      "size_bytes": 122116,
+      "sha256": "47ed1cfaa7ffca04a04ab850b2938fd52c09d1b44cfa3e2980878e166b0cbd87"
+    },
+    {
+      "path": "framecraft-chrome-extension/app/assets/fonts/open-sans-500.ttf",
+      "size_bytes": 122264,
+      "sha256": "05f24e5e4d738b9f8e8643809ebed4800287d61a75d19ac2716f12b5d26279dd"
+    },
+    {
+      "path": "framecraft-chrome-extension/app/assets/fonts/open-sans-600.ttf",
+      "size_bytes": 122060,
+      "sha256": "733eb93b167e6d45de09aa768f6c0355647c2c26f5416dbc7407a08ed41e81c6"
+    },
+    {
+      "path": "framecraft-chrome-extension/app/assets/fonts/open-sans-700.ttf",
+      "size_bytes": 122132,
+      "sha256": "75367e6da7d914eaed87883ba51b2a2b5816b5cdbb39f96ec5c81a5b032bfd5a"
+    },
+    {
+      "path": "framecraft-chrome-extension/app/assets/fonts/open-sans-800.ttf",
+      "size_bytes": 122536,
+      "sha256": "8e325b2fc46c5f9ca4f8d9bde772b0f46fc7cbfbff6bc19c9570d2cd965b0954"
+    },
+    {
+      "path": "framecraft-chrome-extension/app/assets/fonts/opensans-OFL.txt",
+      "size_bytes": 4389,
+      "sha256": "fbbbcfef55318de350562559b671360de6d597112ecc5c73881b05092db89602"
+    },
+    {
+      "path": "framecraft-chrome-extension/app/audio-captions.js",
+      "size_bytes": 10348,
+      "sha256": "5beefd38768feed82c63f4826c9c92ed7563bc6074e6140b1bb0f4feb0dc98ba"
+    },
+    {
+      "path": "framecraft-chrome-extension/app/audio-finishing.js",
+      "size_bytes": 7300,
+      "sha256": "88f59b302bc51aec877fc56d4d7b8b95e26011df004a6b8733c9cd385cd1a5a9"
+    },
+    {
+      "path": "framecraft-chrome-extension/app/editor-ui.css",
+      "size_bytes": 8208,
+      "sha256": "b39ef6af2127841f81899ca209dfeca3c498aca2140518703de2768697720f03"
+    },
+    {
+      "path": "framecraft-chrome-extension/app/effects.js",
+      "size_bytes": 7442,
+      "sha256": "387f65771df6a59daec38c3ba823d27d95e1512ca733a86bcac01ee8d5f6585a"
+    },
+    {
+      "path": "framecraft-chrome-extension/app/endcard-effects.js",
+      "size_bytes": 4399,
+      "sha256": "c8a4c57cde561ea14dcfff96f25a3bab32bca2c6111d98c426021ef4ade21147"
+    },
+    {
+      "path": "framecraft-chrome-extension/app/export-controller.js",
+      "size_bytes": 4728,
+      "sha256": "190ce7b1eb5b6ad328ca66b95a4e916ef0986b23ffb69b9f1beda521ff40b37f"
+    },
+    {
+      "path": "framecraft-chrome-extension/app/framed-video.js",
+      "size_bytes": 17297,
+      "sha256": "2958b5a1f14361fda3b2dddbdef684f95875b3faf3c21d6ebccd91e46dbbc52f"
+    },
+    {
+      "path": "framecraft-chrome-extension/app/fullscreen.js",
+      "size_bytes": 1078,
+      "sha256": "2028032dcf4e282570b2257be6ed2fc6dcd9bce75d7f069d3d5fa4256082aae4"
+    },
+    {
+      "path": "framecraft-chrome-extension/app/guide.html",
+      "size_bytes": 8979,
+      "sha256": "0703fd5a99815ad16aab38c1cf2a54155d00b89cab7dab13bed2d1da02525c62"
+    },
+    {
+      "path": "framecraft-chrome-extension/app/index.html",
+      "size_bytes": 36948,
+      "sha256": "1a878e8a7d3bea7a3fed6b734f631b3630b190960b464a8601bf3963edca3532"
+    },
+    {
+      "path": "framecraft-chrome-extension/app/precise-export.js",
+      "size_bytes": 10531,
+      "sha256": "357916a2be4e553cadcaedfc5d8c2e7079aad13a09ce2b577e391bd325cd61ce"
+    },
+    {
+      "path": "framecraft-chrome-extension/app/project-library.js",
+      "size_bytes": 15600,
+      "sha256": "d365c29ab1d41938943748219a78c3cb314db54e75c308b307810f20a545026a"
+    },
+    {
+      "path": "framecraft-chrome-extension/app/studio-editing.js",
+      "size_bytes": 12167,
+      "sha256": "4c89adeb212819c893540bdf31175e241ff5f1fe245297eda270cb97c52f44a6"
+    },
+    {
+      "path": "framecraft-chrome-extension/app/style.css",
+      "size_bytes": 18362,
+      "sha256": "71792f603ef3948ce132aee486b053d17edc8ee7bb21c255bfbd35e89762e564"
+    },
+    {
+      "path": "framecraft-chrome-extension/app/THIRD_PARTY.txt",
+      "size_bytes": 1432,
+      "sha256": "a54e3b5dd4a0c927ccb413dad60c3ab44dc1540c57f4ae7caa3f23f43a259db5"
+    },
+    {
+      "path": "framecraft-chrome-extension/app/vendor/jszip-LICENSE.txt",
+      "size_bytes": 33753,
+      "sha256": "566c953c6090b1218ca6217dd7359d45dde46581968586dc607d59a78af6a9c4"
+    },
+    {
+      "path": "framecraft-chrome-extension/app/vendor/jszip.min.js",
+      "size_bytes": 97660,
+      "sha256": "8d1c4e49381883a8da9cf3c309d63cd7b22d15cd4a43ca6a12370b4c4b4cf9ee"
+    },
+    {
+      "path": "framecraft-chrome-extension/app/vendor/mediabunny-LICENSE.txt",
+      "size_bytes": 16726,
+      "sha256": "3f3d9e0024b1921b067d6f7f88deb4a60cbe7a78e76c64e3f1d7fc3b779b9d04"
+    },
+    {
+      "path": "framecraft-chrome-extension/app/vendor/mediabunny.js",
+      "size_bytes": 724313,
+      "sha256": "8ddc35923133b1d33bf0bc903e3a592323b87ac638ea70737c51694ce2cd0fef"
+    },
+    {
+      "path": "framecraft-chrome-extension/app/workflow.js",
+      "size_bytes": 2681,
+      "sha256": "b1e252c0ae65eac1719436d2a90850d9d653535a21e8d867790728bfab500ed0"
+    },
+    {
+      "path": "framecraft-chrome-extension/background.js",
+      "size_bytes": 376,
+      "sha256": "06fd9cf8863c8e7f676b72e1be7b6150470e399394fdd737bbe52b0dac1176dc"
+    },
+    {
+      "path": "framecraft-chrome-extension/icons/icon-128.png",
+      "size_bytes": 7445,
+      "sha256": "7aa5c7da94893689866637e735b2df4802ba3d37575691a6a8977e541da4821c"
+    },
+    {
+      "path": "framecraft-chrome-extension/icons/icon-16.png",
+      "size_bytes": 747,
+      "sha256": "5076215ec04f915718c5ae13a6a47cdbedd5b03867f022e72c553e903de12799"
+    },
+    {
+      "path": "framecraft-chrome-extension/icons/icon-32.png",
+      "size_bytes": 1730,
+      "sha256": "59744fd03ef74a4d1706fbe134dfbb2a5f0bb5ab17658da8f9930f6e7bb63e88"
+    },
+    {
+      "path": "framecraft-chrome-extension/icons/icon-48.png",
+      "size_bytes": 2625,
+      "sha256": "8a13503894cba4b1447ee6c877b03492f53667c4e0b8b2e4c3815a46afb23c01"
+    },
+    {
+      "path": "framecraft-chrome-extension/INSTALL.md",
+      "size_bytes": 2968,
+      "sha256": "3fe8cab8e14213713c6fc1f58696f5da4caf4e3e44f6cefdc6ec953e4aa1bea2"
+    },
+    {
+      "path": "framecraft-chrome-extension/manifest.json",
+      "size_bytes": 1503,
+      "sha256": "87637c2d0722fbf86562859d04397b12ff034cc980f62ee6399e9f89c1631455"
+    },
+    {
+      "path": "framecraft-chrome-extension/PRIVACY.md",
+      "size_bytes": 1136,
+      "sha256": "59099e7a22e7e22f03830e22da73160f61cc1c31d22fdfed6e3b587b05e0371a"
+    },
+    {
+      "path": "framecraft-chrome-extension/TEST_REPORT.md",
+      "size_bytes": 2135,
+      "sha256": "b120271e88efb7fb4c886fb7427db7a5ac362fffb076fbba1961a8cc48ea2137"
+    },
+    {
+      "path": "output/pdf/Framecraft_User_Manual.pdf",
+      "size_bytes": 97441,
+      "sha256": "21fbf8d23834d0cc9d2a80e930951ad0a877ba3002ff8550e2dbc63687f4a977"
+    },
+    {
+      "path": "PROJECT_HANDOFF.md",
+      "size_bytes": 30931,
+      "sha256": "751539b339b8cc05922619a4bc020cc9da1676db9d7c2bbdb04926e75ad54c1e"
+    },
+    {
+      "path": "README.md",
+      "size_bytes": 5052,
+      "sha256": "1ee2eb476c03bb27ea2643630a8ef53f2c5c9b4829ed433becfa93fba1959450"
+    },
+    {
+      "path": "START_HERE.md",
+      "size_bytes": 4414,
+      "sha256": "31a5e67afee70c00be13b37da570a95f0fa0605dea75d36ec1ecfd0ecc478620"
+    },
+    {
+      "path": "video-ad-links.json",
+      "size_bytes": 72242,
+      "sha256": "37fafa789340410eb3672c8a8534d3a8051b8880857ccba49e2b1964d3d3cca6"
+    },
+    {
+      "path": "video-analysis/contact-sheet.jpg",
+      "size_bytes": 251527,
+      "sha256": "3f1f3a7e1bc0dd07e25e50124a448d2d6cab217899ca08425ef63fdb60611d63"
+    },
+    {
+      "path": "video-analysis/effects-detail-sheet.jpg",
+      "size_bytes": 144854,
+      "sha256": "cd1f6c6a504a7164c80179282f1f58f84b6846798440ca6cfda1060e0bd80a61"
+    },
+    {
+      "path": "video-analysis/effects-reference-sheet.jpg",
+      "size_bytes": 321091,
+      "sha256": "da90bd565fb9f10174d9ac1e78dcd6145e89c196225615875fca5e70fbf69327"
+    },
+    {
+      "path": "video-analysis/fluid-loader-preview.gif",
+      "size_bytes": 218989,
+      "sha256": "7c6f3f886e616a78ec5d4ecb6c91d71c98e3c2b0110113fa16c63b74f3ca5df4"
+    },
+    {
+      "path": "video-analysis/fluid-loader.rgba",
+      "size_bytes": 9633792,
+      "sha256": "c96ff4fff4440179677c883d5ada4ce0a79604d7c461de63e1a54b04658aa6bb"
+    },
+    {
+      "path": "video-analysis/loading-library-preview.png",
+      "size_bytes": 68187,
+      "sha256": "5f8bda45791f8fb6e64b06ef367c98be2fb6c08f7c94ff76f2d032bd9b455ea8"
+    },
+    {
+      "path": "video-analysis/reference-139857-contact.jpg",
+      "size_bytes": 242917,
+      "sha256": "0db36e7b735d37e7a22adb27c02f568d25789cdf623e559335e2fa1174ba8fe1"
+    },
+    {
+      "path": "video-analysis/reference-156776-contact.jpg",
+      "size_bytes": 248666,
+      "sha256": "254ea4e00c6c5353206a264af3f642bffeae634c1b7535065ac4723826f352f2"
+    },
+    {
+      "path": "video-sources.json",
+      "size_bytes": 143799,
+      "sha256": "ef4b915dcea551d06a3185de3647337e9bddf5e32294b6a090b9353684513e0e"
+    },
+    {
+      "path": "VIDEO_DOWNLOAD_HANDOFF.md",
+      "size_bytes": 8474,
+      "sha256": "02f212a9324a5ff5e63feb4e5499ac24955a3e2824d9d49a910487e251068e03"
+    },
+    {
+      "path": "videos/set_001-010/batch-results.json",
+      "size_bytes": 24938,
+      "sha256": "70a5d86d35ec01965e8dd99326dc858607802dffbea072279f3794a26761bf03"
+    },
+    {
+      "path": "videos/set_001-010/CR03010741331120095233_v1.mp4",
+      "size_bytes": 802549,
+      "sha256": "187d2184a6c4beb53417121290de2663c6b97b6631448c6b188862bd86473a83"
+    },
+    {
+      "path": "videos/set_001-010/CR04730249973612937217_v1.mp4",
+      "size_bytes": 495085,
+      "sha256": "5bae25c9f287abcf159f4d8e7d5cbb4994e0592fd739f6d04abc907a62f1db30"
+    },
+    {
+      "path": "videos/set_001-010/CR04730249973612937217_v2.mp4",
+      "size_bytes": 879501,
+      "sha256": "082f644b3a50ee5999c691430c4b6fb246a1bc7bc52a3c0f568d1f2941d14848"
+    },
+    {
+      "path": "videos/set_001-010/CR06545213817582780417_v1.mp4",
+      "size_bytes": 755166,
+      "sha256": "d7b450ea3bd05419832cfba7ee1d8b74e330702e1285c8078c879306b77940bd"
+    },
+    {
+      "path": "videos/set_001-010/CR08858938126144372737_v1.mp4",
+      "size_bytes": 637050,
+      "sha256": "e386d0a94ffc7e1c76a6b72b07dcbb443cc9b1325da73e6ef1a8da458ea42fe5"
+    },
+    {
+      "path": "videos/set_001-010/CR08961381823527518209_v1.mp4",
+      "size_bytes": 1000126,
+      "sha256": "202c42c59ee962c387db9c9f12c96e9998cf245ce5be26588e8ba47ab450ee8a"
+    },
+    {
+      "path": "videos/set_001-010/CR08961381823527518209_v2.mp4",
+      "size_bytes": 998107,
+      "sha256": "4ab0c403c0bff08232e37cbf62ddab53fdfe7d01d817bc9babde1f8fe7b3345b"
+    },
+    {
+      "path": "videos/set_001-010/CR11213181637212766209_v1.mp4",
+      "size_bytes": 815244,
+      "sha256": "dc10d4953fce16488c939c9de5563fc2f2609dcfb6e5137e23fcec146184018f"
+    },
+    {
+      "path": "videos/set_001-010/CR12641379071972868097_v1.mp4",
+      "size_bytes": 1277736,
+      "sha256": "b101068dd9ebd3e9eac92525475c41fbeccfa4dca7b977ef7e99abb5ff41df0e"
+    },
+    {
+      "path": "videos/set_001-010/CR13985723351952261121_v1.mp4",
+      "size_bytes": 1157778,
+      "sha256": "f80adf3669bc93841bfd6264d4c3357517d56459368bbb9ba4f9fa114599f027"
+    },
+    {
+      "path": "videos/set_001-010/CR16534717860090478593_v1.mp4",
+      "size_bytes": 742768,
+      "sha256": "8b57f2b54a5e9876489b9c03b175b33f10cd2d61e6746ea0245aa290f5d100b7"
+    },
+    {
+      "path": "videos/set_001-010/CR17832087704796397569_v1.mp4",
+      "size_bytes": 1151816,
+      "sha256": "8b8b5b713dfa80b8e290eea9e0a12182b750f89c8d69357dc285ff5e16077448"
+    },
+    {
+      "path": "videos/set_011-020/batch-results.json",
+      "size_bytes": 18057,
+      "sha256": "53c0a6e0332a6586289f324df4375007cb91dce1ef6db4a5e2a7a277cd733549"
+    },
+    {
+      "path": "videos/set_011-020/CR02956284719219605505_v1.mp4",
+      "size_bytes": 975244,
+      "sha256": "bb3cadfb1a94f27e8ad080a555ce5675452dd652f3e9e1ee52421be4dffc24f3"
+    },
+    {
+      "path": "videos/set_011-020/CR02956284719219605505_v2.mp4",
+      "size_bytes": 972510,
+      "sha256": "8c2d2e1fc87d9e21a9ecb5271ca7ca369b64690f75f9f96bcbd80563a0534dc6"
+    },
+    {
+      "path": "videos/set_011-020/CR08789620789960769537_v1.mp4",
+      "size_bytes": 1272862,
+      "sha256": "b4d3bd2d7f6e20ea757a7caec09c70dbab53f34b5858b1872bca96cbbd04ba4b"
+    },
+    {
+      "path": "videos/set_011-020/CR10224054379795709953_v1.mp4",
+      "size_bytes": 1150079,
+      "sha256": "2b0a693876cdc543a55bc75fa73dc8fe8a6126a27132b9317d95ae20bc4b1b5c"
+    },
+    {
+      "path": "videos/set_011-020/CR10966046607660810241_v1.mp4",
+      "size_bytes": 744471,
+      "sha256": "19ba452ed9168e2cfe43486724964f6a099951293dfa09bdcc41668f416ede7e"
+    },
+    {
+      "path": "videos/set_011-020/CR10966046607660810241_v2.mp4",
+      "size_bytes": 738158,
+      "sha256": "50cb34d33b95d491fcf8e014924716cafba633b7afd04b11bff946dbacc2822f"
+    },
+    {
+      "path": "videos/set_011-020/CR11879714382063599617_v1.mp4",
+      "size_bytes": 1230007,
+      "sha256": "a778ff55f1153029cef859947eaa02d733e10ffc7f631a082721d40c36a266ad"
+    },
+    {
+      "path": "videos/set_011-020/CR11978406545772773377_v1.mp4",
+      "size_bytes": 1452697,
+      "sha256": "b8df9ee7e7d5cb85e410714ac556cc949f3484a5f30aa9c9fadfb00df738deff"
+    },
+    {
+      "path": "videos/set_011-020/CR12127869758406131713_v1.mp4",
+      "size_bytes": 949331,
+      "sha256": "a53ee8f24076a4d70aee0cf2ce2634f1270ebb598a4819d302d9465c91af115f"
+    },
+    {
+      "path": "videos/set_011-020/CR18303144874414702593_v1.mp4",
+      "size_bytes": 533503,
+      "sha256": "9bc153b8731ca6de5ba071c5e77571be14dc212daddd0256bfad00a99d4b805c"
+    },
+    {
+      "path": "videos/set_011-020/CR18303144874414702593_v2.mp4",
+      "size_bytes": 968728,
+      "sha256": "51cf06593429287b0b9693c0b47ef9af37c09d7e8895e9916f34c871a53d369a"
+    },
+    {
+      "path": "videos/set_011-020/sample-viyo-CR08597716153617350657.mp4",
+      "size_bytes": 916493,
+      "sha256": "c69d0c818337eb94f96bb241e7e6784b5565547948b13d79dd61558a63bbd52b"
+    },
+    {
+      "path": "videos/set_021-030/batch-results.json",
+      "size_bytes": 15740,
+      "sha256": "794f478d4080616f42a6ec320c3df794cf9224c6c4e853fdef86db913f331a08"
+    },
+    {
+      "path": "videos/set_021-030/CR00329468977090658305_v1.mp4",
+      "size_bytes": 915415,
+      "sha256": "8fae0deeca0be991a2ae3244e36b494f6308ba56117c39fd02f9c6a05b98c9d1"
+    },
+    {
+      "path": "videos/set_021-030/CR01501983778904473601_v1.mp4",
+      "size_bytes": 859804,
+      "sha256": "f167d3eb949e79669c84dd49b8dc9053d7e75410859be3012a6a2ee59dd352e6"
+    },
+    {
+      "path": "videos/set_021-030/CR01501983778904473601_v2.mp4",
+      "size_bytes": 917239,
+      "sha256": "79bbf716158fdd39025e852408d222cae770a1586e7d85f27dc99c991c3e60ec"
+    },
+    {
+      "path": "videos/set_021-030/CR04901540691080904705_v1.mp4",
+      "size_bytes": 949874,
+      "sha256": "c973d0d1fe6de79ebb5e88d43cdb5a56ae2df890031ccaf066335c5812099af1"
+    },
+    {
+      "path": "videos/set_021-030/CR05339848906865901569_v1.mp4",
+      "size_bytes": 465642,
+      "sha256": "40cbcbf3bc5f87e069b794745014e5be60d7bbb4e36bbeea9cdcb1447235145b"
+    },
+    {
+      "path": "videos/set_021-030/CR06101520193844936705_v2.mp4",
+      "size_bytes": 1050675,
+      "sha256": "ac141cda3cbd5b36d287e93ee964eb40bb121e848ea555c1f67d975bff8a5b86"
+    },
+    {
+      "path": "videos/set_021-030/CR13109739139568238593_v1.mp4",
+      "size_bytes": 1185431,
+      "sha256": "9194350bc1a0f4de01bacf1b9b45402cb0839e2216418c9a99ac655a6f4381dd"
+    },
+    {
+      "path": "videos/set_021-030/CR14304036366239924225_v1.mp4",
+      "size_bytes": 860952,
+      "sha256": "c2a29d9dcb7f8790c003a82d9767a84a54ba75fe3251544a2026311af7cc0b8e"
+    },
+    {
+      "path": "videos/set_021-030/CR14638617754572161025_v1.mp4",
+      "size_bytes": 878033,
+      "sha256": "caa8093793c4d15793f6175493930abffabc2f3aeb542f0cbaf093c3e71cf1ce"
+    },
+    {
+      "path": "videos/set_021-030/CR17834991515005353985_v1.mp4",
+      "size_bytes": 927837,
+      "sha256": "3056ed894fbda8f012278d91452ee53f1437dc3f838c523bb53af3aab0374c1a"
+    },
+    {
+      "path": "videos/set_031-040/batch-results.json",
+      "size_bytes": 20908,
+      "sha256": "8b79ec8e66cab7fe1dc6c2ab5da8684cb2ce3b0cf5c26fe473bdd58cb9b8b20e"
+    },
+    {
+      "path": "videos/set_031-040/CR00009682617221775361_v1.mp4",
+      "size_bytes": 1012365,
+      "sha256": "b2a79f1fd1263aeb656cba7072ca4a881b2506cc1bfd67e82f0a1c58b29d1679"
+    },
+    {
+      "path": "videos/set_031-040/CR00009682617221775361_v2.mp4",
+      "size_bytes": 1211037,
+      "sha256": "f198bc764fa576e3b0619fc9f078b2b62730f3ae26ba6a861e525135bceaf6b9"
+    },
+    {
+      "path": "videos/set_031-040/CR00009682617221775361_v3.mp4",
+      "size_bytes": 1200020,
+      "sha256": "b19d4989ae99cfdd392681fa642b7de0c5da1747c3344e4e0991fc44e2e9dc31"
+    },
+    {
+      "path": "videos/set_031-040/CR04484407969735245825_v1.mp4",
+      "size_bytes": 1350326,
+      "sha256": "b82a413760649368820ed29d9800b8f04a0faa194ac52a8d64bf53a26ba6d609"
+    },
+    {
+      "path": "videos/set_031-040/CR09551864922497875969_v1.mp4",
+      "size_bytes": 885827,
+      "sha256": "79b18d018769ca58612b367759d8da7fb36de2c446f99cad09c6cd78749c02ef"
+    },
+    {
+      "path": "videos/set_031-040/CR09857920306281185281_v1.mp4",
+      "size_bytes": 1272087,
+      "sha256": "24ad482e7b1267cbebc40205bab5c1ff831fe1852b87f64f813334ca50e1faa1"
+    },
+    {
+      "path": "videos/set_031-040/CR12263484622087651329_v1.mp4",
+      "size_bytes": 869551,
+      "sha256": "931cb70c8afb4c4de107fa1446a3fb2aa94197f6aa5c167609b237fce41eb3f6"
+    },
+    {
+      "path": "videos/set_031-040/CR13087010035198853121_v1.mp4",
+      "size_bytes": 960187,
+      "sha256": "0a7e0671b4326036b098810d8d8c3ed05db9b3622e95ad198b91a623b4fbd039"
+    },
+    {
+      "path": "videos/set_031-040/CR16212860020314865665_v1.mp4",
+      "size_bytes": 1052886,
+      "sha256": "c56ce601d32307993773ccd57612961709650dd61a555df014cd24c69e612f73"
+    },
+    {
+      "path": "videos/set_031-040/CR18090711531346984961_v1.mp4",
+      "size_bytes": 587015,
+      "sha256": "e3e5a18f6cf9813ba07a6d98931c2ed825ab8b12cf8cda68041b3e530f979ee9"
+    },
+    {
+      "path": "videos/set_031-040/CR18090711531346984961_v3.mp4",
+      "size_bytes": 989718,
+      "sha256": "578df921e57cf24479e8def5e4efe18bd0632c4a822424c5a9185c40f3807a58"
+    },
+    {
+      "path": "videos/set_031-040/CR18434782804538556417_v2.mp4",
+      "size_bytes": 1368139,
+      "sha256": "18563c55504b8e7832e005e172eb4ee415639a570d260dce865a210ae14c2ade"
+    },
+    {
+      "path": "videos/set_041-050/batch-results.json",
+      "size_bytes": 16604,
+      "sha256": "65c1e8b8ae314b9497b75dfad64aa822a8b7ef449b2f6eb13a2d7457683fbc6d"
+    },
+    {
+      "path": "videos/set_041-050/CR04832272558042644481_v2.mp4",
+      "size_bytes": 1253428,
+      "sha256": "2f1e1c20fc897fe1702872d30a9208d9aaf1a52866501c896395df76c84f8854"
+    },
+    {
+      "path": "videos/set_041-050/CR05750795775793692673_v1.mp4",
+      "size_bytes": 456388,
+      "sha256": "1c88b23dd74676ae4ee8d65480d5bf27ab2985c8fddcf99851d6584bc512589e"
+    },
+    {
+      "path": "videos/set_041-050/CR05770775276459917313_v1.mp4",
+      "size_bytes": 1281751,
+      "sha256": "b26b9a2f06996ab37436b47c0de33e5d8ef926f5b33860d42101ec4163ea9168"
+    },
+    {
+      "path": "videos/set_041-050/CR08802283865377865729_v1.mp4",
+      "size_bytes": 906852,
+      "sha256": "bee129a0ad9f105f21529aa8266f328e9787b1314c1c15e9921e70756b270eac"
+    },
+    {
+      "path": "videos/set_041-050/CR09349527020318490625_v2.mp4",
+      "size_bytes": 1197144,
+      "sha256": "265a005ad439edf84d648a1211353760e1d90cc8a9c7653c3ed2f94a8f5f8ce2"
+    },
+    {
+      "path": "videos/set_041-050/CR09606800646590169089_v1.mp4",
+      "size_bytes": 843930,
+      "sha256": "22265f6fe91b81c0cc36bb0083833b4e54d539e73b0134ac395af096c2fdc6c0"
+    },
+    {
+      "path": "videos/set_041-050/CR13936008933702369281_v1.mp4",
+      "size_bytes": 1360600,
+      "sha256": "0ee96a26a09a9d27651e27a4f45aa3fbf934310adf8b7496b26f26c1ce4a910e"
+    },
+    {
+      "path": "videos/set_041-050/CR14750413073227448321_v1.mp4",
+      "size_bytes": 881059,
+      "sha256": "639f36d2b312a993e37f02f51f7f3b59cef61be566ad42511e6b1972a3df637e"
+    },
+    {
+      "path": "videos/set_041-050/CR15731845948273328129_v1.mp4",
+      "size_bytes": 844408,
+      "sha256": "6b86938dd2c613e3f2fc7ff2ec1e7dd37323f82ed04633367b981d008bdc26fd"
+    },
+    {
+      "path": "videos/set_041-050/CR15731845948273328129_v2.mp4",
+      "size_bytes": 560161,
+      "sha256": "5b81289f7886f6fad7750f8e827a9da212e1852dc675ee8512ca9acd0bd328e1"
+    },
+    {
+      "path": "videos/set_051-060/batch-results.json",
+      "size_bytes": 18007,
+      "sha256": "3aaeb744f1043036ef745357c8b63516fab973cf1bc0bab266bb8645890c1d9b"
+    },
+    {
+      "path": "videos/set_051-060/CR00890186097273864193_v1.mp4",
+      "size_bytes": 688801,
+      "sha256": "3bef0ac1b28029338eb42d2e4ae4df897806af494f707b15562889175ce9f906"
+    },
+    {
+      "path": "videos/set_051-060/CR01302857825067728897_v1.mp4",
+      "size_bytes": 870568,
+      "sha256": "2ac640cbca2c339b7daa9f4a930a3b67866c85c421a50fc70efed8e46d467037"
+    },
+    {
+      "path": "videos/set_051-060/CR02136335192799838209_v1.mp4",
+      "size_bytes": 1037239,
+      "sha256": "128a5354c6121c672ea7687a8a0596e3c5513640c024e59e8fd4c40709518418"
+    },
+    {
+      "path": "videos/set_051-060/CR02180182342126010369_v1.mp4",
+      "size_bytes": 662395,
+      "sha256": "0cbb1972041460365da767f66b2b69bed796f22ac4f265574f7d9d324bee20fc"
+    },
+    {
+      "path": "videos/set_051-060/CR02334371255735549953_v1.mp4",
+      "size_bytes": 1201201,
+      "sha256": "929645be66735b4b21f135f7cc354a928673d479f482ac70c889e13ef57cf43b"
+    },
+    {
+      "path": "videos/set_051-060/CR03614755844815585281_v1.mp4",
+      "size_bytes": 898846,
+      "sha256": "d455fdc6464f5fe0ef21591693c1579f1ec8c7aaa06a22aa113427f6ee951b67"
+    },
+    {
+      "path": "videos/set_051-060/CR03713241575216644097_v1.mp4",
+      "size_bytes": 864755,
+      "sha256": "789be1463a6299179c5162eb6b18a11e926e7579dd0c8ccbb4cd858ffc1d0dbb"
+    },
+    {
+      "path": "videos/set_051-060/CR03811172876879396865_v1.mp4",
+      "size_bytes": 1279207,
+      "sha256": "74f6bd324a150faca522b418965f1afcc6b11dcbab3062b2caa993bc71b10d78"
+    },
+    {
+      "path": "videos/set_051-060/CR03932467426242854913_v1.mp4",
+      "size_bytes": 566302,
+      "sha256": "6a5af0e4e7356383681bf52799db903e41b37cb91242064266a33f65a385a810"
+    },
+    {
+      "path": "videos/set_061-070/batch-results.json",
+      "size_bytes": 15498,
+      "sha256": "a2deaf02110e1f5c064654882ec00eac21a5e950cf72762b4981c8f1fb7f794e"
+    },
+    {
+      "path": "videos/set_061-070/CR00555512349964894209_v1.mp4",
+      "size_bytes": 1197879,
+      "sha256": "b602a0a522e2ed50e9e3549e9012c427d4673a7d336ccc07e3b79fd73726daed"
+    },
+    {
+      "path": "videos/set_061-070/CR02228620227376054273_v1.mp4",
+      "size_bytes": 935337,
+      "sha256": "1d90d7f028cb2e0fc5d4d8e4f97cbfebc7023da16202268779925df91fd0848f"
+    },
+    {
+      "path": "videos/set_061-070/CR04266397079057727489_v1.mp4",
+      "size_bytes": 681280,
+      "sha256": "be06bc3e36b9e9b6d65904261a8f512cbb38530fa380aef5187f7d038e101a0d"
+    },
+    {
+      "path": "videos/set_061-070/CR08150857310781046785_v1.mp4",
+      "size_bytes": 989395,
+      "sha256": "cec495433215f74421adf3e141547c3b8079ef0201324b870ddd98e079aacd0b"
+    },
+    {
+      "path": "videos/set_061-070/CR10023272561447534593_v1.mp4",
+      "size_bytes": 803966,
+      "sha256": "feca3e9f21e1aa53f801f6f3424384e416ef2e5348c1690a71269687ff7bc260"
+    },
+    {
+      "path": "videos/set_061-070/CR12261412317547200513_v1.mp4",
+      "size_bytes": 1136572,
+      "sha256": "fe6b56fcc39c96fbe9792e259a014d99465f4b15e7a79337106e6dad98642558"
+    },
+    {
+      "path": "videos/set_061-070/CR15677606111962202113_v1.mp4",
+      "size_bytes": 1099116,
+      "sha256": "c28828fcd750f81a2bea4fa5057acd498f7d45380d226661fa87c7af9be8c60e"
+    },
+    {
+      "path": "videos/set_061-070/CR15677606111962202113_v2.mp4",
+      "size_bytes": 449627,
+      "sha256": "d750803d6dc1333af1eed85586b524c55913b37a50418be4d9cc7dd2be01f2b4"
+    },
+    {
+      "path": "videos/set_071-080/batch-results.json",
+      "size_bytes": 17074,
+      "sha256": "e8ac58b57827622010f1f05f28fb0bb3c9d42a33c2bc75853e7f9e008b8f5d43"
+    },
+    {
+      "path": "videos/set_071-080/CR00001126217734422529_v1.mp4",
+      "size_bytes": 857387,
+      "sha256": "2be30495eb52a8afad60fc04fafd1a2e2c64b7439b3193cecdc41394baa9bf1a"
+    },
+    {
+      "path": "videos/set_071-080/CR01282321146884128769_v1.mp4",
+      "size_bytes": 1073566,
+      "sha256": "f44a956554a505144125aa3803c6969323f12aefc9478739d946f5255663c0a5"
+    },
+    {
+      "path": "videos/set_071-080/CR02338366503033765889_v1.mp4",
+      "size_bytes": 737002,
+      "sha256": "9b13c66d7bd5f1859bcd5d524ecbeb383981eec5e3f96736ddf3340472b28d42"
+    },
+    {
+      "path": "videos/set_071-080/CR06713547948283658241_v1.mp4",
+      "size_bytes": 1202524,
+      "sha256": "2f92e314b8c23eb22feabf250ec668414f6b5ded5cb42adb33c84393c78da85d"
+    },
+    {
+      "path": "videos/set_071-080/CR11551449962910842881_v1.mp4",
+      "size_bytes": 910013,
+      "sha256": "e01dc617db76dcc5e43ef5d5596246ea82a03b110cb865910af236be413bafcc"
+    },
+    {
+      "path": "videos/set_071-080/CR12513708454679937025_v2.mp4",
+      "size_bytes": 857163,
+      "sha256": "8d80d2000896e527d2868d6f48ea968dc060c0878c185beb5429a192f83a62d5"
+    },
+    {
+      "path": "videos/set_071-080/CR12848444599273783297_v1.mp4",
+      "size_bytes": 1132580,
+      "sha256": "a1cf006c163f4cacc8f5ba68c290ce4df504dbf76b26f933f600e5a01b163e5b"
+    },
+    {
+      "path": "videos/set_071-080/CR15727719481134284801_v1.mp4",
+      "size_bytes": 902077,
+      "sha256": "382003f6d125c0192c00b66e82666eb37ed35053ac8b5c68d7e509f81f42582c"
+    },
+    {
+      "path": "videos/set_071-080/CR15994903830340829185_v1.mp4",
+      "size_bytes": 1137038,
+      "sha256": "9ceeb7ddfeef4e17da9b25977ce52d1b30e23320a867ffa72fe8ff14ec971ccb"
+    },
+    {
+      "path": "videos/set_071-080/CR18357615779966353409_v1.mp4",
+      "size_bytes": 1281204,
+      "sha256": "ff90aeff2fe612dadcaaf17a42233c65dee999ddfe8b63185f32624a9bf9298b"
+    },
+    {
+      "path": "videos/set_081-090/batch-results.json",
+      "size_bytes": 16968,
+      "sha256": "435c394e318e7165381d9ad546a9cf2bb9d89f34ab8fec5085f1124c85e4023d"
+    },
+    {
+      "path": "videos/set_081-090/CR00705605307883061249_v1.mp4",
+      "size_bytes": 1200255,
+      "sha256": "7289ceac31e4c130d6cb3234d83981b0d43970a7208e72bcade9240283a99aed"
+    },
+    {
+      "path": "videos/set_081-090/CR01317355985391583233_v1.mp4",
+      "size_bytes": 976595,
+      "sha256": "41f1d01b91816a92f402ff8e827bd8c802ee157345435e91ad232ffdbc063e5c"
+    },
+    {
+      "path": "videos/set_081-090/CR04532854925956218881_v1.mp4",
+      "size_bytes": 1164574,
+      "sha256": "f8beee154ea0d85701b8cccf1e386caf24908fee28c81915b294792ce23809da"
+    },
+    {
+      "path": "videos/set_081-090/CR05827008699150893057_v1.mp4",
+      "size_bytes": 962152,
+      "sha256": "b4ee9015020006d20ef81f435e562da27b16dae962adc14ff8c8531e5742b8cf"
+    },
+    {
+      "path": "videos/set_081-090/CR13973542137506037761_v1.mp4",
+      "size_bytes": 1125577,
+      "sha256": "adaf8a656655c4f8d60f7c88414eb0f7da0f411d3595dfa5b3f78f42b335b653"
+    },
+    {
+      "path": "videos/set_081-090/CR14000723989090009089_v1.mp4",
+      "size_bytes": 1265558,
+      "sha256": "b91fa0ddda9f16f556fad2c1d1eda5715d7037c1658f5469306125d05664f449"
+    },
+    {
+      "path": "videos/set_081-090/CR14031626862900281345_v1.mp4",
+      "size_bytes": 1004562,
+      "sha256": "93151cffdc2be75441ec43310d229415b03d9a3dbfd136cd4fced5e04cb0daa1"
+    },
+    {
+      "path": "videos/set_081-090/CR14322114811301724161_v1.mp4",
+      "size_bytes": 796412,
+      "sha256": "4b497dc05f542de2580c98643e52dfd23a83d9fe17df44e957587718e3a229ea"
+    },
+    {
+      "path": "videos/set_081-090/CR14958692633164120065_v1.mp4",
+      "size_bytes": 1292330,
+      "sha256": "3815685e40e873b8eb3d898fdac2301a75596179bb35f9c2b7ce863f01491fb4"
+    },
+    {
+      "path": "videos/set_081-090/CR18202701188682481665_v1.mp4",
+      "size_bytes": 1305403,
+      "sha256": "be07a9249d87225d1b6e8a1375a848649dcc7e633c3f52b0731319c890fb912f"
+    },
+    {
+      "path": "videos/set_091-100/batch-results.json",
+      "size_bytes": 15880,
+      "sha256": "309704a590944ceb72d330efe606b03aa01c7abd093bbc8740a0eb1be68427aa"
+    },
+    {
+      "path": "videos/set_091-100/CR02187430322776309761_v1.mp4",
+      "size_bytes": 786609,
+      "sha256": "186374307735e0447579d1f17d88ec8da0322b02c98bf7fba07ac23af20c30bb"
+    },
+    {
+      "path": "videos/set_091-100/CR02838395357367369729_v1.mp4",
+      "size_bytes": 812704,
+      "sha256": "535e4280ae73731e43f921597a33d0f6f6c0151a51a744045531b25b024c3f29"
+    },
+    {
+      "path": "videos/set_091-100/CR03304081137806082049_v1.mp4",
+      "size_bytes": 1190507,
+      "sha256": "5581343794410f75fad839c01564d92e3f0c97a7f8348b7fb5f5a38e0eed163a"
+    },
+    {
+      "path": "videos/set_091-100/CR04177954562742681601_v1.mp4",
+      "size_bytes": 1300333,
+      "sha256": "d97e19640b014a5f7dc2ad9b48efd568386c34be2b534dd6ca817d1dbd133c83"
+    },
+    {
+      "path": "videos/set_091-100/CR08474971348416856065_v1.mp4",
+      "size_bytes": 1149075,
+      "sha256": "b2ca84ebf6db8999b7a6376fe5a46e16f44fe87d9d8a7a95744b9dd93b11e439"
+    },
+    {
+      "path": "videos/set_091-100/CR08556931144174534657_v1.mp4",
+      "size_bytes": 754332,
+      "sha256": "1748bccd41baf9e30178c2274e888987a2d4569307e2dfb05d2ae98c4caf8238"
+    },
+    {
+      "path": "videos/set_091-100/CR09225728882978586625_v1.mp4",
+      "size_bytes": 781314,
+      "sha256": "633822f842bd289bc0dc780e5bdc0cfa6bedfced8ca5e6d666aa493c172dc4b8"
+    },
+    {
+      "path": "videos/set_091-100/CR11037827399646445569_v1.mp4",
+      "size_bytes": 578118,
+      "sha256": "6ab0a32a248fc331a2f206d573e7692de611258a7031d1ef7e8b27ac07437fd6"
+    },
+    {
+      "path": "videos/set_091-100/CR11172261112961826817_v1.mp4",
+      "size_bytes": 1222951,
+      "sha256": "bf30c96958505dc1db3200ffb43af904325e01e89040b24f4e7d68f8ae7a0a98"
+    }
+  ]
+}
