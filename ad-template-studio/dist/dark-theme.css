@@ -9,6 +9,8 @@ main>aside,.inspector{background:var(--fc-panel);border-color:var(--fc-line)}
 h1,h2,h3,h4,strong,.section-title{color:var(--fc-text)}
 h1 span{color:#bdc6b7}.eyebrow,.section-title{color:#b4c596}.intro,.hint,.workspace-tools .hint,.inspector>.hint,.template small,.local-note,.upload-zone small{color:var(--fc-muted)!important}
 .stage{background:radial-gradient(#303841 .65px,transparent .65px) 0 0/15px 15px;background-color:var(--fc-stage)}
+/* The stage is a fixed preview workspace; controls scroll in the inspector, not here. */
+.stage{overflow-y:hidden!important;scrollbar-gutter:auto}
 .stage-top,.transport,.guide-toggle,#status{color:#c5ccd5}
 .canvas-wrap{border-color:#2e343b;box-shadow:0 20px 48px #00000080}
 
