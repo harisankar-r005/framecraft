@@ -25,10 +25,10 @@
 </header>
 <main>
 <aside>
-<div class="section-title">01 / CHOOSE A TEMPLATE</div>
+<div class="section-title">CHOOSE A TEMPLATE</div>
 <div id="templates">
 </div>
-<section class="sidebar-projects" aria-label="Project storage and recovery">
+<section class="sidebar-projects" aria-label="Project storage and recovery" hidden>
 <div class="local-note">
 <span class="local-note-icon" aria-hidden="true">◇</span>
 <div class="local-note-copy">
@@ -83,26 +83,16 @@
 <button id="restart" aria-label="Restart preview">↺</button>
 <button id="fullscreenPreview" aria-label="Full-screen preview" title="Full-screen preview">⛶</button>
 </div>
-<label class="guide-toggle">Guides<select id="safeGuides">
-<option value="none">Off</option>
-<option value="vertical">Vertical ads · conservative UI margins</option>
-<option value="square">Square ads · conservative margins</option>
-<option value="landscape">Landscape ads · conservative margins</option>
-</select>
-</label></div>
-<p class="hint guide-hint" id="guideHint" hidden>Guides are preview-only estimates. Verify placement with your ad platform.</p>
+</div>
 <section class="scene-panel" aria-label="Video scenes"><div class="scene-panel-heading"><strong>Scenes</strong><span id="sceneSummary"></span></div><div id="sceneDurationRail" class="scene-duration-rail" aria-hidden="true"></div><div id="timeline" class="timeline" role="group" aria-label="Jump to a scene"></div><p class="scene-panel-hint">Select a scene to preview it.</p></section>
 <p id="status" role="status">Demo artwork · Replace with your own images to export.</p>
 <div id="downloads">
 </div>
 </section>
 <aside class="inspector">
-<div class="section-title">02–09 / CREATE YOUR VIDEO</div>
-<p class="hint">Start with a template on the left, then follow these steps. Click any step to revisit it.</p>
-<div id="workflowProgress" class="workflow-progress" role="status">Step 2 of 9 · Video setup</div>
-<details class="workflow-step" data-step="2" open>
+<details class="workflow-step" data-step="2">
 <summary>
-<span class="step-number">02</span>
+<span class="step-number">01</span>
 <span>
 <strong>Video setup</strong>
 <small>Name, dimensions and duration</small>
@@ -113,7 +103,6 @@
 <option value="portrait">Portrait · 1080 × 1920</option>
 <option value="square">Square · 1080 × 1080</option>
 <option value="landscape">Landscape · 1920 × 1080</option>
-<option value="custom">Custom · enter width and height</option>
 </select>
 </label>
 <div id="customSizePanel" hidden>
@@ -130,9 +119,9 @@
 <option value="landscape">Landscape layout</option>
 </select>
 </label>
-<p id="customSizeHint" class="hint">Use even dimensions from 256 to 3840 pixels, up to 8.29 megapixels. The layout fits without stretching; extra space uses the background color.</p>
+<p id="customSizeHint" class="hint">Use even dimensions from 256 to 3840 pixels, up to 8.29 megapixels. The layout fits without stretching.</p>
 </div>
-<details class="workspace-tools">
+<details class="workspace-tools" hidden>
 <summary>Brand presets</summary>
 <label>Saved brand<select id="brandPreset">
 <option value="">Choose a brand</option>
@@ -146,10 +135,9 @@
 </div>
 <p class="hint">Includes logo, app name, CTA, fonts, colors and watermark. Your photos and timing stay as they are.</p>
 </details>
-<label>Project name<input id="projectName" value="My first app ad" maxlength="60">
-</label>
+<input id="projectName" type="hidden" value="My first app ad" maxlength="60">
 <div class="row">
-<label>Duration<select id="duration">
+<label id="durationControl">Duration<select id="duration">
 <option value="8">8 seconds</option>
 <option value="12" selected>12 seconds</option>
 <option value="15">15 seconds</option>
@@ -160,7 +148,7 @@
 <option value="60">60 seconds</option>
 </select>
 </label>
-<label>Image fit<select id="fit">
+<label id="fitControl">Image fit<select id="fit">
 <option value="cover">Fill frame</option>
 <option value="contain">Show full image</option>
 </select>
@@ -184,7 +172,7 @@
 </details>
 <details class="workflow-step" data-step="3">
 <summary>
-<span class="step-number">03</span>
+<span class="step-number">02</span>
 <span>
 <strong>Add your images</strong>
 <small>Finished results and original photos</small>
@@ -198,30 +186,11 @@
 <div id="imageAssetsGroup">
 <label class="upload-zone" tabindex="0"> <span class="upload-icon">＋</span>
 <strong>Add result images</strong>
-<small>Click or drop JPG, PNG, WebP · up to 12</small>
+<small>Click or drop JPG, PNG, WebP</small>
 <input id="upload" type="file" accept="image/jpeg,image/png,image/webp" multiple hidden>
 </label>
 <div id="assets" class="assets">
 </div>
-</div>
-<div id="cropEditor" class="workspace-tools">
-<strong>Crop &amp; position images</strong>
-<label>Image to adjust<select id="cropAsset">
-<option value="">Add an image first</option>
-</select>
-</label>
-<div class="row">
-<label>Zoom<input id="cropZoom" type="number" min="100" max="300" step="5" value="100">
-</label>
-<label>Horizontal position %<input id="cropX" type="number" min="0" max="100" value="50">
-</label>
-<label>Vertical position %<input id="cropY" type="number" min="0" max="100" value="50">
-</label>
-</div>
-<button id="resetCrop">Reset crop</button>
-<p class="hint">Position 0 = left/top, 100 = right/bottom. Crop applies wherever this image appears.</p>
-<canvas id="cropPreview" width="270" height="270" aria-label="Selected image crop preview">
-</canvas>
 </div>
 <div id="framedAssetsGroup">
 <div class="divider">
@@ -233,11 +202,12 @@
 </div>
 <p class="hint">Up to 6 clips. Choose Framed Couple Video on the left. Each scene uses its own clip, heading and two input portraits. Clip audio is muted; add music/SFX in step 8. Clip files must be reattached after reopening a project.</p>
 </div>
-<p class="hint" id="imageAssetsHint">Use finished results or collages. Drag cards to reorder. The tool animates your images; it does not generate new poses.</p>
 <div id="originalsGroup">
-<label>Original / before photo <span class="optional">optional</span>
+<label>Original / before photo <span class="optional">optional</span></label>
+<div class="file-input-actions">
 <input id="beforeUpload" type="file" accept="image/jpeg,image/png,image/webp">
-</label>
+<button id="clearBefore" type="button" aria-label="Remove original or before photo" title="Remove image" hidden>×</button>
+</div>
 <div id="beforeInfo" class="hint">
 </div>
 <label id="partnerPhotoLabel">Partner / second person photo<input id="partnerUpload" type="file" accept="image/jpeg,image/png,image/webp">
@@ -253,20 +223,52 @@
 </details>
 <details class="workflow-step" data-step="4">
 <summary>
-<span class="step-number">04</span>
+<span class="step-number">03</span>
 <span>
 <strong>Edit the main text</strong>
 <small>Headings, fonts, alignment and colors</small>
 </span>
 </summary>
 <div class="step-content">
-<div class="row">
+<section class="text-panel-group hook-editor-group"><h3>Opening hook</h3>
 <label>Text alignment<select id="textAlign">
 <option value="template">Template default</option>
 <option value="left">Left</option>
 <option value="center">Center</option>
 <option value="right">Right</option>
 </select>
+</label>
+<label>Opening hook<input id="hook" value="Your photos. A whole new story." maxlength="100">
+</label>
+<label>Opening hook size<input id="hookSize" type="number" min="18" max="96" value="44">
+</label>
+<label>Opening hook font<select id="hookFont">
+<option value="">Use text font</option>
+<option value="Open Sans">Open Sans</option>
+<option value="DM Sans">DM Sans · modern</option>
+<option value="Arial">Arial · clean</option>
+<option value="Arial Black">Arial Black · bold</option>
+<option value="Georgia">Georgia · serif</option>
+<option value="Impact">Impact · headline</option>
+<option value="Verdana">Verdana · readable</option>
+<option value="Trebuchet MS">Trebuchet MS · friendly</option>
+</select>
+</label>
+<label>Opening hook position<select id="hookPosition">
+<option value="template">Template default</option>
+<option value="top">Top</option>
+<option value="center">Center</option>
+<option value="bottom">Bottom</option>
+</select>
+</label>
+<div class="hook-color-options">
+<label>Text color<span class="color-control" data-color-control><input id="hookTextColor" type="color" value="#253025"><input class="color-hex" value="#253025" maxlength="7" aria-label="Opening hook color hex value"></span>
+</label>
+<label class="check"><input id="customHookTextColor" type="checkbox"> Use selected color for opening hook</label>
+</div>
+</section>
+<section class="text-panel-group supporting-editor-group styling-group"><h3>Supporting text &amp; action</h3>
+<label>Instruction / supporting line<input id="instruction" value="Upload your photos. Choose your look." maxlength="110">
 </label>
 <label>Text font<select id="textFont">
 <option value="Open Sans">Open Sans</option>
@@ -279,22 +281,61 @@
 <option value="Trebuchet MS">Trebuchet MS · friendly</option>
 </select>
 </label>
+<div class="row">
+<label>App name<input id="appName" value="Your App" maxlength="28">
+</label>
+<label>Call to action<input id="cta" value="Try it now" maxlength="28">
+</label>
 </div>
-<p class="hint">Alignment applies within each heading or message area. Fonts use local fallbacks when unavailable.</p>
-<div class="divider">
+<div class="support-color-options">
+<label>Text color<span class="color-control" data-color-control><input id="supportTextColor" type="color" value="#253025"><input class="color-hex" value="#253025" maxlength="7" aria-label="Supporting text and action color hex value"></span>
+</label>
+<label class="check"><input id="customSupportTextColor" type="checkbox"> Use selected color for supporting text &amp; action</label>
 </div>
-<div class="section-title">TIMED CAPTIONS</div>
+<div class="support-styling-options"><h3>Styling &amp; colors</h3><div class="style-grid">
+<label class="check">
+<input id="textOutline" type="checkbox"> Add text border</label>
+<label>Text border color<span class="color-control" data-color-control><input id="textOutlineColor" type="color" value="#000000"><input class="color-hex" value="#000000" maxlength="7" aria-label="Text border color hex value"></span>
+</label>
+<label>Text border thickness<select id="textOutlineWidth">
+<option value="1">Thin</option>
+<option value="2" selected>Medium</option>
+<option value="4">Thick</option>
+<option value="6">Extra thick</option>
+</select>
+</label>
+<label>Accent color<span class="color-control" data-color-control><input id="accent" type="color" value="#d6ff62"><input class="color-hex" value="#D6FF62" maxlength="7" aria-label="Accent color hex value"></span>
+</label>
+</div>
+</div>
+</section>
+<section class="text-panel-group overlay-gradient-editor"><h3>Gradient overlay</h3>
+<label class="check"><input id="overlayGradientEnabled" type="checkbox" checked> Show top-to-bottom overlay</label>
+<div id="overlayGradientPreview" class="overlay-gradient-preview" aria-label="Black to transparent gradient preview"></div>
+<div class="overlay-gradient-headings"><strong>Color</strong><strong>Opacity</strong><strong>Position</strong></div>
+<div class="overlay-gradient-row">
+<span class="color-control" data-color-control><input id="overlayTopColor" type="color" value="#000000"><input id="overlayTopHex" class="color-hex" value="#000000" maxlength="7" aria-label="Top stop color hex value"></span>
+<label class="compact-number"><input id="overlayTopOpacity" type="number" min="0" max="100" value="100" aria-label="Top stop opacity"><span>%</span></label>
+<label class="compact-number"><input id="overlayTopPosition" type="number" min="0" max="100" value="0" aria-label="Top stop position"><span>%</span></label>
+</div>
+<div class="overlay-gradient-row">
+<span class="color-control" data-color-control><input id="overlayBottomColor" type="color" value="#000000"><input id="overlayBottomHex" class="color-hex" value="#000000" maxlength="7" aria-label="Bottom stop color hex value"></span>
+<label class="compact-number"><input id="overlayBottomOpacity" type="number" min="0" max="100" value="0" aria-label="Bottom stop opacity"><span>%</span></label>
+<label class="compact-number"><input id="overlayBottomPosition" type="number" min="0" max="100" value="100" aria-label="Bottom stop position"><span>%</span></label>
+</div>
+</section>
+<section class="text-panel-group captions-group"><h3>Timed captions</h3>
 <label class="check">
 <input id="captionsEnabled" type="checkbox" checked> Show captions</label>
 <button id="addCaption" class="wide">＋ Add caption</button>
-<label>Import captions (.srt)<input id="captionImport" type="file" accept=".srt,text/plain">
+<label class="caption-import">Import captions (.srt)<input id="captionImport" type="file" accept=".srt,text/plain">
 </label>
 <div id="captionRows">
 </div>
-<div class="row">
-<label>Caption color<input id="captionColor" type="color" value="#ffffff">
+<div class="row caption-settings-grid">
+<label>Caption color<span class="color-control" data-color-control><input id="captionColor" type="color" value="#ffffff"><input class="color-hex" value="#FFFFFF" maxlength="7" aria-label="Caption color hex value"></span>
 </label>
-<label>Caption background<input id="captionBackground" type="color" value="#000000">
+<label>Caption BG<span class="color-control" data-color-control><input id="captionBackground" type="color" value="#000000"><input class="color-hex" value="#000000" maxlength="7" aria-label="Caption background hex value"></span>
 </label>
 <label>Caption font size<input id="captionSize" type="number" min="18" max="64" value="32">
 </label>
@@ -305,38 +346,7 @@
 </select>
 </label>
 </div>
-<p class="hint">Enter start and end times in seconds. Captions use the selected main text font and are burned into the export. SRT import is supported; automatic transcription is not included.</p>
-<label>Opening hook<input id="hook" value="Your photos. A whole new story." maxlength="100">
-</label>
-<label>Instruction / supporting line<input id="instruction" value="Upload your photos. Choose your look." maxlength="110">
-</label>
-<div class="row">
-<label>App name<input id="appName" value="Your App" maxlength="28">
-</label>
-<label>Call to action<input id="cta" value="Try it now" maxlength="28">
-</label>
-</div>
-<div class="row">
-<label>Text color<input id="textColor" type="color" value="#253025">
-</label>
-<label class="check">
-<input id="customTextColor" type="checkbox"> Use selected color for main text</label>
-<label class="check">
-<input id="textOutline" type="checkbox"> Add text border</label>
-<label>Text border color<input id="textOutlineColor" type="color" value="#000000">
-</label>
-<label>Text border thickness<select id="textOutlineWidth">
-<option value="1">Thin</option>
-<option value="2" selected>Medium</option>
-<option value="4">Thick</option>
-<option value="6">Extra thick</option>
-</select>
-</label>
-<label>Accent color<input id="accent" type="color" value="#d6ff62">
-</label>
-<label>Background<input id="background" type="color" value="#f6f4ef">
-</label>
-</div>
+</section>
 <div class="step-navigation">
 <button type="button" data-go="3">← Back</button>
 <button type="button" class="primary" data-go="5">Next step →</button>
@@ -345,18 +355,18 @@
 </details>
 <details class="workflow-step" data-step="5">
 <summary>
-<span class="step-number">05</span>
+<span class="step-number">04</span>
 <span>
 <strong>Edit the watermark</strong>
 <small>Independent text and appearance</small>
 </span>
 </summary>
 <div class="step-content">
-<label class="check">
-<input id="disclosure" type="checkbox" checked> Show watermark</label>
-<label>Watermark text<input id="watermarkText" value="AI generated" maxlength="60">
-</label>
-<div class="row">
+<section class="watermark-panel"><h3>Watermark content</h3>
+<label class="check"><input id="disclosure" type="checkbox" checked> Show watermark</label>
+<label>Watermark text<input id="watermarkText" value="AI generated" maxlength="60"></label>
+</section>
+<section class="watermark-panel"><h3>Typography &amp; position</h3><div class="row">
 <label>Watermark font<select id="watermarkFont">
 <option value="Open Sans">Open Sans</option>
 <option value="DM Sans">DM Sans · modern</option>
@@ -368,8 +378,7 @@
 <option value="Trebuchet MS">Trebuchet MS · friendly</option>
 </select>
 </label>
-<label>Watermark color<input id="watermarkColor" type="color" value="#ffffff">
-</label>
+<label>Watermark color<span class="color-control" data-color-control><input id="watermarkColor" type="color" value="#ffffff"><input class="color-hex" value="#FFFFFF" maxlength="7" aria-label="Watermark color hex value"></span></label>
 <label>Watermark size<input id="watermarkSize" type="number" min="10" max="36" value="17">
 </label>
 <label>Watermark position<select id="watermarkPosition">
@@ -380,16 +389,13 @@
 <option value="top-left">Top left</option>
 </select>
 </label>
-<label>Watermark opacity<input id="watermarkOpacity" type="range" min="10" max="100" value="85">
-</label>
 </div>
-<label class="check">
-<input id="watermarkOutline" type="checkbox" checked> Watermark border</label>
-<label>Watermark border color<input id="watermarkOutlineColor" type="color" value="#000000">
-</label>
-<p class="hint">Main text font, alignment, color and border do not change the watermark.</p>
-<div class="divider">
-</div>
+<label class="watermark-opacity">Watermark opacity<input id="watermarkOpacity" type="range" min="10" max="100" value="85"></label>
+</section>
+<section class="watermark-panel"><h3>Border</h3>
+<label class="check"><input id="watermarkOutline" type="checkbox" checked> Add watermark border</label>
+<label>Border color<span class="color-control" data-color-control><input id="watermarkOutlineColor" type="color" value="#000000"><input class="color-hex" value="#000000" maxlength="7" aria-label="Watermark border color hex value"></span></label>
+</section>
 <div class="step-navigation">
 <button type="button" data-go="4">← Back</button>
 <button type="button" class="primary" data-go="6">Next step →</button>
@@ -398,20 +404,14 @@
 </details>
 <details class="workflow-step" data-step="6">
 <summary>
-<span class="step-number">06</span>
+<span class="step-number">05</span>
 <span>
-<strong>Choose animations</strong>
-<small>Loading effects, transitions and movement</small>
+<strong>Animations &amp; loading</strong>
+<small>Loading animation, gradient colors, transitions and movement</small>
 </span>
 </summary>
 <div class="step-content">
-<div class="animation-overview">
-<strong id="animationTemplateLabel">Animations for your template</strong>
-<p id="animationTemplateHint" class="hint">
-</p>
-<button id="previewAnimationTemplate" class="primary wide">▶ Preview this template</button>
-</div>
-<details class="animation-group" id="generalAnimationGroup" open>
+<details class="animation-group" id="generalAnimationGroup">
 <summary>1. Motion & transitions <small>How images move and scenes change</small>
 </summary>
 <div class="animation-group-body">
@@ -526,6 +526,7 @@
 <div class="section-title">LOADING EFFECT</div>
 <label>Loading animation<select id="loaderStyle">
 <option value="merge">Fluid merge · original</option>
+<option value="clover">Three-lobed blob · gradient</option>
 <option value="orbit">Orbiting dots</option>
 <option value="ring">Liquid ring</option>
 <option value="bounce">Bouncing bubbles</option>
@@ -567,7 +568,7 @@
 <p class="hint">Upload slot(s) → your photo(s) → selected loading effect → result. One-photo mode uses Original / before photo; two-photo mode also uses Partner.</p>
 </div>
 </details>
-<div id="uploadUnavailable" class="hint animation-note">This template has no photo-upload scene. Loading effects are available in Couple collage.</div>
+<div id="uploadUnavailable" class="hint animation-note">This template has no photo-upload scene. Loading effects are available in Couple collage and One photo, many styles.</div>
 <details class="animation-group" id="frameAnimationGroup">
 <summary>2. Frame layout <small>Border, tilt and background around your clips</small>
 </summary>
@@ -600,7 +601,7 @@
 </details>
 <details class="workflow-step" data-step="7">
 <summary>
-<span class="step-number">07</span>
+<span class="step-number">06</span>
 <span>
 <strong>Branding & end card</strong>
 <small>App logo and optional finished end card</small>
@@ -713,7 +714,7 @@
 </details>
 <details class="workflow-step" data-step="8">
 <summary>
-<span class="step-number">08</span>
+<span class="step-number">07</span>
 <span>
 <strong>Audio & sound effects</strong>
 <small>Music, voiceover and animation sounds</small>
@@ -784,7 +785,7 @@
 </details>
 <details class="workflow-step" data-step="9">
 <summary>
-<span class="step-number">09</span>
+<span class="step-number">08</span>
 <span>
 <strong>Review & export</strong>
 <small>Preview, save a backup, then export</small>
@@ -888,6 +889,10 @@ Find your next look.">
 <script src="project-library.js">
 </script>
 <script src="desktop-save.js">
+</script>
+<script src="text-panel.js">
+</script>
+<script src="overlay-gradient.js">
 </script>
 </body>
 </html>

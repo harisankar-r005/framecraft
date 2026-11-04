@@ -21,7 +21,6 @@ for(const template of ['collage','before','styles','steps','showcase'])for(const
 let geometry=imageGeometry(1200,800,400,800,'cover',{zoom:1,x:0,y:50});assert(geometry.x===0&&geometry.w===1200,'Left crop incorrect');
 geometry=imageGeometry(1200,800,400,800,'cover',{zoom:1,x:100,y:50});assert(geometry.x===-800,'Right crop incorrect');
 geometry=imageGeometry(1200,800,400,800,'contain',{zoom:1});assert(Math.abs(geometry.w-400)<.001&&geometry.y>0,'Contain no longer fits');
-for(const guide of ['vertical','square','landscape']){const r=safeRect(1080,1920,guide);assert(r.x>0&&r.y>0&&r.x+r.w<1080&&r.y+r.h<1920,'Safe guide out of bounds')}
 $('musicFadeIn').value='0';$('musicFadeOut').value='0';$('musicDuck').checked=true;$('duckLevel').value='25';
 const music={kind:'music',start:0,offset:0,length:0,volume:80,loop:true,buffer:{duration:4}},voice={start:.5,end:1.5};
 assert(Math.abs(audioGainAt(music,.1,4,voice)-.8)<1e-8,'Music volume incorrect');assert(Math.abs(audioGainAt(music,1,4,voice)-.2)<1e-8,'Music ducking incorrect');assert(Math.abs(audioGainAt(music,2,4,voice)-.8)<1e-8,'Music failed to recover');
