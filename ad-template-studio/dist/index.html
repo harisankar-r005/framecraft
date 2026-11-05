@@ -82,6 +82,7 @@
 <span id="endTime">00:12</span>
 <button id="restart" aria-label="Restart preview">↺</button>
 <button id="fullscreenPreview" aria-label="Full-screen preview" title="Full-screen preview">⛶</button>
+<select id="safeGuides" hidden><option value="none" selected>Off</option><option value="vertical">Vertical safe area</option><option value="square">Square safe area</option><option value="landscape">Landscape safe area</option></select>
 </div>
 </div>
 <section class="scene-panel" aria-label="Video scenes"><div class="scene-panel-heading"><strong>Scenes</strong><span id="sceneSummary"></span></div><div id="sceneDurationRail" class="scene-duration-rail" aria-hidden="true"></div><div id="timeline" class="timeline" role="group" aria-label="Jump to a scene"></div><p class="scene-panel-hint">Select a scene to preview it.</p></section>
@@ -191,6 +192,7 @@
 </label>
 <div id="assets" class="assets">
 </div>
+<details id="cropEditor" class="workspace-tools" hidden><summary>Crop &amp; position images</summary><label>Image to adjust<select id="cropAsset"><option value="">Add an image first</option></select></label><div class="row"><label>Zoom<input id="cropZoom" type="number" min="100" max="300" step="5" value="100"></label><label>Horizontal position %<input id="cropX" type="number" min="0" max="100" value="50"></label><label>Vertical position %<input id="cropY" type="number" min="0" max="100" value="50"></label></div><button id="resetCrop" type="button">Reset crop</button><canvas id="cropPreview" width="240" height="240" aria-label="Selected image crop preview"></canvas></details>
 </div>
 <div id="framedAssetsGroup">
 <div class="divider">
@@ -203,12 +205,14 @@
 <p class="hint">Up to 6 clips. Choose Framed Couple Video on the left. Each scene uses its own clip, heading and two input portraits. Clip audio is muted; add music/SFX in step 8. Clip files must be reattached after reopening a project.</p>
 </div>
 <div id="originalsGroup">
+<div id="beforePhotoGroup" hidden>
 <label>Original / before photo <span class="optional">optional</span></label>
 <div class="file-input-actions">
 <input id="beforeUpload" type="file" accept="image/jpeg,image/png,image/webp">
 <button id="clearBefore" type="button" aria-label="Remove original or before photo" title="Remove image" hidden>×</button>
 </div>
 <div id="beforeInfo" class="hint">
+</div>
 </div>
 <label id="partnerPhotoLabel">Partner / second person photo<input id="partnerUpload" type="file" accept="image/jpeg,image/png,image/webp">
 </label>
@@ -230,7 +234,7 @@
 </span>
 </summary>
 <div class="step-content">
-<section class="text-panel-group hook-editor-group"><h3>Opening hook</h3>
+<details class="text-panel-group hook-editor-group" open><summary><span>Opening hook</span><span aria-hidden="true">−</span></summary>
 <label>Text alignment<select id="textAlign">
 <option value="template">Template default</option>
 <option value="left">Left</option>
@@ -266,51 +270,10 @@
 </label>
 <label class="check"><input id="customHookTextColor" type="checkbox"> Use selected color for opening hook</label>
 </div>
-</section>
-<section class="text-panel-group supporting-editor-group styling-group"><h3>Supporting text &amp; action</h3>
-<label>Instruction / supporting line<input id="instruction" value="Upload your photos. Choose your look." maxlength="110">
-</label>
-<label>Text font<select id="textFont">
-<option value="Open Sans">Open Sans</option>
-<option value="DM Sans">DM Sans · modern</option>
-<option value="Arial">Arial · clean</option>
-<option value="Arial Black">Arial Black · bold</option>
-<option value="Georgia">Georgia · serif</option>
-<option value="Impact">Impact · headline</option>
-<option value="Verdana">Verdana · readable</option>
-<option value="Trebuchet MS">Trebuchet MS · friendly</option>
-</select>
-</label>
-<div class="row">
-<label>App name<input id="appName" value="Your App" maxlength="28">
-</label>
-<label>Call to action<input id="cta" value="Try it now" maxlength="28">
-</label>
-</div>
-<div class="support-color-options">
-<label>Text color<span class="color-control" data-color-control><input id="supportTextColor" type="color" value="#253025"><input class="color-hex" value="#253025" maxlength="7" aria-label="Supporting text and action color hex value"></span>
-</label>
-<label class="check"><input id="customSupportTextColor" type="checkbox"> Use selected color for supporting text &amp; action</label>
-</div>
-<div class="support-styling-options"><h3>Styling &amp; colors</h3><div class="style-grid">
-<label class="check">
-<input id="textOutline" type="checkbox"> Add text border</label>
-<label>Text border color<span class="color-control" data-color-control><input id="textOutlineColor" type="color" value="#000000"><input class="color-hex" value="#000000" maxlength="7" aria-label="Text border color hex value"></span>
-</label>
-<label>Text border thickness<select id="textOutlineWidth">
-<option value="1">Thin</option>
-<option value="2" selected>Medium</option>
-<option value="4">Thick</option>
-<option value="6">Extra thick</option>
-</select>
-</label>
-<label>Accent color<span class="color-control" data-color-control><input id="accent" type="color" value="#d6ff62"><input class="color-hex" value="#D6FF62" maxlength="7" aria-label="Accent color hex value"></span>
-</label>
-</div>
-</div>
-</section>
+</details>
 <section class="text-panel-group overlay-gradient-editor"><h3>Gradient overlay</h3>
-<label class="check"><input id="overlayGradientEnabled" type="checkbox" checked> Show top-to-bottom overlay</label>
+<label class="check"><input id="overlayGradientEnabled" type="checkbox" checked> Show gradient overlay</label>
+<label class="overlay-gradient-direction">Overlay direction<select id="overlayGradientDirection"><option value="top-down" selected>Top → Bottom</option><option value="bottom-up">Bottom → Top</option></select></label>
 <div id="overlayGradientPreview" class="overlay-gradient-preview" aria-label="Black to transparent gradient preview"></div>
 <div class="overlay-gradient-headings"><strong>Color</strong><strong>Opacity</strong><strong>Position</strong></div>
 <div class="overlay-gradient-row">
@@ -328,8 +291,6 @@
 <label class="check">
 <input id="captionsEnabled" type="checkbox" checked> Show captions</label>
 <button id="addCaption" class="wide">＋ Add caption</button>
-<label class="caption-import">Import captions (.srt)<input id="captionImport" type="file" accept=".srt,text/plain">
-</label>
 <div id="captionRows">
 </div>
 <div class="row caption-settings-grid">
@@ -434,8 +395,6 @@
 <option value="leak">Multicolor light leak</option>
 <option value="gold">Golden light sweep</option>
 <option value="hearts">Floating hearts</option>
-<option value="sparkle">Sparkling text reveal</option>
-<option value="endcard">Animated end card · hearts, logo and sparkles</option>
 </select>
 </label>
 <label>Effect intensity<input id="effectIntensity" type="range" min="0" max="100" value="65" aria-label="Effect intensity">
@@ -456,8 +415,8 @@
 <summary>2. Photo upload & loading <small>Photo slots, heading and loading animation</small>
 </summary>
 <div class="animation-group-body">
-<div class="divider">
-</div>
+<section class="animation-subpanel">
+<div class="section-title">UPLOAD SCENE</div>
 <label class="check">
 <input id="uploadScene" type="checkbox" checked> Include animated upload scene</label>
 <label>Upload layout<select id="uploadLayout">
@@ -466,10 +425,14 @@
 <option value="two">Two photos · side by side</option>
 </select>
 </label>
+<div class="upload-scene-files">
+<label>Photo 1<span class="upload-scene-file-control"><input id="uploadScenePrimary" type="file" accept="image/jpeg,image/png,image/webp"><button id="clearUploadScenePrimary" type="button" hidden aria-label="Remove photo 1" title="Remove image">×</button></span></label>
+<label id="uploadSceneSecondaryField">Photo 2<span class="upload-scene-file-control"><input id="uploadSceneSecondary" type="file" accept="image/jpeg,image/png,image/webp"><button id="clearUploadSceneSecondary" type="button" hidden aria-label="Remove photo 2" title="Remove image">×</button></span></label>
+</div>
 <label>Upload scene heading<input id="uploadHeading" value="Upload photos of you with your partner" maxlength="100">
 </label>
-<details class="heading-style-panel">
-<summary>Upload heading style</summary>
+<section class="heading-style-section">
+<div class="section-title">TYPOGRAPHY &amp; POSITION</div>
 <label class="check">
 <input id="uploadHeadingVisible" type="checkbox" checked> Show upload heading</label>
 <div class="row">
@@ -486,7 +449,8 @@
 </label>
 <label>Text size<input id="uploadHeadingSize" type="number" min="18" max="72" value="42">
 </label>
-<label>Text color<input id="uploadHeadingColor" type="color" value="#ffffff">
+<label>Text color<span class="color-control" data-color-control><input id="uploadHeadingColor" type="color" value="#ffffff"><input class="color-hex" type="text" value="#FFFFFF" aria-label="Text color hex">
+</span>
 </label>
 <label>Alignment<select id="uploadHeadingAlign">
 <option value="left">Left</option>
@@ -495,32 +459,40 @@
 </select>
 </label>
 </div>
-<label>Position from top (%)<input id="uploadHeadingY" type="range" min="5" max="35" value="18">
+<label class="heading-position">Position from top (%)<input id="uploadHeadingY" type="range" min="5" max="35" value="18">
 <output id="uploadHeadingYValue">18%</output>
 </label>
+</section>
+<section class="heading-style-section heading-advanced">
+<div class="section-title">BACKGROUND BOX</div>
 <label class="check">
-<input id="uploadHeadingBox" type="checkbox"> Background box</label>
+<input id="uploadHeadingBox" type="checkbox"> Show background box</label>
 <div class="row">
-<label>Background color<input id="uploadHeadingBoxColor" type="color" value="#92ed20">
+<label>BG color<span class="color-control" data-color-control><input id="uploadHeadingBoxColor" type="color" value="#92ed20"><input class="color-hex" type="text" value="#92ED20" aria-label="Background color hex">
+</span>
 </label>
-<label>Background opacity (%)<input id="uploadHeadingBoxOpacity" type="number" min="0" max="100" value="100">
+<label>BG opacity (%)<input id="uploadHeadingBoxOpacity" type="number" min="0" max="100" value="100">
 </label>
 </div>
+</section>
+<section class="heading-style-section heading-advanced">
+<div class="section-title">TEXT BORDER</div>
 <label class="check">
-<input id="uploadHeadingBorder" type="checkbox"> Text border</label>
+<input id="uploadHeadingBorder" type="checkbox"> Add text border</label>
 <div class="row">
-<label>Border color<input id="uploadHeadingBorderColor" type="color" value="#000000">
+<label>Border color<span class="color-control" data-color-control><input id="uploadHeadingBorderColor" type="color" value="#000000"><input class="color-hex" type="text" value="#000000" aria-label="Border color hex">
+</span>
 </label>
-<label>Border thickness<select id="uploadHeadingBorderWidth">
+<label>Border width<select id="uploadHeadingBorderWidth">
 <option value="1">Thin</option>
 <option value="2" selected>Medium</option>
 <option value="4">Thick</option>
 </select>
 </label>
 </div>
-<p class="hint">Only the upload-scene heading changes. Main text and watermark settings stay separate.</p>
-<button id="previewUploadHeading" class="wide">▶ Preview heading</button>
-</details>
+</section>
+</section>
+<section class="animation-subpanel loading-effect-panel">
 <div class="section-title">LOADING EFFECT</div>
 <label>Loading animation<select id="loaderStyle">
 <option value="merge">Fluid merge · original</option>
@@ -533,14 +505,14 @@
 <option value="sparkle">Sparkle reveal</option>
 </select>
 </label>
-<div class="row">
-<label>Animation speed<select id="loaderSpeed">
+<div class="row loader-timing-row">
+<label>Speed<select id="loaderSpeed">
 <option value="0.65">Slow</option>
 <option value="1" selected>Normal</option>
 <option value="1.5">Fast</option>
 </select>
 </label>
-<label>Animation size<input id="loaderSize" type="range" min="60" max="160" step="5" value="100" aria-label="Loading animation size">
+<label>Size<input id="loaderSize" type="range" min="60" max="160" step="5" value="100" aria-label="Loading animation size">
 </label>
 </div>
 <label>Loading color style<select id="loaderColorMode">
@@ -548,10 +520,12 @@
 <option value="gradient">Two-color gradient</option>
 </select>
 </label>
-<div class="row">
-<label>Color 1 / solid color<input id="loaderColor" type="color" value="#80ed13">
+<div class="row loader-color-row">
+<label>Color 1<span class="color-control" data-color-control><input id="loaderColor" type="color" value="#80ed13"><input class="color-hex" type="text" value="#80ED13" aria-label="Loader color one hex">
+</span>
 </label>
-<label>Gradient color 2<input id="loaderColor2" type="color" value="#dd24ff">
+<label>Gradient color 2<span class="color-control" data-color-control><input id="loaderColor2" type="color" value="#dd24ff"><input class="color-hex" type="text" value="#DD24FF" aria-label="Loader color two hex">
+</span>
 </label>
 </div>
 <label>Gradient direction<select id="loaderGradientDirection">
@@ -561,9 +535,11 @@
 <option value="radial">Center → Edge</option>
 </select>
 </label>
-<button id="previewLoader" class="wide">▶ Preview selected loading effect</button>
-<button id="previewUpload" class="wide">▶ Preview upload animation</button>
-<p class="hint">Upload slot(s) → your photo(s) → selected loading effect → result. One-photo mode uses Original / before photo; two-photo mode also uses Partner.</p>
+<div class="animation-preview-actions">
+<button id="previewLoader" class="wide">▶ Preview loader</button>
+<button id="previewUpload" class="wide">▶ Preview upload</button>
+</div>
+</section>
 </div>
 </details>
 <div id="uploadUnavailable" class="hint animation-note">This template has no photo-upload scene. Loading effects are available in Couple collage and One photo, many styles.</div>
@@ -609,6 +585,11 @@
 <div class="endcard-custom">
 <div class="section-title">END-CARD ANIMATION & PARTICLES</div>
 <div class="row">
+<label>Animated end card<select id="endcardEffect">
+<option value="none" selected>Off</option>
+<option value="animated">Hearts & sparkles</option>
+</select>
+</label>
 <label>Card entrance<select id="endEntrance">
 <option value="none">No extra entrance</option>
 <option value="fade">Fade in</option>
@@ -617,7 +598,7 @@
 <option value="wipe">Reveal wipe</option>
 </select>
 </label>
-<label>Entrance duration (s)<input id="endEntranceSeconds" type="number" min="0.1" max="2" step="0.1" value="0.6">
+<label>Entrance (s)<input id="endEntranceSeconds" type="number" min="0.1" max="2" step="0.1" value="0.6">
 </label>
 <label>Logo animation<select id="endLogoMotion">
 <option value="none">Still</option>
@@ -644,7 +625,7 @@
 <option value="stars">Stars</option>
 </select>
 </label>
-<label>Particle color<input id="endParticleColor" type="color" value="#ffcf63">
+<label>Particle color<span class="color-control" data-color-control><input id="endParticleColor" type="color" value="#ffcf63"><input class="color-hex" value="#FFCF63" maxlength="7" aria-label="Particle color hex value"></span>
 </label>
 <label>Particle amount<input id="endParticleCount" type="range" min="5" max="70" value="30">
 </label>
@@ -659,49 +640,38 @@
 <label>Particle opacity (%)<input id="endParticleOpacity" type="range" min="10" max="100" value="65">
 </label>
 </div>
-<p class="hint">These effects apply only during the end card. Logo and button controls apply to generated cards, not text already baked into an uploaded image or video.</p>
 <div class="section-title">END-CARD SOUND</div>
 <label>Add or replace end-card SFX<input id="endSfxUpload" type="file" accept="audio/*">
 </label>
-<p id="endSfxName" class="hint">No end-card sound attached</p>
+<p id="endSfxName" class="hint" hidden>No end-card sound attached</p>
 <div class="row">
 <label>SFX volume<input id="endSfxVolume" type="range" min="0" max="100" value="80">
 </label>
-<label>Delay after card begins (s)<input id="endSfxDelay" type="number" min="0" max="10" step="0.1" value="0">
+<label>Delay (s)<input id="endSfxDelay" type="number" min="0" max="10" step="0.1" value="0">
 </label>
-<label>Trim source start (s)<input id="endSfxOffset" type="number" min="0" step="0.1" value="0">
+<label>Trim start (s)<input id="endSfxOffset" type="number" min="0" step="0.1" value="0">
 </label>
-<label>SFX length (s) · 0 = full<input id="endSfxLength" type="number" min="0" step="0.1" value="0">
+<label>SFX length (s)<input id="endSfxLength" type="number" min="0" step="0.1" value="0">
 </label>
 </div>
 <button id="removeEndSfx" class="text-button">Remove end-card sound</button>
 <button id="previewEndEffects" class="primary wide">▶ Preview end card with sound</button>
 </div>
-<label>App logo <span class="optional">optional</span>
-<input id="logoUpload" type="file" accept="image/png,image/jpeg,image/webp">
-</label>
-<label>End-card video <span class="optional">optional · replaces image</span>
-<input id="endVideoUpload" type="file" accept="video/mp4,video/webm,video/quicktime">
-</label>
-<div id="endVideoInfo" class="hint">
-</div>
+<section class="endcard-media">
+<h3>End-card media</h3>
+<label><span class="media-label">App logo <span class="optional">optional</span></span><input id="logoUpload" type="file" accept="image/png,image/jpeg,image/webp"></label>
+<label><span class="media-label">End-card video <span class="optional">optional · replaces image</span></span><input id="endVideoUpload" type="file" accept="video/mp4,video/webm,video/quicktime"></label>
+<div id="endVideoInfo" class="hint"></div>
 <button id="clearEndVideo" class="text-button">Remove end-card video</button>
-<label id="framedEndDurationLabel">Framed-video end-card duration (seconds)<input id="frameEndDuration" type="number" min="1" max="10" step="0.5" value="4">
-</label>
-<label>End-card image <span class="optional">optional</span>
-<input id="endcardUpload" type="file" accept="image/png,image/jpeg,image/webp">
-</label>
-<div id="endcardInfo" class="hint">
+<label><span class="media-label">End-card image <span class="optional">optional</span></span><input id="endcardUpload" type="file" accept="image/png,image/jpeg,image/webp"></label>
+<div id="endcardInfo" class="hint"></div>
+<div class="row">
+<label id="framedEndDurationLabel">End-card duration (s)<input id="frameEndDuration" type="number" min="1" max="10" step="0.5" value="4"></label>
+<label>Image fit<select id="endcardFit"><option value="contain">Show full image</option><option value="cover">Fill frame · may crop</option></select></label>
 </div>
-<label>End-card image fit<select id="endcardFit">
-<option value="contain">Show full image</option>
-<option value="cover">Fill frame · may crop</option>
-</select>
-</label>
-<button id="previewEndcard" class="wide">▶ Preview end card</button>
-<button id="clearEndcard" class="text-button">Remove end-card image</button>
-<p class="hint">Replaces the generated end card. Use an image matching your selected video size. The watermark remains independently controlled.</p>
-<button id="clearExtras" class="text-button">Remove originals & logo</button>
+<div class="endcard-media-actions"><button id="previewEndcard" class="wide">▶ Preview end card</button><div class="endcard-media-secondary-actions"><button id="clearEndcard" class="text-button">Remove image</button><button id="clearExtras" class="text-button">Clear logo &amp; originals</button></div></div>
+</section>
+<section class="endcard-supporting supporting-editor-group"><h3>Supporting text &amp; action</h3><label>Instruction / supporting line<input id="instruction" value="Upload your photos. Choose your look." maxlength="110"></label><label>Text font<select id="textFont"><option value="Open Sans">Open Sans</option><option value="DM Sans">DM Sans · modern</option><option value="Arial">Arial · clean</option><option value="Arial Black">Arial Black · bold</option><option value="Georgia">Georgia · serif</option><option value="Impact">Impact · headline</option><option value="Verdana">Verdana · readable</option><option value="Trebuchet MS">Trebuchet MS · friendly</option></select></label><div class="row"><label>App name<input id="appName" value="Your App" maxlength="28"></label><label>Call to action<input id="cta" value="Try it now" maxlength="28"></label></div><div class="support-color-options"><label>Text color<span class="color-control" data-color-control><input id="supportTextColor" type="color" value="#253025"><input class="color-hex" value="#253025" maxlength="7" aria-label="Supporting text and action color hex value"></span></label><label class="check"><input id="customSupportTextColor" type="checkbox"> Use selected color for supporting text &amp; action</label></div><div class="support-styling-options"><h3>Styling &amp; colors</h3><div class="style-grid"><label class="check"><input id="textOutline" type="checkbox"> Add text border</label><label>Text border color<span class="color-control" data-color-control><input id="textOutlineColor" type="color" value="#000000"><input class="color-hex" value="#000000" maxlength="7" aria-label="Text border color hex value"></span></label><label>Text border thickness<select id="textOutlineWidth"><option value="1">Thin</option><option value="2" selected>Medium</option><option value="4">Thick</option><option value="6">Extra thick</option></select></label><label>Accent color<span class="color-control" data-color-control><input id="accent" type="color" value="#d6ff62"><input class="color-hex" value="#D6FF62" maxlength="7" aria-label="Accent color hex value"></span></label></div></div></section>
 <div class="divider">
 </div>
 <div class="step-navigation">

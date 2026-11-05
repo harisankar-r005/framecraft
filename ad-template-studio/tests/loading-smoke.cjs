@@ -4,8 +4,8 @@ const defaults={};for(const m of html.matchAll(/<input\b([^>]+)>/g)){const a=m[1
 for(const m of html.matchAll(/<select\b[^>]*id="([^"]+)"[^>]*>([\s\S]*?)<\/select>/g)){const options=[...m[2].matchAll(/<option\b([^>]+)>/g)],chosen=options.find(o=>/\bselected\b/.test(o[1]))||options[0];defaults[m[1]]={value:chosen?.[1].match(/value="([^"]*)"/)?.[1]||'',type:'select'}}
 const gradient={addColorStop(){}};let writes=0;
 const context=new Proxy({globalAlpha:1,measureText:s=>({width:String(s).length*18}),createLinearGradient:()=>gradient,createRadialGradient:()=>gradient,createImageData:(w,h)=>({data:new Uint8ClampedArray(w*h*4)}),putImageData:()=>writes++},{get:(o,k)=>k in o?o[k]:()=>{},set:(o,k,v)=>(o[k]=v,true)});
-function el(id=''){return {value:'',checked:false,type:'text',...defaults[id],style:{},parentElement:{dataset:{},style:{setProperty(){}}},append(){},prepend(){},replaceChildren(){},setAttribute(){},addEventListener(){},closest(){return this},getContext:()=>context,click(){}}}
-const document={getElementById:id=>{if(!html.includes('id="'+id+'"'))throw Error('Missing control: '+id);if(!els.has(id))els.set(id,el(id));return els.get(id)},createElement:()=>el(),querySelector:()=>el(),querySelectorAll:()=>[]};
+function el(id=''){return {value:'',checked:false,type:'text',...defaults[id],style:{},parentElement:{dataset:{},style:{setProperty(){}}},append(){},prepend(){},replaceChildren(){},setAttribute(){},addEventListener(){},closest(){return this},getContext:()=>context,click(){this.onclick?.({})}}}
+const document={getElementById:id=>{if(!html.includes('id="'+id+'"'))return null;if(!els.has(id))els.set(id,el(id));return els.get(id)},createElement:()=>el(),querySelector:()=>el(),querySelectorAll:()=>[]};
 const sandbox={document,window:{},console,requestAnimationFrame(){},localStorage:{getItem:()=>null},Image:class{},Blob,URL,performance,Date};vm.createContext(sandbox);
 const source=['app.js','framed-video.js','endcard-effects.js','effects.js','audio-captions.js'].map(f=>fs.readFileSync(path.join(root,'dist',f),'utf8')).join('\n');
 vm.runInContext(source+`
@@ -70,11 +70,14 @@ Object.assign(sandbox,{AbortController,DOMException,setTimeout,clearTimeout,setI
 vm.runInContext(fs.readFileSync(path.join(root,'dist/export-controller.js'),'utf8'),sandbox);
 (async()=>{
  await vm.runInContext(`(async()=>{
-  const backup={version:1,template:'collage',images:[],settings:{duration:'8'}};
+  actualTimeAtProgress=p=>p*duration();state.template='styles';$('previewLoader').click();if(state.template!=='styles')throw Error('Loader preview changed the selected styles template');
+  const backup={version:1,template:'collage',images:[],overlayGradient:{enabled:true,direction:'bottom-up',top:{color:'#123456',opacity:71,position:9},bottom:{color:'#abcdef',opacity:13,position:93}},settings:{duration:'8',textColor:'#aabbcc',background:'#111111'}};
   const oldVideo={pause(){},removeAttribute(){},load(){}};
   audioFile={name:'old-music.wav'};audioURL='blob:old-music';sfxFiles.set('old',{name:'old.wav'});
   clipMedia.set('old',{video:oldVideo,url:'blob:old-clip'});endVideoMedia={video:oldVideo,url:'blob:old-end'};
   await openProject(backup);
+  if($('overlayGradientDirection').value!=='bottom-up'||$('overlayTopColor').value!=='#123456'||String($('overlayTopOpacity').value)!=='71'||String($('overlayBottomPosition').value)!=='93')throw Error('Restored gradient did not populate controls');
+  if($('hookTextColor').value!=='#aabbcc'||$('supportTextColor').value!=='#aabbcc'||!$('customHookTextColor').checked||canvasBackground!=='#111111')throw Error('Legacy color settings did not migrate');
   if(audioFile||audioURL||sfxFiles.size||clipMedia.size||endVideoMedia)throw Error('Old project media survived replacement');
   const disabled={disabled:true},enabled={disabled:false};document.querySelectorAll=()=>[disabled,enabled,$('cancelExport')];
   lock(true);if(!enabled.disabled||$('cancelExport').hidden)throw Error('Export did not lock controls');
