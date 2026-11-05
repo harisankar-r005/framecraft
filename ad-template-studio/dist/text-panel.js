@@ -1,3 +1,6 @@
+function refreshColorControls(){document.querySelectorAll('[data-color-control]').forEach(control=>{
+ const swatch=control.querySelector('input[type=color]'),hex=control.querySelector('.color-hex');hex.value=swatch.value.toUpperCase();
+})}
 /* Keep compact hex fields and native color swatches synchronized. */
 document.querySelectorAll('[data-color-control]').forEach(control=>{
  const swatch=control.querySelector('input[type=color]'),hex=control.querySelector('.color-hex');

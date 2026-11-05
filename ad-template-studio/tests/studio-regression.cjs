@@ -3,7 +3,7 @@ const root=path.resolve(__dirname,'..'),html=fs.readFileSync(path.join(root,'dis
 for(const m of html.matchAll(/<input\b([^>]+)>/g)){const a=m[1],id=a.match(/id="([^"]+)"/)?.[1];if(id)defaults[id]={value:a.match(/value="([^"]*)"/)?.[1]||'',type:a.match(/type="([^"]+)"/)?.[1]||'text',checked:/\bchecked\b/.test(a)}}
 for(const m of html.matchAll(/<select\b[^>]*id="([^"]+)"[^>]*>([\s\S]*?)<\/select>/g)){const options=[...m[2].matchAll(/<option\b([^>]+)>/g)],o=options.find(o=>/\bselected\b/.test(o[1]))||options[0];defaults[m[1]]={value:o?.[1].match(/value="([^"]*)"/)?.[1]||'',type:'select'}}
 const gradient={addColorStop(){}};const context=new Proxy({measureText:s=>({width:String(s).length*15}),createLinearGradient:()=>gradient,createRadialGradient:()=>gradient,createImageData:(w,h)=>({data:new Uint8ClampedArray(w*h*4)})},{get:(o,k)=>k in o?o[k]:()=>{},set:(o,k,v)=>(o[k]=v,true)});
-function element(id=''){return {value:'',checked:false,disabled:false,type:'text',...defaults[id],style:{setProperty(){}},dataset:{},classList:{add(){},remove(){}},parentElement:{dataset:{},style:{setProperty(){}}},append(){},prepend(){},replaceChildren(){},setAttribute(){},addEventListener(){},querySelectorAll:()=>[],closest(){return this},getContext:()=>context,click(){}}}
+function element(id=''){return {value:'',checked:false,disabled:false,type:'text',...defaults[id],style:{setProperty(){}},dataset:{},classList:{add(){},remove(){}},parentElement:{dataset:{},style:{setProperty(){}}},append(){},prepend(){},replaceChildren(){},setAttribute(){},addEventListener(type,fn){(this.listeners??={})[type]??=[];this.listeners[type].push(fn)},querySelectorAll:()=>[],closest(){return this},getContext:()=>context,click(){}}}
 const document={hidden:false,getElementById:id=>{assert(html.includes('id="'+id+'"'),'Missing control '+id);if(!elements.has(id))elements.set(id,element(id));return elements.get(id)},createElement:()=>element(),querySelector:()=>element(),querySelectorAll:()=>[],addEventListener(){},body:element()};
 const sandbox={document,window:{},console,assert,requestAnimationFrame(){},cancelAnimationFrame(){},localStorage:{getItem:()=>null},Image:class{},Blob,URL,performance,Date,AbortController,DOMException,setTimeout,clearTimeout,setInterval,clearInterval,crypto:require('crypto').webcrypto};vm.createContext(sandbox);
 for(const file of ['app.js','framed-video.js','endcard-effects.js','effects.js','audio-captions.js','export-controller.js','workflow.js','studio-editing.js','audio-finishing.js','precise-export.js'])vm.runInContext(fs.readFileSync(path.join(root,'dist',file),'utf8'),sandbox,{filename:file});
@@ -34,3 +34,25 @@ console.log('Passed '+timingCases+' timeline mapping cases; crop/contain geometr
 const ids=[...html.matchAll(/\bid="([^"]+)"/g)].map(m=>m[1]);assert(new Set(ids).size===ids.length,'Duplicate HTML IDs');
 for(const match of html.matchAll(/<script src="([^"]+)"/g))assert(fs.existsSync(path.join(root,'dist',match[1].split('?')[0])),'Missing offline script '+match[1]);
 console.log('Passed: unique controls and all offline scripts present.');
+
+// Regressions from the aman-works review: exercise the final loaded handlers.
+vm.runInContext(fs.readFileSync(path.join(root,'dist/overlay-gradient.js'),'utf8'),sandbox,{filename:'overlay-gradient.js'});
+vm.runInContext(`
+(async()=>{
+ state.template='styles';$('previewLoader').onclick();assert.strictEqual(state.template,'styles','Loader preview changed template');
+ assert(Math.abs(time-actualTimeAtProgress(.372))<.001,'Loader preview used collage timing');
+ $('previewUpload').onclick();assert.strictEqual(state.template,'styles');assert(Math.abs(time-actualTimeAtProgress(.14))<.001);
+ const saved=project();Object.assign(saved,{images:[],before:null,partner:null,logo:null,endcard:null,clips:[],overlayGradient:{enabled:false,top:{color:'#ff0000',opacity:25,position:10},bottom:{color:'#0000ff',opacity:75,position:90}}});
+ await openProject(saved);
+ assert.strictEqual($('overlayGradientEnabled').checked,false);assert.strictEqual($('overlayTopColor').value,'#ff0000');assert.strictEqual(Number($('overlayTopOpacity').value),25);
+ $('overlayTopOpacity').value='40';for(const fn of $('overlayTopOpacity').listeners.input)fn();
+ assert.strictEqual(state.overlayGradient.enabled,false);assert.strictEqual(state.overlayGradient.top.color,'#ff0000');assert.strictEqual(state.overlayGradient.top.opacity,40);assert.strictEqual(state.overlayGradient.bottom.color,'#0000ff');
+ const legacy={version:1,template:'before',images:[],settings:{background:'#f0e0d0',textColor:'#ee3344',customTextColor:true}};
+ await openProject(legacy);assert.strictEqual($('background').value,'#f0e0d0');assert.strictEqual($('hookTextColor').value,'#ee3344');assert.strictEqual($('supportTextColor').value,'#ee3344');assert($('customHookTextColor').checked&&$('customSupportTextColor').checked);assert.strictEqual(state.overlayGradient.enabled,false,'Legacy projects gained an overlay');
+ await openProject(saved);assert.strictEqual($('overlayTopColor').value,'#ff0000','Project switching left stale controls');
+ state.images=[{name:'test',src:'data:image/png;base64,x'}];images=[{width:1200,height:800}];refreshCropControls();$('cropAsset').value='image-0';$('cropZoom').value='150';$('cropX').value='10';$('cropY').value='80';$('cropZoom').oninput();assert.strictEqual(state.images[0].crop.zoom,1.5);assert.strictEqual(state.images[0].crop.x,10);$('resetCrop').onclick();assert(!state.images[0].crop);
+ console.log('Passed: template-preserving previews; restored gradient controls and edits; legacy text/background migration; project switching; crop edits/reset.');
+})().catch(error=>{console.error(error);throw error});
+`,sandbox);
+assert(html.includes('id="safeGuides"')&&html.includes('id="cropEditor"'),'Restored controls missing');
+assert(!fs.readFileSync(path.join(root,'dist/dark-theme.css'),'utf8').includes('.caption-import{display:none}'),'Caption import is hidden');

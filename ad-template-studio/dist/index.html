@@ -83,7 +83,14 @@
 <button id="restart" aria-label="Restart preview">↺</button>
 <button id="fullscreenPreview" aria-label="Full-screen preview" title="Full-screen preview">⛶</button>
 </div>
-</div>
+<label class="guide-toggle">Guides<select id="safeGuides">
+<option value="none">Off</option>
+<option value="vertical">Vertical ads · conservative UI margins</option>
+<option value="square">Square ads · conservative margins</option>
+<option value="landscape">Landscape ads · conservative margins</option>
+</select>
+</label></div>
+<p class="hint guide-hint" id="guideHint" hidden>Guides are preview-only estimates. Verify placement with your ad platform.</p>
 <section class="scene-panel" aria-label="Video scenes"><div class="scene-panel-heading"><strong>Scenes</strong><span id="sceneSummary"></span></div><div id="sceneDurationRail" class="scene-duration-rail" aria-hidden="true"></div><div id="timeline" class="timeline" role="group" aria-label="Jump to a scene"></div><p class="scene-panel-hint">Select a scene to preview it.</p></section>
 <p id="status" role="status">Demo artwork · Replace with your own images to export.</p>
 <div id="downloads">
@@ -191,6 +198,25 @@
 </label>
 <div id="assets" class="assets">
 </div>
+</div>
+<div id="cropEditor" class="workspace-tools">
+<strong>Crop &amp; position images</strong>
+<label>Image to adjust<select id="cropAsset">
+<option value="">Add an image first</option>
+</select>
+</label>
+<div class="row">
+<label>Zoom<input id="cropZoom" type="number" min="100" max="300" step="5" value="100">
+</label>
+<label>Horizontal position %<input id="cropX" type="number" min="0" max="100" value="50">
+</label>
+<label>Vertical position %<input id="cropY" type="number" min="0" max="100" value="50">
+</label>
+</div>
+<button id="resetCrop">Reset crop</button>
+<p class="hint">Position 0 = left/top, 100 = right/bottom. Crop applies wherever this image appears.</p>
+<canvas id="cropPreview" width="270" height="270" aria-label="Selected image crop preview">
+</canvas>
 </div>
 <div id="framedAssetsGroup">
 <div class="divider">
@@ -304,6 +330,7 @@
 <option value="6">Extra thick</option>
 </select>
 </label>
+<label>Background<input id="background" type="color" value="#080b08"></label>
 <label>Accent color<span class="color-control" data-color-control><input id="accent" type="color" value="#d6ff62"><input class="color-hex" value="#D6FF62" maxlength="7" aria-label="Accent color hex value"></span>
 </label>
 </div>
