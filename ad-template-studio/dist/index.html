@@ -82,8 +82,8 @@
 <span id="endTime">00:12</span>
 <button id="restart" aria-label="Restart preview">↺</button>
 <button id="fullscreenPreview" aria-label="Full-screen preview" title="Full-screen preview">⛶</button>
-<select id="safeGuides" hidden><option value="none" selected>Off</option><option value="vertical">Vertical safe area</option><option value="square">Square safe area</option><option value="landscape">Landscape safe area</option></select>
 </div>
+<label class="guide-toggle"><input id="safeAreaGuides" type="checkbox"> Show ad safe areas</label>
 </div>
 <section class="scene-panel" aria-label="Video scenes"><div class="scene-panel-heading"><strong>Scenes</strong><span id="sceneSummary"></span></div><div id="sceneDurationRail" class="scene-duration-rail" aria-hidden="true"></div><div id="timeline" class="timeline" role="group" aria-label="Jump to a scene"></div><p class="scene-panel-hint">Select a scene to preview it.</p></section>
 <p id="status" role="status">Demo artwork · Replace with your own images to export.</p>
@@ -192,7 +192,7 @@
 </label>
 <div id="assets" class="assets">
 </div>
-<details id="cropEditor" class="workspace-tools" hidden><summary>Crop &amp; position images</summary><label>Image to adjust<select id="cropAsset"><option value="">Add an image first</option></select></label><div class="row"><label>Zoom<input id="cropZoom" type="number" min="100" max="300" step="5" value="100"></label><label>Horizontal position %<input id="cropX" type="number" min="0" max="100" value="50"></label><label>Vertical position %<input id="cropY" type="number" min="0" max="100" value="50"></label></div><button id="resetCrop" type="button">Reset crop</button><canvas id="cropPreview" width="240" height="240" aria-label="Selected image crop preview"></canvas></details>
+<details id="cropEditor" class="workspace-tools"><summary>Crop &amp; position images</summary><label>Image to adjust<select id="cropAsset"><option value="">Add an image first</option></select></label><div class="row"><label>Zoom<input id="cropZoom" type="number" min="100" max="300" step="5" value="100"></label><label>Horizontal position %<input id="cropX" type="number" min="0" max="100" value="50"></label><label>Vertical position %<input id="cropY" type="number" min="0" max="100" value="50"></label></div><button id="resetCrop" type="button">Reset crop</button><canvas id="cropPreview" width="240" height="240" aria-label="Selected image crop preview"></canvas></details>
 </div>
 <div id="framedAssetsGroup">
 <div class="divider">
@@ -263,7 +263,11 @@
 <option value="top">Top</option>
 <option value="center">Center</option>
 <option value="bottom">Bottom</option>
+<option value="custom">Custom position</option>
 </select>
+</label>
+<label class="heading-position">Position from top (%)<input id="hookY" type="range" min="5" max="80" value="18" aria-label="Opening hook position from top">
+<output id="hookYValue">18%</output>
 </label>
 <div class="hook-color-options">
 <label>Text color<span class="color-control" data-color-control><input id="hookTextColor" type="color" value="#253025"><input class="color-hex" value="#253025" maxlength="7" aria-label="Opening hook color hex value"></span>
@@ -273,12 +277,17 @@
 </details>
 <section class="text-panel-group overlay-gradient-editor"><h3>Gradient overlay</h3>
 <label class="check"><input id="overlayGradientEnabled" type="checkbox" checked> Show gradient overlay</label>
+<label class="check overlay-canvas-edit"><input id="overlayCanvasEdit" type="checkbox"> Edit on canvas</label>
 <label class="overlay-gradient-direction">Overlay direction<select id="overlayGradientDirection"><option value="top-down" selected>Top → Bottom</option><option value="bottom-up">Bottom → Top</option></select></label>
-<div id="overlayGradientPreview" class="overlay-gradient-preview" aria-label="Black to transparent gradient preview"></div>
+<div id="overlayGradientPreview" class="overlay-gradient-preview" aria-label="Gradient preview with draggable color stops">
+<button id="overlayTopHandle" class="overlay-gradient-handle" type="button" aria-label="Drag top gradient stop"></button>
+<button id="overlayBottomHandle" class="overlay-gradient-handle" type="button" aria-label="Drag bottom gradient stop"></button>
+</div>
+<output id="overlayCanvasVector" class="overlay-canvas-vector">Canvas line: 50%, 0% → 50%, 15%</output>
 <div class="overlay-gradient-headings"><strong>Color</strong><strong>Opacity</strong><strong>Position</strong></div>
 <div class="overlay-gradient-row">
 <span class="color-control" data-color-control><input id="overlayTopColor" type="color" value="#000000"><input id="overlayTopHex" class="color-hex" value="#000000" maxlength="7" aria-label="Top stop color hex value"></span>
-<label class="compact-number"><input id="overlayTopOpacity" type="number" min="0" max="100" value="100" aria-label="Top stop opacity"><span>%</span></label>
+<label class="compact-number"><input id="overlayTopOpacity" type="number" min="0" max="100" value="80" aria-label="Top stop opacity"><span>%</span></label>
 <label class="compact-number"><input id="overlayTopPosition" type="number" min="0" max="100" value="0" aria-label="Top stop position"><span>%</span></label>
 </div>
 <div class="overlay-gradient-row">
@@ -291,6 +300,7 @@
 <label class="check">
 <input id="captionsEnabled" type="checkbox" checked> Show captions</label>
 <button id="addCaption" class="wide">＋ Add caption</button>
+<label class="caption-import">Import captions (.srt)<input id="captionImport" type="file" accept=".srt,text/plain"></label>
 <div id="captionRows">
 </div>
 <div class="row caption-settings-grid">
@@ -578,102 +588,16 @@
 <span class="step-number">06</span>
 <span>
 <strong>Branding & end card</strong>
-<small>App logo and optional finished end card</small>
+<small>Upload a finished end-card video</small>
 </span>
 </summary>
 <div class="step-content">
-<div class="endcard-custom">
-<div class="section-title">END-CARD ANIMATION & PARTICLES</div>
-<div class="row">
-<label>Animated end card<select id="endcardEffect">
-<option value="none" selected>Off</option>
-<option value="animated">Hearts & sparkles</option>
-</select>
-</label>
-<label>Card entrance<select id="endEntrance">
-<option value="none">No extra entrance</option>
-<option value="fade">Fade in</option>
-<option value="zoom">Zoom in</option>
-<option value="slide">Slide up</option>
-<option value="wipe">Reveal wipe</option>
-</select>
-</label>
-<label>Entrance (s)<input id="endEntranceSeconds" type="number" min="0.1" max="2" step="0.1" value="0.6">
-</label>
-<label>Logo animation<select id="endLogoMotion">
-<option value="none">Still</option>
-<option value="pulse">Gentle pulse</option>
-<option value="bounce">Bounce in</option>
-<option value="spin">Spin in</option>
-<option value="fade">Fade in</option>
-</select>
-</label>
-<label>Button animation<select id="endCtaMotion">
-<option value="template">Template default</option>
-<option value="pulse">Pulse</option>
-<option value="bounce">Bounce</option>
-<option value="slide">Slide in</option>
-<option value="none">Still</option>
-</select>
-</label>
-<label>Particles<select id="endParticles">
-<option value="none">Off</option>
-<option value="sparkle">Sparkles</option>
-<option value="hearts">Floating hearts</option>
-<option value="confetti">Confetti</option>
-<option value="bubbles">Bubbles</option>
-<option value="stars">Stars</option>
-</select>
-</label>
-<label>Particle color<span class="color-control" data-color-control><input id="endParticleColor" type="color" value="#ffcf63"><input class="color-hex" value="#FFCF63" maxlength="7" aria-label="Particle color hex value"></span>
-</label>
-<label>Particle amount<input id="endParticleCount" type="range" min="5" max="70" value="30">
-</label>
-<label>Particle size<input id="endParticleSize" type="range" min="30" max="180" value="80">
-</label>
-<label>Particle speed<select id="endParticleSpeed">
-<option value="0.5">Slow</option>
-<option value="1" selected>Normal</option>
-<option value="1.7">Fast</option>
-</select>
-</label>
-<label>Particle opacity (%)<input id="endParticleOpacity" type="range" min="10" max="100" value="65">
-</label>
-</div>
-<div class="section-title">END-CARD SOUND</div>
-<label>Add or replace end-card SFX<input id="endSfxUpload" type="file" accept="audio/*">
-</label>
-<p id="endSfxName" class="hint" hidden>No end-card sound attached</p>
-<div class="row">
-<label>SFX volume<input id="endSfxVolume" type="range" min="0" max="100" value="80">
-</label>
-<label>Delay (s)<input id="endSfxDelay" type="number" min="0" max="10" step="0.1" value="0">
-</label>
-<label>Trim start (s)<input id="endSfxOffset" type="number" min="0" step="0.1" value="0">
-</label>
-<label>SFX length (s)<input id="endSfxLength" type="number" min="0" step="0.1" value="0">
-</label>
-</div>
-<button id="removeEndSfx" class="text-button">Remove end-card sound</button>
-<button id="previewEndEffects" class="primary wide">▶ Preview end card with sound</button>
-</div>
 <section class="endcard-media">
-<h3>End-card media</h3>
-<label><span class="media-label">App logo <span class="optional">optional</span></span><input id="logoUpload" type="file" accept="image/png,image/jpeg,image/webp"></label>
-<label><span class="media-label">End-card video <span class="optional">optional · replaces image</span></span><input id="endVideoUpload" type="file" accept="video/mp4,video/webm,video/quicktime"></label>
+<h3>End-card video</h3>
+<label><span class="media-label">Upload your finished end-card video</span><input id="endVideoUpload" type="file" accept="video/mp4,video/webm,video/quicktime"></label>
 <div id="endVideoInfo" class="hint"></div>
 <button id="clearEndVideo" class="text-button">Remove end-card video</button>
-<label><span class="media-label">End-card image <span class="optional">optional</span></span><input id="endcardUpload" type="file" accept="image/png,image/jpeg,image/webp"></label>
-<div id="endcardInfo" class="hint"></div>
-<div class="row">
-<label id="framedEndDurationLabel">End-card duration (s)<input id="frameEndDuration" type="number" min="1" max="10" step="0.5" value="4"></label>
-<label>Image fit<select id="endcardFit"><option value="contain">Show full image</option><option value="cover">Fill frame · may crop</option></select></label>
-</div>
-<div class="endcard-media-actions"><button id="previewEndcard" class="wide">▶ Preview end card</button><div class="endcard-media-secondary-actions"><button id="clearEndcard" class="text-button">Remove image</button><button id="clearExtras" class="text-button">Clear logo &amp; originals</button></div></div>
 </section>
-<section class="endcard-supporting supporting-editor-group"><h3>Supporting text &amp; action</h3><label>Instruction / supporting line<input id="instruction" value="Upload your photos. Choose your look." maxlength="110"></label><label>Text font<select id="textFont"><option value="Open Sans">Open Sans</option><option value="DM Sans">DM Sans · modern</option><option value="Arial">Arial · clean</option><option value="Arial Black">Arial Black · bold</option><option value="Georgia">Georgia · serif</option><option value="Impact">Impact · headline</option><option value="Verdana">Verdana · readable</option><option value="Trebuchet MS">Trebuchet MS · friendly</option></select></label><div class="row"><label>App name<input id="appName" value="Your App" maxlength="28"></label><label>Call to action<input id="cta" value="Try it now" maxlength="28"></label></div><div class="support-color-options"><label>Text color<span class="color-control" data-color-control><input id="supportTextColor" type="color" value="#253025"><input class="color-hex" value="#253025" maxlength="7" aria-label="Supporting text and action color hex value"></span></label><label class="check"><input id="customSupportTextColor" type="checkbox"> Use selected color for supporting text &amp; action</label></div><div class="support-styling-options"><h3>Styling &amp; colors</h3><div class="style-grid"><label class="check"><input id="textOutline" type="checkbox"> Add text border</label><label>Text border color<span class="color-control" data-color-control><input id="textOutlineColor" type="color" value="#000000"><input class="color-hex" value="#000000" maxlength="7" aria-label="Text border color hex value"></span></label><label>Text border thickness<select id="textOutlineWidth"><option value="1">Thin</option><option value="2" selected>Medium</option><option value="4">Thick</option><option value="6">Extra thick</option></select></label><label>Accent color<span class="color-control" data-color-control><input id="accent" type="color" value="#d6ff62"><input class="color-hex" value="#D6FF62" maxlength="7" aria-label="Accent color hex value"></span></label></div></div></section>
-<div class="divider">
-</div>
 <div class="step-navigation">
 <button type="button" data-go="6">← Back</button>
 <button type="button" class="primary" data-go="8">Next step →</button>
@@ -689,35 +613,37 @@
 </span>
 </summary>
 <div class="step-content">
-<label>Background music <span class="optional">optional</span>
-<input id="audioUpload" type="file" accept="audio/*">
+<section class="audio-panel music-panel">
+<h3>Background music <span class="optional">optional</span></h3>
+<label class="audio-file-field">Music file<input id="audioUpload" type="file" accept="audio/*">
 </label>
-<div class="audio-row">
-<span id="audioName" class="hint">Silent export by default</span>
+<div class="audio-file-status">
+<span id="audioName">Silent export by default</span>
 <button id="clearAudio" class="text-button">Remove</button>
 </div>
-<div class="row">
+<div class="audio-settings-grid">
 <label>Background volume<input id="musicVolume" type="range" min="0" max="100" value="70">
 </label>
 <label>Trim start (seconds)<input id="musicOffset" type="number" min="0" step="0.1" value="0">
 </label>
 </div>
-<label class="check">
-<input id="musicLoop" type="checkbox"> Loop background audio</label>
-<div class="divider">
-</div>
-<details class="workspace-tools" open>
+<label class="check"><input id="musicLoop" type="checkbox"> Loop background audio</label>
+</section>
+<details class="workspace-tools audio-panel voice-panel" open>
 <summary>Voiceover &amp; audio finishing</summary>
-<label>Voiceover file<input id="voiceUpload" type="file" accept="audio/*">
+<div class="audio-panel-body">
+<label class="audio-file-field">Voiceover file<input id="voiceUpload" type="file" accept="audio/*">
 </label>
-<p class="hint" id="voiceName">No voiceover attached</p>
-<button id="clearVoice">Remove voiceover</button>
-<div class="row">
+<div class="audio-file-status">
+<span id="voiceName">No voiceover attached</span>
+<button id="clearVoice" class="text-button">Remove</button>
+</div>
+<div class="audio-settings-grid">
 <label>Voice starts at (s)<input id="voiceStart" type="number" min="0" max="600" step="0.1" value="0">
 </label>
 <label>Source trim start (s)<input id="voiceOffset" type="number" min="0" step="0.1" value="0">
 </label>
-<label>Voice length (s) · 0 = full<input id="voiceLength" type="number" min="0" step="0.1" value="0">
+<label>Voice length (s)<input id="voiceLength" type="number" min="0" step="0.1" value="0"><small class="field-help">0 = full</small>
 </label>
 <label>Voice volume %<input id="voiceVolume" type="number" min="0" max="100" value="100">
 </label>
@@ -729,22 +655,19 @@
 </label>
 <label>Voice fade out (s)<input id="voiceFadeOut" type="number" min="0" max="5" step="0.1" value="0.1">
 </label>
-</div>
-<label class="check">
-<input id="musicDuck" type="checkbox" checked> Reduce music while voiceover plays</label>
+ </div>
+<label class="check"><input id="musicDuck" type="checkbox" checked> Reduce music while voiceover plays</label>
 <label>Music level under voice %<input id="duckLevel" type="number" min="0" max="100" value="25">
 </label>
+</div>
 </details>
-<div class="section-title">ANIMATION SOUND EFFECTS</div>
-<label>Add SFX files<input id="sfxUpload" type="file" accept="audio/*" multiple>
+<section class="audio-panel sfx-panel">
+<h3>Animation sound effects</h3>
+<label class="sfx-file-field">Add sound effects<input id="sfxUpload" type="file" accept="audio/*" multiple>
 </label>
 <div id="sfxRows">
 </div>
-<p class="hint">Set each sound’s start time, source trim, length and volume. Use the timing presets for upload, loading or reveal. Playback previews the mix; export includes it. Reattach audio files after opening a project backup.</p>
-<div class="divider">
-</div>
-<div class="divider">
-</div>
+</section>
 <div class="step-navigation">
 <button type="button" data-go="7">← Back</button>
 <button type="button" class="primary" data-go="9">Next step →</button>
@@ -760,23 +683,21 @@
 </span>
 </summary>
 <div class="step-content">
-<p class="hint"><a href="guide.html" target="_blank" rel="noopener">Open the updated user guide ↗</a></p><p class="hint">Play the whole preview. Check faces, text, watermark, timing and audio. Save a project backup before exporting. Keep the tab visible while exporting.</p>
 <label>Export method<select id="exportMethod">
 <option value="frames">Precise MP4 · fixed 30 fps</option>
 <option value="realtime">Browser recording · variable frame rate</option>
 </select>
 </label>
-<p id="encoderHint" class="hint">Precise export encodes every frame. Browser support is checked before export.</p>
 <label id="formatLabel">Recording format<select id="format">
 </select>
 </label>
 <p class="hint" id="formatHint">
 </p>
+<a class="guide-link" href="guide.html" target="_blank" rel="noopener">↗ Open user guide</a>
 <button id="variation" class="wide">↻ Create a variation</button>
 <p class="hint">Rotates image order and changes the hook. Your saved template stays available.</p>
 <details class="workspace-tools">
 <summary>Batch export</summary>
-<p class="hint">Export the current edit in selected sizes and image-order variations. All files are delivered in one ZIP.</p>
 <label class="check">
 <input id="batchPortrait" type="checkbox" checked> Portrait · 1080 × 1920</label>
 <label class="check">
@@ -792,9 +713,9 @@ Find your next look.">
 <p id="batchCount" class="hint">
 </p>
 <button id="batchExport" class="primary wide">Export batch ZIP</button>
-<p class="hint">Variations rotate result images or video scenes; hooks cycle through your list. The original edit is restored when finished.</p>
 </details>
 <button id="workflowBackup" class="wide">↓ Save project backup</button>
+<button id="workflowOpenProject" class="wide">↗ Open project backup</button>
 <button id="workflowExport" class="primary wide">↓ Export video</button>
 <div class="step-navigation">
 <button type="button" data-go="8">← Back</button>
@@ -835,8 +756,6 @@ Find your next look.">
 <script src="app.js?v=15">
 </script>
 <script src="framed-video.js">
-</script>
-<script src="endcard-effects.js">
 </script>
 <script src="effects.js">
 </script>

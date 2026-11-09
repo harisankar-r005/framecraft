@@ -8,7 +8,7 @@ document.querySelectorAll('[data-color-control]').forEach(control=>{
 });
 
 /* Give every titled editor card the same compact, collapsible treatment. */
-document.querySelectorAll('.workflow-step[data-step="4"] .overlay-gradient-editor,.workflow-step[data-step="4"] .captions-group,.workflow-step[data-step="5"] .watermark-panel,.workflow-step[data-step="6"] .animation-subpanel,.workflow-step[data-step="7"] .endcard-custom,.workflow-step[data-step="7"] .endcard-media,.workflow-step[data-step="7"] .endcard-supporting').forEach(panel=>{
+document.querySelectorAll('.workflow-step[data-step="4"] .overlay-gradient-editor,.workflow-step[data-step="4"] .captions-group,.workflow-step[data-step="5"] .watermark-panel,.workflow-step[data-step="6"] .animation-subpanel,.workflow-step[data-step="7"] .endcard-media').forEach(panel=>{
  if(panel.tagName==='DETAILS')return;
  const heading=panel.querySelector(':scope > h3,:scope > .section-title');if(!heading)return;
  const details=document.createElement('details'),summary=document.createElement('summary');

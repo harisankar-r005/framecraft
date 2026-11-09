@@ -51,7 +51,7 @@ $('export').onclick=async()=>{
   recorder.stop();await abortable(done,signal,10000);
   if(recorderFailure)throw recorderFailure;
   const blob=new Blob(chunks,{type:recorder.mimeType||mime});if(!blob.size)throw Error('The browser produced an empty video. Try another format.');
-  const ext=mime.startsWith('video/mp4')?'mp4':'webm';download(blob,safeName($('projectName').value)+'-'+state.template+'-'+$('resolution').value+'-'+Date.now()+'.'+ext);
+   const ext=mime.startsWith('video/mp4')?'mp4':'webm';await download(blob,safeName($('projectName').value)+'-'+state.template+'-'+$('resolution').value+'-'+Date.now()+'.'+ext);
   message('Video ready · '+(blob.size/1048576).toFixed(1)+' MB · '+ext.toUpperCase()+'. Download link remains below.');
  }catch(error){message(recorderFailure?'Export failed: '+recorderFailure.message:error.name==='AbortError'?'Export cancelled. Your project is unchanged.':'Export failed: '+error.message)}
  finally{

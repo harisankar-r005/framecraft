@@ -3,10 +3,20 @@ const root=path.resolve(__dirname,'..'),html=fs.readFileSync(path.join(root,'dis
 for(const m of html.matchAll(/<input\b([^>]+)>/g)){const a=m[1],id=a.match(/id="([^"]+)"/)?.[1];if(id)defaults[id]={value:a.match(/value="([^"]*)"/)?.[1]||'',type:a.match(/type="([^"]+)"/)?.[1]||'text',checked:/\bchecked\b/.test(a)}}
 for(const m of html.matchAll(/<select\b[^>]*id="([^"]+)"[^>]*>([\s\S]*?)<\/select>/g)){const options=[...m[2].matchAll(/<option\b([^>]+)>/g)],o=options.find(o=>/\bselected\b/.test(o[1]))||options[0];defaults[m[1]]={value:o?.[1].match(/value="([^"]*)"/)?.[1]||'',type:'select'}}
 const gradient={addColorStop(){}};const context=new Proxy({measureText:s=>({width:String(s).length*15}),createLinearGradient:()=>gradient,createRadialGradient:()=>gradient,createImageData:(w,h)=>({data:new Uint8ClampedArray(w*h*4)})},{get:(o,k)=>k in o?o[k]:()=>{},set:(o,k,v)=>(o[k]=v,true)});
+// Optional controls may be absent in older/editor-specific layouts.
+const optionalMissing=new Set(['captionImport']);
 function element(id=''){return {value:'',checked:false,disabled:false,type:'text',...defaults[id],style:{setProperty(){}},dataset:{},classList:{add(){},remove(){}},parentElement:{dataset:{},style:{setProperty(){}}},append(){},prepend(){},replaceChildren(){},setAttribute(){},addEventListener(){},querySelectorAll:()=>[],closest(){return this},getContext:()=>context,click(){}}}
-const document={hidden:false,getElementById:id=>{assert(html.includes('id="'+id+'"'),'Missing control '+id);if(!elements.has(id))elements.set(id,element(id));return elements.get(id)},createElement:()=>element(),querySelector:()=>element(),querySelectorAll:()=>[],addEventListener(){},body:element()};
+const document={hidden:false,getElementById:id=>{if(optionalMissing.has(id))return null;assert(html.includes('id="'+id+'"'),'Missing control '+id);if(!elements.has(id))elements.set(id,element(id));return elements.get(id)},createElement:()=>element(),querySelector:()=>element(),querySelectorAll:()=>[],addEventListener(){},body:element()};
 const sandbox={document,window:{},console,assert,requestAnimationFrame(){},cancelAnimationFrame(){},localStorage:{getItem:()=>null},Image:class{},Blob,URL,performance,Date,AbortController,DOMException,setTimeout,clearTimeout,setInterval,clearInterval,crypto:require('crypto').webcrypto};vm.createContext(sandbox);
-for(const file of ['app.js','framed-video.js','endcard-effects.js','effects.js','audio-captions.js','export-controller.js','workflow.js','studio-editing.js','audio-finishing.js','precise-export.js'])vm.runInContext(fs.readFileSync(path.join(root,'dist',file),'utf8'),sandbox,{filename:file});
+for(const file of ['app.js','framed-video.js','effects.js','audio-captions.js','export-controller.js','workflow.js','studio-editing.js','audio-finishing.js','precise-export.js'])vm.runInContext(fs.readFileSync(path.join(root,'dist',file),'utf8'),sandbox,{filename:file});
+assert(!elements.has('captionImport'),'Optional caption import unexpectedly required during initialization');
+vm.runInContext(fs.readFileSync(path.join(root,'dist','overlay-gradient.js'),'utf8'),sandbox,{filename:'overlay-gradient.js'});
+vm.runInContext(`
+ state.overlayGradient={enabled:true,direction:'bottom-up',top:{color:'#112233',opacity:81,position:14},bottom:{color:'#445566',opacity:9,position:92}};
+ syncOverlayGradientControls();
+ if($('overlayGradientDirection').value!=='bottom-up'||$('overlayTopColor').value!=='#112233'||$('overlayTopHex').value!=='#112233'.toUpperCase()||$('overlayTopOpacity').value!==81||$('overlayBottomPosition').value!==92)throw Error('Restored overlay gradient did not synchronize its controls');
+ if(!$('overlayGradientPreview').style.background.includes('rgba(17,34,51,0.81)'))throw Error('Restored overlay gradient did not refresh its preview');
+`,sandbox);
 const library=fs.readFileSync(path.join(root,'dist/project-library.js'),'utf8').split("document.body.classList.add('studio-loading');")[0];vm.runInContext(library,sandbox,{filename:'project-library.js'});
 vm.runInContext(`
 let timingCases=0;

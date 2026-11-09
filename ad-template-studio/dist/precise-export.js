@@ -45,7 +45,7 @@ function blobExtension(blob){return blob.type.startsWith('video/mp4')?'mp4':'web
 async function exportSingle(){
  if(exporting||restoringSession||exportStarting||batchRunning)return;exportStarting=true;await studioReady;commitHistory();clearTimeout(autosaveTimer);const pendingSave=saveSessionNow().catch(()=>{});
  const controller=new AbortController();exportController=controller;playing=false;time=0;$('play').textContent='▶';lock(true);
- try{await pendingSave;message('Preparing export…');const blob=await encodeSelected(controller.signal);download(blob,safeName($('projectName').value)+'-'+state.template+'-'+$('resolution').value+'-'+Date.now()+'.'+blobExtension(blob));message('Video ready · '+(blob.size/1048576).toFixed(1)+' MB · '+($('exportMethod').value==='frames'?'fixed 30 fps MP4':'browser recording'))}
+  try{await pendingSave;message('Preparing export…');const blob=await encodeSelected(controller.signal);const saved=await download(blob,safeName($('projectName').value)+'-'+state.template+'-'+$('resolution').value+'-'+Date.now()+'.'+blobExtension(blob));if(!saved?.cancelled)message('Video ready · '+(blob.size/1048576).toFixed(1)+' MB · '+($('exportMethod').value==='frames'?'fixed 30 fps MP4':'browser recording'))}
  catch(error){message(error.name==='AbortError'?'Export cancelled. Your project is unchanged.':'Export failed: '+error.message)}
  finally{stopAudioMix();stopFramedPlayback();exportController=null;exportStarting=false;lock(false);time=0;render(0);updateUndoButtons()}
 }
@@ -69,11 +69,11 @@ $('batchExport').onclick=async()=>{
  finally{
   stopAudioMix();stopFramedPlayback();exportController=null;lock(false);
   try{await restoreSession(original)}catch(error){message('Could not restore the original edit: '+error.message)}updateUndoButtons();updateBatchCount();
-  if(completed){try{message('Packaging '+completed+' completed videos…');const blob=await zip.generateAsync({type:'blob',compression:'STORE'});download(blob,safeName(original.project.settings.projectName)+'-batch'+(completed<total?'-partial':'')+'.zip');message((outcome?outcome+' ':'Batch ready · ')+completed+' / '+total+' videos packaged. Original edit restored.')}catch(error){message('Batch packaging failed: '+error.message)}}
+   if(completed){try{message('Packaging '+completed+' completed videos…');const blob=await zip.generateAsync({type:'blob',compression:'STORE'});const saved=await download(blob,safeName(original.project.settings.projectName)+'-batch'+(completed<total?'-partial':'')+'.zip');if(!saved?.cancelled)message((outcome?outcome+' ':'Batch ready · ')+completed+' / '+total+' videos packaged. Original edit restored.')}catch(error){message('Batch packaging failed: '+error.message)}}
   if(!completed&&outcome)message(outcome+' Original edit restored.');batchRunning=false;updateBatchCount();
  }
 };
-function refreshExportMethod(){const precise=$('exportMethod').value==='frames';$('formatLabel').hidden=precise;$('formatHint').hidden=precise;$('encoderHint').textContent=precise?'Encodes every frame at exactly 30 fps; includes mixed audio. Supported browsers and output sizes are checked before export.':'Real-time browser recording. Frame rate varies with device performance; keep this tab visible.';if(!exporting)$('export').disabled=precise?!window.VideoEncoder:!supported.length}
+function refreshExportMethod(){const precise=$('exportMethod').value==='frames';$('formatLabel').hidden=precise;$('formatHint').hidden=precise;if(!exporting)$('export').disabled=precise?!window.VideoEncoder:!supported.length}
 $('exportMethod').addEventListener('input',()=>{refreshExportMethod();changed()});
 const studioBaseLock=lock;lock=function(yes){studioBaseLock(yes);if(!yes)refreshExportMethod()};
 refreshExportMethod();updateBatchCount();

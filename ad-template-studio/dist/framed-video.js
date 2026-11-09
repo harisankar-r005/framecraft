@@ -3,9 +3,9 @@ const clipMedia=new Map(),clipPortraits=new Map();let endVideoMedia=null,activeC
 function fClamp(v,a,b,fallback=a){v=Number(v);return Number.isFinite(v)?Math.max(a,Math.min(b,v)):fallback}
 function clipLength(c){return fClamp(c.length,.1,60,7)}
 function framedEndStart(){return state.clips?.length?state.clips.reduce((sum,c)=>sum+clipLength(c),0):21}
-function framedDuration(){return framedEndStart()+fClamp($('frameEndDuration').value,1,10,4)}
+function framedDuration(){return framedEndStart()+4}
 function framedCuts(){let t=0,cuts=[0];for(const c of state.clips||[]){t+=clipLength(c);cuts.push(t)}return cuts.length>1?cuts:[0,7,14,21]}
-function framedSceneLabels(){return [...(state.clips?.length?state.clips.map((c,i)=>'Scene '+(i+1)+' · '+clipLength(c)+'s'):['Clip 1','Clip 2','Clip 3']),'End card · '+fClamp($('frameEndDuration').value,1,10,4)+'s']}
+function framedSceneLabels(){return [...(state.clips?.length?state.clips.map((c,i)=>'Scene '+(i+1)+' · '+clipLength(c)+'s'):['Clip 1','Clip 2','Clip 3']),'End card · 4s']}
 function framedSceneAt(t){let start=0;for(const c of state.clips||[]){const end=start+clipLength(c);if(t<end)return {clip:c,start,local:Math.max(0,t-start)};start=end}return null}
 function clipId(){return 'clip-'+Date.now().toString(36)+'-'+Math.random().toString(36).slice(2,8)}
 function releaseMedia(record){if(!record)return;record.video.pause();record.video.removeAttribute('src');record.video.load();URL.revokeObjectURL(record.url)}
@@ -25,15 +25,13 @@ function syncMedia(rec,target,id,t){
  return v;
 }
 function beginFramedPlayback(){framedRecordingReady=true}
-function drawUploadedEndVideo(w,h){if(!state.endVideo||!endVideoMedia||state.template==='framed')return false;const start=duration()*effectEnd(),age=Math.max(0,motionClock-start);const v=syncMedia(endVideoMedia,age,'end',motionClock);drawVideoFrame(v,0,0,w,h,$('endcardFit').value);return true}
+function drawUploadedEndVideo(w,h){if(!state.endVideo||!endVideoMedia||state.template==='framed')return false;const start=duration()*effectEnd(),age=Math.max(0,motionClock-start);const v=syncMedia(endVideoMedia,age,'end',motionClock);drawVideoFrame(v,0,0,w,h,'cover');return true}
 function drawVideoFrame(v,x,y,w,h,fit='cover'){if(v.readyState<2)return;const scale=fit==='contain'?Math.min(w/v.videoWidth,h/v.videoHeight):Math.max(w/v.videoWidth,h/v.videoHeight),dw=v.videoWidth*scale,dh=v.videoHeight*scale;ctx.save();ctx.beginPath();ctx.rect(x,y,w,h);ctx.clip();ctx.drawImage(v,x+(w-dw)/2,y+(h-dh)/2,dw,dh);ctx.restore()}
 function circlePortrait(im,x,y,r){ctx.save();ctx.beginPath();ctx.arc(x,y,r,0,Math.PI*2);ctx.clip();if(im){const scale=Math.max(r*2/im.width,r*2/im.height),w=im.width*scale,h=im.height*scale;typeof drawCroppedImage==='function'?drawCroppedImage(ctx,im,x-r,y-r,r*2,r*2,1,'cover'):ctx.drawImage(im,x-w/2,y-h/2,w,h)}else{ctx.fillStyle='#aab4c9';ctx.fillRect(x-r,y-r,r*2,r*2);ctx.fillStyle='#e8edf5';ctx.beginPath();ctx.arc(x,y-r*.2,r*.32,0,Math.PI*2);ctx.fill();ctx.beginPath();ctx.ellipse(x,y+r*.62,r*.65,r*.55,0,0,Math.PI*2);ctx.fill()}ctx.restore();ctx.strokeStyle=$('frameColor').value;ctx.lineWidth=3;ctx.beginPath();ctx.arc(x,y,r,0,Math.PI*2);ctx.stroke()}
 function renderFramed(t,w,h){
  const landscape=w>h,square=w===h,endStart=framedEndStart(),inEnd=t>=endStart;
  ctx.globalAlpha=1;const gradient=ctx.createLinearGradient(0,0,0,h);gradient.addColorStop(0,inEnd?'#03152d':$('frameGradientTop').value);gradient.addColorStop(1,inEnd?'#102e55':$('frameGradientBottom').value);ctx.fillStyle=gradient;ctx.fillRect(0,0,w,h);
- if(inEnd){const age=t-endStart;motionAge=age;if(state.endVideo&&endVideoMedia){const v=syncMedia(endVideoMedia,age,'end',t);drawVideoFrame(v,0,0,w,h,$('endcardFit').value);return}stopFramedPlayback();if(customEndcard(w,h))return;
-  const appear=easeLoader(age/.65),size=Math.min(w,h)*.24,cx=w/2,cy=h*.42;ctx.save();ctx.globalAlpha=appear;ctx.translate(cx,cy);ctx.rotate((1-appear)*-.5);ctx.scale(.7+.3*appear,.7+.3*appear);ctx.shadowColor='#36caff';ctx.shadowBlur=25*(1-appear);if(logo)drawAnimatedEndLogo(logo,-size/2,-size/2,size,size);else{ctx.fillStyle=$('accent').value;round(-size/2,-size/2,size,size,24);ctx.fill();text($('appName').value.slice(0,1),0,-size*.25,size*.55,'#12243a',size)}ctx.restore();text($('appName').value,cx,cy+size*.7,landscape?38:44,'white',w-80);ctaButton(cx-Math.min(220,w*.37),h*.75,Math.min(440,w*.74),65,$('cta').value,28);return;
- }
+  if(inEnd){const age=t-endStart;motionAge=age;if(state.endVideo&&endVideoMedia){const v=syncMedia(endVideoMedia,age,'end',t);drawVideoFrame(v,0,0,w,h,'cover');return}stopFramedPlayback();return}
  const scene=framedSceneAt(t),clip=scene?.clip,local=scene?.local??t%7,rec=clip?clipMedia.get(clip.id):null;motionAge=local;
  const frameW=landscape?w*.50:square?w*.56:w*.80,frameH=landscape?h*.68:square?h*.65:h*.66,fx=landscape?w*.08:(w-frameW)/2,fy=landscape?h*.16:square?h*.17:h*.17;
  text(clip?.hook||$('hook').value,w/2,landscape?25:square?28:h*.06,landscape?32:square?28:36,'#ffffff',w-80);
@@ -50,7 +48,6 @@ function refreshClipEditor(){state.clips=state.clips||[];const box=$('clipRows')
 $('clipUpload').onchange=async e=>{try{for(const file of e.target.files){if(state.clips.length>=6){message('Maximum 6 clips per project.');break}const rec=await readClip(file),id=clipId();clipMedia.set(id,rec);state.clips.push({id,name:file.name,duration:rec.duration,offset:0,length:Math.min(7,rec.duration),hook:'',left:null,right:null})}state.template='framed';buildTemplates();refreshClipEditor();updateTimeline();time=0;changed();message('Clips ready. Set scene timings and portrait inputs in step 3.')}catch(err){message(err.message)}finally{e.target.value=''}};
 $('endVideoUpload').onchange=async e=>{try{const file=e.target.files[0];if(!file)return;const rec=await readClip(file);releaseMedia(endVideoMedia);endVideoMedia=rec;state.endVideo={name:file.name,duration:rec.duration};refreshClipEditor();changed()}catch(err){message(err.message)}};
 $('clearEndVideo').onclick=()=>{releaseMedia(endVideoMedia);endVideoMedia=null;state.endVideo=null;$('endVideoUpload').value='';refreshClipEditor();changed()};
-$('frameEndDuration').addEventListener('input',()=>updateTimeline());
 let trimClipId=null,trimRangePlaying=false;
 function trimValidation(start,end,total){if(!Number.isFinite(start)||!Number.isFinite(end))return 'Enter a valid start and end time.';if(start<0||end>total+.001)return 'Keep the range inside the source video.';if(end-start<.1)return 'Select at least 0.10 seconds.';if(end-start>60.001)return 'Select up to 60 seconds per scene.';return ''}
 function trimStatus(){const record=clipMedia.get(trimClipId);if(!record)return false;const start=Number($('trimIn').value),end=Number($('trimOut').value),error=trimValidation(start,end,record.duration);$('trimInfo').textContent=error||'Selected: '+start.toFixed(2)+'s → '+end.toFixed(2)+'s · '+(end-start).toFixed(2)+' seconds';$('trimApply').disabled=!!error;$('trimPlay').disabled=!!error;return !error}

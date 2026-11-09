@@ -23,5 +23,3 @@ Open Sans font
 License: SIL Open Font License 1.1. See assets/fonts/opensans-OFL.txt
 Source: https://github.com/google/fonts/tree/main/ofl/opensans
 Font binaries supplied by Google Fonts and bundled locally.
-
-Extension build modification: JSZip setImmediate string callbacks are rejected instead of compiled dynamically, for the extension content security policy.

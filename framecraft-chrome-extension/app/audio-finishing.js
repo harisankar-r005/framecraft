@@ -4,7 +4,6 @@ function audioTracks(){
  if(state.music&&!audioFile)throw Error('Reattach background music in step 8, or remove it.');
  if(audioFile)tracks.push({kind:'music',file:audioFile,start:0,offset:bounded($('musicOffset').value,0,3600),length:0,volume:bounded($('musicVolume').value,0,100,70),loop:$('musicLoop').checked});
  if(state.voice){if(!voiceFile)throw Error('Reattach voiceover in step 8, or remove it.');tracks.push({kind:'voice',file:voiceFile,start:bounded($('voiceStart').value,0,600),offset:bounded($('voiceOffset').value,0,3600),length:bounded($('voiceLength').value,0,3600),volume:bounded($('voiceVolume').value,0,100,100)})}
- if(state.endSfx){if(!endSfxFile)throw Error('Reattach end-card SFX in step 7.');tracks.push({kind:'sfx',file:endSfxFile,...endSfxTiming()})}
  for(const cue of state.sfx||[]){const file=sfxFiles.get(cue.id);if(!file)throw Error('Reattach SFX: '+cue.name);tracks.push({kind:'sfx',...cue,file})}return tracks;
 }
 async function decodeTracks(context,tracks,signal){const out=[];for(const track of tracks){if(signal?.aborted)throw new DOMException('Export cancelled','AbortError');const buffer=await context.decodeAudioData(await track.file.arrayBuffer());if(Number(track.offset)>=buffer.duration)throw Error('Trim start exceeds audio length: '+track.file.name);out.push({...track,buffer})}return out}

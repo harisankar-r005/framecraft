@@ -19,6 +19,7 @@ workflowSteps.forEach(step=>{
 });
 try{const savedStep=Number(sessionStorage.getItem(workflowStepStorageKey));if(savedStep!==2&&savedStep!==5&&savedStep!==6&&workflowSteps.some(step=>Number(step.dataset.step)===savedStep))showWorkflowStep(savedStep,false)}catch{}
 $('workflowBackup').onclick=()=>$('downloadProject').click();
+$('workflowOpenProject').onclick=()=>{$('openProject').click()};
 $('workflowExport').onclick=()=>$('export').click();
 function refreshAnimationPanels(){
  const upload=['collage','styles'].includes(state.template),framed=state.template==='framed';
