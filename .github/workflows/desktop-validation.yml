@@ -1,0 +1,19 @@
+name: Desktop source validation
+
+on:
+  push:
+    branches: [aman-works]
+  pull_request:
+
+jobs:
+  verify-desktop-source:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+      - run: node ad-template-studio/tests/loading-smoke.cjs
+      - run: node ad-template-studio/tests/studio-regression.cjs
+      - run: node desktop/scripts/prepare-app.cjs
+      - run: diff -qr ad-template-studio/dist desktop/app
