@@ -419,6 +419,13 @@
 <label>Effect color<input id="effectColor" type="color" value="#ffc35a">
 </label>
 </div>
+<label>Reframing direction<select id="zoomDirection">
+<option value="in-center" selected>Zoom in · Center</option>
+<option value="in-top-left">Zoom in · Top left</option>
+<option value="in-bottom-right">Zoom in · Bottom right</option>
+<option value="out-center">Zoom out · Center</option>
+</select>
+</label>
 </div>
 </details>
 <details class="animation-group" id="uploadAnimationGroup">
@@ -438,6 +445,7 @@
 <div class="upload-scene-files">
 <label>Photo 1<span class="upload-scene-file-control"><input id="uploadScenePrimary" type="file" accept="image/jpeg,image/png,image/webp"><button id="clearUploadScenePrimary" type="button" hidden aria-label="Remove photo 1" title="Remove image">×</button></span></label>
 <label id="uploadSceneSecondaryField">Photo 2<span class="upload-scene-file-control"><input id="uploadSceneSecondary" type="file" accept="image/jpeg,image/png,image/webp"><button id="clearUploadSceneSecondary" type="button" hidden aria-label="Remove photo 2" title="Remove image">×</button></span></label>
+<label>Upload background<span class="upload-scene-file-control"><input id="uploadSceneBackground" type="file" accept="image/jpeg,image/png,image/webp" aria-label="Upload background image"><button id="clearUploadSceneBackground" type="button" hidden aria-label="Remove background" title="Remove background">×</button></span></label>
 </div>
 <label>Upload scene heading<input id="uploadHeading" value="Upload photos of you with your partner" maxlength="100">
 </label>
