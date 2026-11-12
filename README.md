@@ -1,14 +1,12 @@
 # Framecraft Ad Studio
 
-A browser-based editor for making app promotional videos from your own finished images and clips. Includes a standalone offline app and an unpacked Chrome extension.
+A Windows desktop editor for making app promotional videos from your own finished images and clips.
 
 ## Start using it
 
-**Offline app:** download/clone this repository and open `ad-template-studio/dist/index.html` in a compatible desktop browser. Keep its assets and vendor folders together. You can also serve that folder locally.
+**Windows desktop app:** download [Framecraft-Setup-1.0.1.exe](desktop/release/Framecraft-Setup-1.0.1.exe) and run the installer. For development, use `desktop` to launch or rebuild the Electron app.
 
-**Chrome extension:** open `chrome://extensions`, enable Developer mode, click **Load unpacked**, and select the `framecraft-chrome-extension` folder containing `manifest.json`. Pin the toolbar icon to open the editor in its own tab. See [extension installation instructions](framecraft-chrome-extension/INSTALL.md).
-
-All runtime scripts, fonts and media-container helpers are bundled. The extension uses a restrictive offline policy and requests only local large-project storage permission. Video export capabilities depend on browser codec support.
+All runtime scripts, fonts and media-container helpers are bundled. Video export capabilities depend on the bundled Electron/Chromium codec support.
 
 ## Features
 
@@ -39,10 +37,8 @@ The handoff notes summarize the original conversation; this repository does not 
 | Folder | Contents |
 |---|---|
 | `ad-template-studio/dist` | Standalone editor source and runtime assets |
-| `ad-template-studio/extension-src` | Extension launcher, manifest, icons and docs |
-| `ad-template-studio/tools` | Extension build script |
-| `ad-template-studio/tests` | Rendering, timing and extension-package checks |
-| `framecraft-chrome-extension` | Ready-to-load extension, version 1.0.1 |
+| `ad-template-studio/tests` | Rendering and timing checks |
+| `desktop` | Electron wrapper, packaging scripts and Windows installer |
 | `videos` | 102 downloaded reference video files in ten set folders, plus batch metadata |
 | `video-analysis` | Contact sheets and animation/reference previews |
 | `output/pdf` | Earlier PDF manual; use the HTML guide for current instructions |
@@ -56,22 +52,16 @@ From the repository root, with Node available:
 ```sh
 node ad-template-studio/tests/loading-smoke.cjs
 node ad-template-studio/tests/studio-regression.cjs
-node ad-template-studio/tools/build-extension.cjs
-node ad-template-studio/tests/extension-package.cjs
+cd desktop
+pnpm run dist
 ```
-
-The editor is buildless. Preserve the public identity key in `ad-template-studio/extension-src/manifest.json` when updating the extension, so its ID remains stable.
 
 ## Saved projects and sharing
 
-Editing projects and brand presets are saved in the browser/extension's own local storage. They are not automatically synchronized or committed to this repository. Transfer editing work using **Complete project package → Open project**. JSON backups omit original video/audio attachments.
+Editing projects and brand presets are saved locally in the desktop app. They are not automatically synchronized or committed to this repository. Transfer editing work using **Complete project package → Open project**. JSON backups omit original video/audio attachments.
 
 ## Guides and verification
 
 - [Current user guide](ad-template-studio/dist/guide.html) — open the local HTML file in a browser.
 - [Feature update and test report](ad-template-studio/REVIEW_UPDATE.md).
-- [Extension privacy information](framecraft-chrome-extension/PRIVACY.md).
-- [Extension test limitations](framecraft-chrome-extension/TEST_REPORT.md).
 - [Reference-download handoff](VIDEO_DOWNLOAD_HANDOFF.md).
-
-The installed-extension context still needs a media import/export test. The packaged editor loaded under its offline policy, but a browser permission decline prevented the original synthetic-file upload test. No workaround was attempted.

@@ -352,18 +352,7 @@ Step 2 now offers Custom dimensions with width, height and content layout select
 - Published version 15, commit 6f1ac593b986c5bf02a8def046be59481f0ca314. Saved version appgprj_6ae990beefb88191a9de5bdc54310ef6~appgver_7e5560470e9c8191895daa5b7870b686. Deployment appgdep_6aea9f8c997881919f7b60bc89a4c877 succeeded.
 
 
-## 2026-11-04 — Offline Chrome extension package
-- Created `framecraft-chrome-extension/` and `Framecraft-Offline-Chrome-Extension.zip` (48 files, approximately 1 MB). Local distribution only; website was not republished for this request.
-- MV3 toolbar/first-install launcher opens packaged app in its own tab. Includes current readable UI, logo, fonts, guide, ZIP/media encoder dependencies. Only permission: unlimitedStorage. No host/content-script permissions; connect-src none.
-- Stable public identity key in ad-template-studio/extension-src/manifest.json; extension ID nbokkifgdjniaooedimanhngnbcnhcoh. Do not regenerate this key for routine updates.
-- Build with node ad-template-studio/tools/build-extension.cjs; validate with node ad-template-studio/tests/extension-package.cjs. Source and package contain installation, privacy and test reports. Packaged JSZip string-callback fallback rejects strings to meet the strict no-eval CSP.
-- Static package/launcher/resource checks passed. Editor loaded under identical CSP header on local HTTP with networking blocked; no initial browser errors. Browser file-upload gate explicitly declined the synthetic project file, so no alternate upload was attempted and media export in the packaged/installed extension was not verified. User Chrome profile has not been modified or extension installed. See TEST_REPORT.md.
-- User installation: chrome://extensions → Developer mode → Load unpacked → choose framecraft-chrome-extension folder. Existing work transfers through complete project packages, not automatic library sync.
-- Temporary CSP preview server on 8770 was stopped after QA. Existing original local preview server on 8768 remains as before.
-
-
 ## 2026-11-04 — Transparent replacement logo and hosting question
-- Replaced header/favicon with Downloads/logo.png, copied unchanged to dist/assets/brand-logo.png (RGBA, alpha range 0–255); retained brand-icon.png copy for backward references. Regenerated extension toolbar icons.
-- Extension rebuilt as 1.0.1 with unchanged public key and ID nbokkifgdjniaooedimanhngnbcnhcoh. Both offline ZIPs rebuilt and tested for correct exact logo bytes and archive integrity. Extension static/package checks passed; no new media-upload testing attempted.
+- Replaced header/favicon with Downloads/logo.png, copied unchanged to dist/assets/brand-logo.png (RGBA, alpha range 0–255); retained brand-icon.png copy for backward references.
 - Website version 16 deployed successfully: source 3ee71f15e294828e437f181b7c80201006dffe66, saved version appgprj_6ae990beefb88191a9de5bdc54310ef6~appgver_6ec7f71bb59881918fd7725a406e9c03, deployment appgdep_6aeab134de8c8191a9bae1273054a09c. Live header uses assets/brand-logo.png and loads at 447 px.
 - User asked whether online hosting stays free forever. Checked official https://learn.chatgpt.com/docs/sites#pricing: hosting free through December 31, 2026; metering and overages above plan allowance start January 1, 2027. Do not promise permanent free hosting or availability. Plan-specific allowance not verified. Offline local copy does not rely on online hosting.

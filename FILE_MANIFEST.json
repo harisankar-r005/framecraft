@@ -1,16 +1,51 @@
 {
   "project": "Framecraft",
-  "prepared_date": "2026-11-04",
+  "prepared_date": "2026-11-12",
   "files": [
     {
+      "path": ".github/workflows/desktop-validation.yml",
+      "size_bytes": 503,
+      "sha256": "d67a4b4ac4981b37669a05656f8c62883c4a84847d1874f63219dc0734a41261"
+    },
+    {
       "path": ".gitignore",
-      "size_bytes": 324,
-      "sha256": "63bd56df19ec1c58a612043eddd16b05c6c552d85df9323e124f910941cf2621"
+      "size_bytes": 348,
+      "sha256": "10a8113987b377aaebb94fdae25f876323668bace81af78c51bdb4edef363492"
+    },
+    {
+      "path": "PROJECT_HANDOFF.md",
+      "size_bytes": 28909,
+      "sha256": "32e61578ec12ad7711172f5d32428843b1361c4d1875cf37f6fdb70e41380b4c"
+    },
+    {
+      "path": "README.md",
+      "size_bytes": 3826,
+      "sha256": "2e6abf7fb0525ceb43ae58cfaa26c35d34c9a896a8955821730f54888051d338"
+    },
+    {
+      "path": "START_HERE.md",
+      "size_bytes": 3065,
+      "sha256": "ca5aafdac14d958c75a158edf0e0f5b6fba13cb89d534c837a6879fb153c6a9c"
+    },
+    {
+      "path": "VIDEO_DOWNLOAD_HANDOFF.md",
+      "size_bytes": 8594,
+      "sha256": "d02f4699fd9961b0a3b7050b90ceee6d59e07227aecf7f1bd287aa10eacbb9d3"
+    },
+    {
+      "path": "ad-template-studio/REVIEW_UPDATE.md",
+      "size_bytes": 6002,
+      "sha256": "310ece492ddd70ee370c761e9e40edd8323ffec7906cf590af69e0d56cb404d8"
+    },
+    {
+      "path": "ad-template-studio/dist/THIRD_PARTY.txt",
+      "size_bytes": 1276,
+      "sha256": "185b440fc1b3a7af36c19b071144118d49bddb3e93430726608b9d1f8ffcfbcd"
     },
     {
       "path": "ad-template-studio/dist/app.js",
-      "size_bytes": 42559,
-      "sha256": "3587df864e422bc8d42c5954f57bd5f1c26e6c3fe121d1f33da316ba9500f15f"
+      "size_bytes": 57902,
+      "sha256": "d78e5587354b6f8fdcabee3c4a04df256adfeef01d2991b7a9a7ad29924422c8"
     },
     {
       "path": "ad-template-studio/dist/assets/brand-icon.png",
@@ -21,6 +56,21 @@
       "path": "ad-template-studio/dist/assets/brand-logo.png",
       "size_bytes": 32177,
       "sha256": "58766d7c0997b198b3ebc45874d55cf666fb9aee1346ebf89624f41aca8cbf60"
+    },
+    {
+      "path": "ad-template-studio/dist/assets/fonts/Urbanist-Bold.ttf",
+      "size_bytes": 42632,
+      "sha256": "c06728d590de58ab0ccf39c4ea80428b2976355239f2b9e025095bc065d297e9"
+    },
+    {
+      "path": "ad-template-studio/dist/assets/fonts/Urbanist-Medium.ttf",
+      "size_bytes": 42748,
+      "sha256": "fe0ee819193663ccffa3de5a81b8ecd9aa16d29d39892a53fb0394a43698f7ec"
+    },
+    {
+      "path": "ad-template-studio/dist/assets/fonts/Urbanist-Regular.ttf",
+      "size_bytes": 42700,
+      "sha256": "1d041125f5e805d7a14b620425a8f5b895bb89c33f5a982d95a69ad6ead1f1ad"
     },
     {
       "path": "ad-template-studio/dist/assets/fonts/dm-sans-400.ttf",
@@ -74,8 +124,8 @@
     },
     {
       "path": "ad-template-studio/dist/assets/fonts/manrope-OFL.txt",
-      "size_bytes": 4387,
-      "sha256": "58172e0c0fac2cda8a37b348164bb55e44b0e69051e557e92b1d3f6910141f7b"
+      "size_bytes": 4480,
+      "sha256": "4b8929f05a122b7abb9059501dc7dc4df86f8c97d5a1769d60d82cf2d2795dde"
     },
     {
       "path": "ad-template-studio/dist/assets/fonts/open-sans-400.ttf",
@@ -104,18 +154,28 @@
     },
     {
       "path": "ad-template-studio/dist/assets/fonts/opensans-OFL.txt",
-      "size_bytes": 4389,
-      "sha256": "fbbbcfef55318de350562559b671360de6d597112ecc5c73881b05092db89602"
+      "size_bytes": 4481,
+      "sha256": "f64b1e99565d9511bf78e1f9c525c1f33cb7a8375e5f67a406866d37b99d8781"
     },
     {
       "path": "ad-template-studio/dist/audio-captions.js",
-      "size_bytes": 10348,
-      "sha256": "5beefd38768feed82c63f4826c9c92ed7563bc6074e6140b1bb0f4feb0dc98ba"
+      "size_bytes": 10361,
+      "sha256": "236afcf95b70e6ee66320bf3f5bd281a0ea452014b112c9cea8b1e8352cc0970"
     },
     {
       "path": "ad-template-studio/dist/audio-finishing.js",
-      "size_bytes": 7300,
-      "sha256": "88f59b302bc51aec877fc56d4d7b8b95e26011df004a6b8733c9cd385cd1a5a9"
+      "size_bytes": 7157,
+      "sha256": "f6d26e1e68e3eb9c48bdc3f414975177b8bc746cd9411a24518a0416948cfb2d"
+    },
+    {
+      "path": "ad-template-studio/dist/dark-theme.css",
+      "size_bytes": 61791,
+      "sha256": "a1cfaea78bbb04cdd2cb21d694dfc8c09931a002b2d1894447e287ba72431085"
+    },
+    {
+      "path": "ad-template-studio/dist/desktop-save.js",
+      "size_bytes": 1379,
+      "sha256": "fbd78bf48467b8dba9698b81d33d66a7f64c79e2c19f339db40927f67791578f"
     },
     {
       "path": "ad-template-studio/dist/editor-ui.css",
@@ -124,28 +184,23 @@
     },
     {
       "path": "ad-template-studio/dist/effects.js",
-      "size_bytes": 7442,
-      "sha256": "387f65771df6a59daec38c3ba823d27d95e1512ca733a86bcac01ee8d5f6585a"
-    },
-    {
-      "path": "ad-template-studio/dist/endcard-effects.js",
-      "size_bytes": 4399,
-      "sha256": "c8a4c57cde561ea14dcfff96f25a3bab32bca2c6111d98c426021ef4ade21147"
+      "size_bytes": 21822,
+      "sha256": "48426386431666df57f01d15357356fbf5f773bc8dd7cd93e09c07d8ac52d59d"
     },
     {
       "path": "ad-template-studio/dist/export-controller.js",
-      "size_bytes": 4728,
-      "sha256": "190ce7b1eb5b6ad328ca66b95a4e916ef0986b23ffb69b9f1beda521ff40b37f"
+      "size_bytes": 4735,
+      "sha256": "1782b91f8bcbc0c5170c597f784f1f6184f6e9a662edab7eb230bbb38089ab58"
     },
     {
       "path": "ad-template-studio/dist/framed-video.js",
-      "size_bytes": 17297,
-      "sha256": "2958b5a1f14361fda3b2dddbdef684f95875b3faf3c21d6ebccd91e46dbbc52f"
+      "size_bytes": 16451,
+      "sha256": "76333ab03064863ffbb641cbbb2803d599dfceee6e20eaca998032e6d5336ef8"
     },
     {
       "path": "ad-template-studio/dist/fullscreen.js",
-      "size_bytes": 1078,
-      "sha256": "2028032dcf4e282570b2257be6ed2fc6dcd9bce75d7f069d3d5fa4256082aae4"
+      "size_bytes": 1088,
+      "sha256": "3977a0a041c2615f03376557c715d367ace122b295d76f6118700b5bc6b99528"
     },
     {
       "path": "ad-template-studio/dist/guide.html",
@@ -154,48 +209,53 @@
     },
     {
       "path": "ad-template-studio/dist/index.html",
-      "size_bytes": 36962,
-      "sha256": "a1734ba2b7ec0365ca9826501783762db3df0ba94612af70996bd5857ee24098"
+      "size_bytes": 36295,
+      "sha256": "65137f7932dac72e3faaad30a82b8ee9ee834d73ec28ee40d6f33a937ea34840"
+    },
+    {
+      "path": "ad-template-studio/dist/overlay-gradient.js",
+      "size_bytes": 5007,
+      "sha256": "ef0aeaadd4e8cbe2ecefbb255909f94fa70c2be59d693c97a28ecce7dd904dee"
     },
     {
       "path": "ad-template-studio/dist/precise-export.js",
-      "size_bytes": 10531,
-      "sha256": "357916a2be4e553cadcaedfc5d8c2e7079aad13a09ce2b577e391bd325cd61ce"
+      "size_bytes": 10351,
+      "sha256": "65ae7c4b738fb1a810ee24fca7e4c9326a72b11fc5ffd22631beac13d2b2ade3"
     },
     {
       "path": "ad-template-studio/dist/project-library.js",
-      "size_bytes": 15600,
-      "sha256": "d365c29ab1d41938943748219a78c3cb314db54e75c308b307810f20a545026a"
+      "size_bytes": 15410,
+      "sha256": "879a4cf4d0a9701fc57cedfb0ac75f602eaa0cb284aa6319b678cce3c67a6d54"
     },
     {
       "path": "ad-template-studio/dist/studio-editing.js",
-      "size_bytes": 12167,
-      "sha256": "4c89adeb212819c893540bdf31175e241ff5f1fe245297eda270cb97c52f44a6"
+      "size_bytes": 10463,
+      "sha256": "6ff112caf1cc50924cd00d073a7f224070cba29ddb291a953367f4e4febc5be1"
     },
     {
       "path": "ad-template-studio/dist/style.css",
-      "size_bytes": 18362,
-      "sha256": "71792f603ef3948ce132aee486b053d17edc8ee7bb21c255bfbd35e89762e564"
+      "size_bytes": 18226,
+      "sha256": "d4689a5c800dff93cc9dcada226dbb0305c3802575451bb7f88207906cffa3e5"
     },
     {
-      "path": "ad-template-studio/dist/THIRD_PARTY.txt",
-      "size_bytes": 1276,
-      "sha256": "185b440fc1b3a7af36c19b071144118d49bddb3e93430726608b9d1f8ffcfbcd"
+      "path": "ad-template-studio/dist/text-panel.js",
+      "size_bytes": 1642,
+      "sha256": "cd5709d1ad5d0060c98ddbebcd57f4277a8c221d4ebf053d6d5acf825e767467"
     },
     {
       "path": "ad-template-studio/dist/vendor/jszip-LICENSE.txt",
-      "size_bytes": 33753,
-      "sha256": "566c953c6090b1218ca6217dd7359d45dde46581968586dc607d59a78af6a9c4"
+      "size_bytes": 34404,
+      "sha256": "f68719af8e77fe691d97cc27f8fa6775189414cd78c6664c8c983c791046b591"
     },
     {
       "path": "ad-template-studio/dist/vendor/jszip.min.js",
-      "size_bytes": 97630,
-      "sha256": "acc7e41455a80765b5fd9c7ee1b8078a6d160bbbca455aeae854de65c947d59e"
+      "size_bytes": 97642,
+      "sha256": "f12f367798e35ee2d9993dba6167fc61ddb52fb89880f5a99fbb606335188410"
     },
     {
       "path": "ad-template-studio/dist/vendor/mediabunny-LICENSE.txt",
-      "size_bytes": 16726,
-      "sha256": "3f3d9e0024b1921b067d6f7f88deb4a60cbe7a78e76c64e3f1d7fc3b779b9d04"
+      "size_bytes": 17099,
+      "sha256": "9221c2f936159b8446d329249fb4c0f25be510f447383a0f13336ac7985668a3"
     },
     {
       "path": "ad-template-studio/dist/vendor/mediabunny.js",
@@ -204,78 +264,63 @@
     },
     {
       "path": "ad-template-studio/dist/workflow.js",
-      "size_bytes": 2681,
-      "sha256": "b1e252c0ae65eac1719436d2a90850d9d653535a21e8d867790728bfab500ed0"
-    },
-    {
-      "path": "ad-template-studio/extension-src/background.js",
-      "size_bytes": 376,
-      "sha256": "06fd9cf8863c8e7f676b72e1be7b6150470e399394fdd737bbe52b0dac1176dc"
-    },
-    {
-      "path": "ad-template-studio/extension-src/icons/icon-128.png",
-      "size_bytes": 7445,
-      "sha256": "7aa5c7da94893689866637e735b2df4802ba3d37575691a6a8977e541da4821c"
-    },
-    {
-      "path": "ad-template-studio/extension-src/icons/icon-16.png",
-      "size_bytes": 747,
-      "sha256": "5076215ec04f915718c5ae13a6a47cdbedd5b03867f022e72c553e903de12799"
-    },
-    {
-      "path": "ad-template-studio/extension-src/icons/icon-32.png",
-      "size_bytes": 1730,
-      "sha256": "59744fd03ef74a4d1706fbe134dfbb2a5f0bb5ab17658da8f9930f6e7bb63e88"
-    },
-    {
-      "path": "ad-template-studio/extension-src/icons/icon-48.png",
-      "size_bytes": 2625,
-      "sha256": "8a13503894cba4b1447ee6c877b03492f53667c4e0b8b2e4c3815a46afb23c01"
-    },
-    {
-      "path": "ad-template-studio/extension-src/INSTALL.md",
-      "size_bytes": 2968,
-      "sha256": "3fe8cab8e14213713c6fc1f58696f5da4caf4e3e44f6cefdc6ec953e4aa1bea2"
-    },
-    {
-      "path": "ad-template-studio/extension-src/manifest.json",
-      "size_bytes": 1503,
-      "sha256": "87637c2d0722fbf86562859d04397b12ff034cc980f62ee6399e9f89c1631455"
-    },
-    {
-      "path": "ad-template-studio/extension-src/PRIVACY.md",
-      "size_bytes": 1136,
-      "sha256": "59099e7a22e7e22f03830e22da73160f61cc1c31d22fdfed6e3b587b05e0371a"
-    },
-    {
-      "path": "ad-template-studio/extension-src/TEST_REPORT.md",
-      "size_bytes": 2135,
-      "sha256": "b120271e88efb7fb4c886fb7427db7a5ac362fffb076fbba1961a8cc48ea2137"
-    },
-    {
-      "path": "ad-template-studio/REVIEW_UPDATE.md",
-      "size_bytes": 6002,
-      "sha256": "310ece492ddd70ee370c761e9e40edd8323ffec7906cf590af69e0d56cb404d8"
-    },
-    {
-      "path": "ad-template-studio/tests/extension-package.cjs",
-      "size_bytes": 2424,
-      "sha256": "fd7b969db9fcdff462f03fc27081cf1c0308578f53fc2ce71a2bbbf625363c55"
+      "size_bytes": 2891,
+      "sha256": "074105bf4b1ceaf22d8b133f1bc7292426e6d37642d7f24dd0a541bb4b769fba"
     },
     {
       "path": "ad-template-studio/tests/loading-smoke.cjs",
-      "size_bytes": 17433,
-      "sha256": "6b4d47b41ff25bce778175eebb75308966c98b2e6d057f751ebd8e73fd63b0c6"
+      "size_bytes": 24121,
+      "sha256": "41ab3aa957ad2c5eba6a7ca85975c5916101981d930f6c0fa224626d148ad056"
     },
     {
       "path": "ad-template-studio/tests/studio-regression.cjs",
-      "size_bytes": 5856,
-      "sha256": "ee97eb9bd35aa62284044ba25ecd0f8dbc72af067e3f29ec64e3d9c3f6dace84"
+      "size_bytes": 7208,
+      "sha256": "511de76079b0bdc5df865547d5975ada766ca3321282ee854fb907006dc54970"
     },
     {
-      "path": "ad-template-studio/tools/build-extension.cjs",
-      "size_bytes": 3191,
-      "sha256": "2bbd16ca1fb1f80f04fe559326e5fa5f3391ba55ed3485abaed873c194b4e8f7"
+      "path": "desktop/.gitignore",
+      "size_bytes": 28,
+      "sha256": "5fdbed7bba0ca3e2798e21e8bc607d0330cb8731030316a1797b7808d98811ae"
+    },
+    {
+      "path": "desktop/README.md",
+      "size_bytes": 350,
+      "sha256": "c699cae7e7af7fa52653a1ee6c29de663c2f4d2a3ddb6f80e32d4f9afc6a9e57"
+    },
+    {
+      "path": "desktop/main.cjs",
+      "size_bytes": 3398,
+      "sha256": "49d41a4f2816ae8506c7cf08972f30e380b1e559d66f03dbed571acfecc53ffa"
+    },
+    {
+      "path": "desktop/package.json",
+      "size_bytes": 993,
+      "sha256": "22ff4e68207dc0231859df294b658b37d25be2c7099ba090ccdfeea59b831e3f"
+    },
+    {
+      "path": "desktop/pnpm-lock.yaml",
+      "size_bytes": 71064,
+      "sha256": "f6964266a5083ac38c942eee1ae2313b8e829a4774f465667f0bcbaa75c47c79"
+    },
+    {
+      "path": "desktop/pnpm-workspace.yaml",
+      "size_bytes": 95,
+      "sha256": "040a7a4867347a2d3155a430f4178af909b14018fe4e783ce44e2cd419571a15"
+    },
+    {
+      "path": "desktop/preload.cjs",
+      "size_bytes": 428,
+      "sha256": "f75f948ea849361b1ebcccbdc8359567bcc44cd6d9935243db01053994b64a9d"
+    },
+    {
+      "path": "desktop/release/Framecraft-Setup-1.0.1.exe",
+      "size_bytes": 92451876,
+      "sha256": "d1080b84aafce33ca24bcdf14fda7b0f6f40991360a7c9611bd1561736a54cb8"
+    },
+    {
+      "path": "desktop/scripts/prepare-app.cjs",
+      "size_bytes": 455,
+      "sha256": "4c4ccf6cf208d2dddf92fe293114e604e1b6898c089873075a45eeb27e98c3ba"
     },
     {
       "path": "download-progress.json",
@@ -289,253 +334,8 @@
     },
     {
       "path": "download_videos.py",
-      "size_bytes": 2113,
-      "sha256": "8292eb22aac0804f3f4dc681c0932bdc954a8ccf2df33a4950af10e27dd10caf"
-    },
-    {
-      "path": "framecraft-chrome-extension/app/app.js",
-      "size_bytes": 42559,
-      "sha256": "3587df864e422bc8d42c5954f57bd5f1c26e6c3fe121d1f33da316ba9500f15f"
-    },
-    {
-      "path": "framecraft-chrome-extension/app/assets/brand-icon.png",
-      "size_bytes": 32177,
-      "sha256": "58766d7c0997b198b3ebc45874d55cf666fb9aee1346ebf89624f41aca8cbf60"
-    },
-    {
-      "path": "framecraft-chrome-extension/app/assets/brand-logo.png",
-      "size_bytes": 32177,
-      "sha256": "58766d7c0997b198b3ebc45874d55cf666fb9aee1346ebf89624f41aca8cbf60"
-    },
-    {
-      "path": "framecraft-chrome-extension/app/assets/fonts/dm-sans-400.ttf",
-      "size_bytes": 48280,
-      "sha256": "b0ae3e89a7d3ef2b1838bb4b1ceb0b17cc3435af061eee809d76aa623ff116e9"
-    },
-    {
-      "path": "framecraft-chrome-extension/app/assets/fonts/dm-sans-500.ttf",
-      "size_bytes": 48308,
-      "sha256": "376427b5322148d8de1e03f263bcca4935a2d60ba71d9f94f4947ab664c711ae"
-    },
-    {
-      "path": "framecraft-chrome-extension/app/assets/fonts/dm-sans-600.ttf",
-      "size_bytes": 48280,
-      "sha256": "b79a2ea7a38f33fd96a282fadb9ce97626bb0724a44d21075859f0e50239993a"
-    },
-    {
-      "path": "framecraft-chrome-extension/app/assets/fonts/dm-sans-700.ttf",
-      "size_bytes": 48200,
-      "sha256": "2a8e7f713ee79fbccdef3cef5c787aff47580299f7da60144961e7db2ec08211"
-    },
-    {
-      "path": "framecraft-chrome-extension/app/assets/fonts/dmsans-OFL.txt",
-      "size_bytes": 4482,
-      "sha256": "9af36190332437f5ecd09974de43c1f7c77a310a996cdd8ceb25628b458840e1"
-    },
-    {
-      "path": "framecraft-chrome-extension/app/assets/fonts/manrope-400.ttf",
-      "size_bytes": 96200,
-      "sha256": "ed335894f8d954263675f7e457bf657374d8b7be629be4dc43aef97c309ad3ae"
-    },
-    {
-      "path": "framecraft-chrome-extension/app/assets/fonts/manrope-500.ttf",
-      "size_bytes": 96300,
-      "sha256": "437dc9f921739a6893128fa4dfc299424951148475815a9a213a46457878c42b"
-    },
-    {
-      "path": "framecraft-chrome-extension/app/assets/fonts/manrope-600.ttf",
-      "size_bytes": 96348,
-      "sha256": "68ed4be49ec7d32f07b42f9232dc01ca1df7a77be1d9b0731aac74db58235f34"
-    },
-    {
-      "path": "framecraft-chrome-extension/app/assets/fonts/manrope-700.ttf",
-      "size_bytes": 96188,
-      "sha256": "ea1f264039fed13fd36e6d6f49fcae4fe7007def02cf2972b5c7f6d6f1349d06"
-    },
-    {
-      "path": "framecraft-chrome-extension/app/assets/fonts/manrope-800.ttf",
-      "size_bytes": 96816,
-      "sha256": "a8291b05b2732801abdbbb6d06866c57431c3b990638462423e692151b5e0895"
-    },
-    {
-      "path": "framecraft-chrome-extension/app/assets/fonts/manrope-OFL.txt",
-      "size_bytes": 4387,
-      "sha256": "58172e0c0fac2cda8a37b348164bb55e44b0e69051e557e92b1d3f6910141f7b"
-    },
-    {
-      "path": "framecraft-chrome-extension/app/assets/fonts/open-sans-400.ttf",
-      "size_bytes": 122116,
-      "sha256": "47ed1cfaa7ffca04a04ab850b2938fd52c09d1b44cfa3e2980878e166b0cbd87"
-    },
-    {
-      "path": "framecraft-chrome-extension/app/assets/fonts/open-sans-500.ttf",
-      "size_bytes": 122264,
-      "sha256": "05f24e5e4d738b9f8e8643809ebed4800287d61a75d19ac2716f12b5d26279dd"
-    },
-    {
-      "path": "framecraft-chrome-extension/app/assets/fonts/open-sans-600.ttf",
-      "size_bytes": 122060,
-      "sha256": "733eb93b167e6d45de09aa768f6c0355647c2c26f5416dbc7407a08ed41e81c6"
-    },
-    {
-      "path": "framecraft-chrome-extension/app/assets/fonts/open-sans-700.ttf",
-      "size_bytes": 122132,
-      "sha256": "75367e6da7d914eaed87883ba51b2a2b5816b5cdbb39f96ec5c81a5b032bfd5a"
-    },
-    {
-      "path": "framecraft-chrome-extension/app/assets/fonts/open-sans-800.ttf",
-      "size_bytes": 122536,
-      "sha256": "8e325b2fc46c5f9ca4f8d9bde772b0f46fc7cbfbff6bc19c9570d2cd965b0954"
-    },
-    {
-      "path": "framecraft-chrome-extension/app/assets/fonts/opensans-OFL.txt",
-      "size_bytes": 4389,
-      "sha256": "fbbbcfef55318de350562559b671360de6d597112ecc5c73881b05092db89602"
-    },
-    {
-      "path": "framecraft-chrome-extension/app/audio-captions.js",
-      "size_bytes": 10348,
-      "sha256": "5beefd38768feed82c63f4826c9c92ed7563bc6074e6140b1bb0f4feb0dc98ba"
-    },
-    {
-      "path": "framecraft-chrome-extension/app/audio-finishing.js",
-      "size_bytes": 7300,
-      "sha256": "88f59b302bc51aec877fc56d4d7b8b95e26011df004a6b8733c9cd385cd1a5a9"
-    },
-    {
-      "path": "framecraft-chrome-extension/app/editor-ui.css",
-      "size_bytes": 8208,
-      "sha256": "b39ef6af2127841f81899ca209dfeca3c498aca2140518703de2768697720f03"
-    },
-    {
-      "path": "framecraft-chrome-extension/app/effects.js",
-      "size_bytes": 7442,
-      "sha256": "387f65771df6a59daec38c3ba823d27d95e1512ca733a86bcac01ee8d5f6585a"
-    },
-    {
-      "path": "framecraft-chrome-extension/app/endcard-effects.js",
-      "size_bytes": 4399,
-      "sha256": "c8a4c57cde561ea14dcfff96f25a3bab32bca2c6111d98c426021ef4ade21147"
-    },
-    {
-      "path": "framecraft-chrome-extension/app/export-controller.js",
-      "size_bytes": 4728,
-      "sha256": "190ce7b1eb5b6ad328ca66b95a4e916ef0986b23ffb69b9f1beda521ff40b37f"
-    },
-    {
-      "path": "framecraft-chrome-extension/app/framed-video.js",
-      "size_bytes": 17297,
-      "sha256": "2958b5a1f14361fda3b2dddbdef684f95875b3faf3c21d6ebccd91e46dbbc52f"
-    },
-    {
-      "path": "framecraft-chrome-extension/app/fullscreen.js",
-      "size_bytes": 1078,
-      "sha256": "2028032dcf4e282570b2257be6ed2fc6dcd9bce75d7f069d3d5fa4256082aae4"
-    },
-    {
-      "path": "framecraft-chrome-extension/app/guide.html",
-      "size_bytes": 8979,
-      "sha256": "0703fd5a99815ad16aab38c1cf2a54155d00b89cab7dab13bed2d1da02525c62"
-    },
-    {
-      "path": "framecraft-chrome-extension/app/index.html",
-      "size_bytes": 36948,
-      "sha256": "1a878e8a7d3bea7a3fed6b734f631b3630b190960b464a8601bf3963edca3532"
-    },
-    {
-      "path": "framecraft-chrome-extension/app/precise-export.js",
-      "size_bytes": 10531,
-      "sha256": "357916a2be4e553cadcaedfc5d8c2e7079aad13a09ce2b577e391bd325cd61ce"
-    },
-    {
-      "path": "framecraft-chrome-extension/app/project-library.js",
-      "size_bytes": 15600,
-      "sha256": "d365c29ab1d41938943748219a78c3cb314db54e75c308b307810f20a545026a"
-    },
-    {
-      "path": "framecraft-chrome-extension/app/studio-editing.js",
-      "size_bytes": 12167,
-      "sha256": "4c89adeb212819c893540bdf31175e241ff5f1fe245297eda270cb97c52f44a6"
-    },
-    {
-      "path": "framecraft-chrome-extension/app/style.css",
-      "size_bytes": 18362,
-      "sha256": "71792f603ef3948ce132aee486b053d17edc8ee7bb21c255bfbd35e89762e564"
-    },
-    {
-      "path": "framecraft-chrome-extension/app/THIRD_PARTY.txt",
-      "size_bytes": 1432,
-      "sha256": "a54e3b5dd4a0c927ccb413dad60c3ab44dc1540c57f4ae7caa3f23f43a259db5"
-    },
-    {
-      "path": "framecraft-chrome-extension/app/vendor/jszip-LICENSE.txt",
-      "size_bytes": 33753,
-      "sha256": "566c953c6090b1218ca6217dd7359d45dde46581968586dc607d59a78af6a9c4"
-    },
-    {
-      "path": "framecraft-chrome-extension/app/vendor/jszip.min.js",
-      "size_bytes": 97660,
-      "sha256": "8d1c4e49381883a8da9cf3c309d63cd7b22d15cd4a43ca6a12370b4c4b4cf9ee"
-    },
-    {
-      "path": "framecraft-chrome-extension/app/vendor/mediabunny-LICENSE.txt",
-      "size_bytes": 16726,
-      "sha256": "3f3d9e0024b1921b067d6f7f88deb4a60cbe7a78e76c64e3f1d7fc3b779b9d04"
-    },
-    {
-      "path": "framecraft-chrome-extension/app/vendor/mediabunny.js",
-      "size_bytes": 724313,
-      "sha256": "8ddc35923133b1d33bf0bc903e3a592323b87ac638ea70737c51694ce2cd0fef"
-    },
-    {
-      "path": "framecraft-chrome-extension/app/workflow.js",
-      "size_bytes": 2681,
-      "sha256": "b1e252c0ae65eac1719436d2a90850d9d653535a21e8d867790728bfab500ed0"
-    },
-    {
-      "path": "framecraft-chrome-extension/background.js",
-      "size_bytes": 376,
-      "sha256": "06fd9cf8863c8e7f676b72e1be7b6150470e399394fdd737bbe52b0dac1176dc"
-    },
-    {
-      "path": "framecraft-chrome-extension/icons/icon-128.png",
-      "size_bytes": 7445,
-      "sha256": "7aa5c7da94893689866637e735b2df4802ba3d37575691a6a8977e541da4821c"
-    },
-    {
-      "path": "framecraft-chrome-extension/icons/icon-16.png",
-      "size_bytes": 747,
-      "sha256": "5076215ec04f915718c5ae13a6a47cdbedd5b03867f022e72c553e903de12799"
-    },
-    {
-      "path": "framecraft-chrome-extension/icons/icon-32.png",
-      "size_bytes": 1730,
-      "sha256": "59744fd03ef74a4d1706fbe134dfbb2a5f0bb5ab17658da8f9930f6e7bb63e88"
-    },
-    {
-      "path": "framecraft-chrome-extension/icons/icon-48.png",
-      "size_bytes": 2625,
-      "sha256": "8a13503894cba4b1447ee6c877b03492f53667c4e0b8b2e4c3815a46afb23c01"
-    },
-    {
-      "path": "framecraft-chrome-extension/INSTALL.md",
-      "size_bytes": 2968,
-      "sha256": "3fe8cab8e14213713c6fc1f58696f5da4caf4e3e44f6cefdc6ec953e4aa1bea2"
-    },
-    {
-      "path": "framecraft-chrome-extension/manifest.json",
-      "size_bytes": 1503,
-      "sha256": "87637c2d0722fbf86562859d04397b12ff034cc980f62ee6399e9f89c1631455"
-    },
-    {
-      "path": "framecraft-chrome-extension/PRIVACY.md",
-      "size_bytes": 1136,
-      "sha256": "59099e7a22e7e22f03830e22da73160f61cc1c31d22fdfed6e3b587b05e0371a"
-    },
-    {
-      "path": "framecraft-chrome-extension/TEST_REPORT.md",
-      "size_bytes": 2135,
-      "sha256": "b120271e88efb7fb4c886fb7427db7a5ac362fffb076fbba1961a8cc48ea2137"
+      "size_bytes": 2146,
+      "sha256": "74987094929cc4dcf7e69253ab75d0a1fef495707c8e6f0bfb593da7c667bdb3"
     },
     {
       "path": "output/pdf/Framecraft_User_Manual.pdf",
@@ -543,24 +343,9 @@
       "sha256": "21fbf8d23834d0cc9d2a80e930951ad0a877ba3002ff8550e2dbc63687f4a977"
     },
     {
-      "path": "PROJECT_HANDOFF.md",
-      "size_bytes": 30931,
-      "sha256": "751539b339b8cc05922619a4bc020cc9da1676db9d7c2bbdb04926e75ad54c1e"
-    },
-    {
-      "path": "README.md",
-      "size_bytes": 5052,
-      "sha256": "1ee2eb476c03bb27ea2643630a8ef53f2c5c9b4829ed433becfa93fba1959450"
-    },
-    {
-      "path": "START_HERE.md",
-      "size_bytes": 4414,
-      "sha256": "31a5e67afee70c00be13b37da570a95f0fa0605dea75d36ec1ecfd0ecc478620"
-    },
-    {
       "path": "video-ad-links.json",
-      "size_bytes": 72242,
-      "sha256": "37fafa789340410eb3672c8a8534d3a8051b8880857ccba49e2b1964d3d3cca6"
+      "size_bytes": 72803,
+      "sha256": "6e206f1ea80200f465b1d6c64c0a15e701b42f8742dbac01eca626a3fe43b3dd"
     },
     {
       "path": "video-analysis/contact-sheet.jpg",
@@ -604,18 +389,8 @@
     },
     {
       "path": "video-sources.json",
-      "size_bytes": 143799,
-      "sha256": "ef4b915dcea551d06a3185de3647337e9bddf5e32294b6a090b9353684513e0e"
-    },
-    {
-      "path": "VIDEO_DOWNLOAD_HANDOFF.md",
-      "size_bytes": 8474,
-      "sha256": "02f212a9324a5ff5e63feb4e5499ac24955a3e2824d9d49a910487e251068e03"
-    },
-    {
-      "path": "videos/set_001-010/batch-results.json",
-      "size_bytes": 24938,
-      "sha256": "70a5d86d35ec01965e8dd99326dc858607802dffbea072279f3794a26761bf03"
+      "size_bytes": 145295,
+      "sha256": "d1f9464f49eccd378c432fd99c47fce6f888ce98ea026f2c7c53e785fda0cbe9"
     },
     {
       "path": "videos/set_001-010/CR03010741331120095233_v1.mp4",
@@ -678,9 +453,9 @@
       "sha256": "8b8b5b713dfa80b8e290eea9e0a12182b750f89c8d69357dc285ff5e16077448"
     },
     {
-      "path": "videos/set_011-020/batch-results.json",
-      "size_bytes": 18057,
-      "sha256": "53c0a6e0332a6586289f324df4375007cb91dce1ef6db4a5e2a7a277cd733549"
+      "path": "videos/set_001-010/batch-results.json",
+      "size_bytes": 24938,
+      "sha256": "70a5d86d35ec01965e8dd99326dc858607802dffbea072279f3794a26761bf03"
     },
     {
       "path": "videos/set_011-020/CR02956284719219605505_v1.mp4",
@@ -738,14 +513,14 @@
       "sha256": "51cf06593429287b0b9693c0b47ef9af37c09d7e8895e9916f34c871a53d369a"
     },
     {
+      "path": "videos/set_011-020/batch-results.json",
+      "size_bytes": 18057,
+      "sha256": "53c0a6e0332a6586289f324df4375007cb91dce1ef6db4a5e2a7a277cd733549"
+    },
+    {
       "path": "videos/set_011-020/sample-viyo-CR08597716153617350657.mp4",
       "size_bytes": 916493,
       "sha256": "c69d0c818337eb94f96bb241e7e6784b5565547948b13d79dd61558a63bbd52b"
-    },
-    {
-      "path": "videos/set_021-030/batch-results.json",
-      "size_bytes": 15740,
-      "sha256": "794f478d4080616f42a6ec320c3df794cf9224c6c4e853fdef86db913f331a08"
     },
     {
       "path": "videos/set_021-030/CR00329468977090658305_v1.mp4",
@@ -798,9 +573,9 @@
       "sha256": "3056ed894fbda8f012278d91452ee53f1437dc3f838c523bb53af3aab0374c1a"
     },
     {
-      "path": "videos/set_031-040/batch-results.json",
-      "size_bytes": 20908,
-      "sha256": "8b79ec8e66cab7fe1dc6c2ab5da8684cb2ce3b0cf5c26fe473bdd58cb9b8b20e"
+      "path": "videos/set_021-030/batch-results.json",
+      "size_bytes": 15740,
+      "sha256": "794f478d4080616f42a6ec320c3df794cf9224c6c4e853fdef86db913f331a08"
     },
     {
       "path": "videos/set_031-040/CR00009682617221775361_v1.mp4",
@@ -863,9 +638,9 @@
       "sha256": "18563c55504b8e7832e005e172eb4ee415639a570d260dce865a210ae14c2ade"
     },
     {
-      "path": "videos/set_041-050/batch-results.json",
-      "size_bytes": 16604,
-      "sha256": "65c1e8b8ae314b9497b75dfad64aa822a8b7ef449b2f6eb13a2d7457683fbc6d"
+      "path": "videos/set_031-040/batch-results.json",
+      "size_bytes": 20908,
+      "sha256": "8b79ec8e66cab7fe1dc6c2ab5da8684cb2ce3b0cf5c26fe473bdd58cb9b8b20e"
     },
     {
       "path": "videos/set_041-050/CR04832272558042644481_v2.mp4",
@@ -918,9 +693,9 @@
       "sha256": "5b81289f7886f6fad7750f8e827a9da212e1852dc675ee8512ca9acd0bd328e1"
     },
     {
-      "path": "videos/set_051-060/batch-results.json",
-      "size_bytes": 18007,
-      "sha256": "3aaeb744f1043036ef745357c8b63516fab973cf1bc0bab266bb8645890c1d9b"
+      "path": "videos/set_041-050/batch-results.json",
+      "size_bytes": 16604,
+      "sha256": "65c1e8b8ae314b9497b75dfad64aa822a8b7ef449b2f6eb13a2d7457683fbc6d"
     },
     {
       "path": "videos/set_051-060/CR00890186097273864193_v1.mp4",
@@ -968,9 +743,9 @@
       "sha256": "6a5af0e4e7356383681bf52799db903e41b37cb91242064266a33f65a385a810"
     },
     {
-      "path": "videos/set_061-070/batch-results.json",
-      "size_bytes": 15498,
-      "sha256": "a2deaf02110e1f5c064654882ec00eac21a5e950cf72762b4981c8f1fb7f794e"
+      "path": "videos/set_051-060/batch-results.json",
+      "size_bytes": 18007,
+      "sha256": "3aaeb744f1043036ef745357c8b63516fab973cf1bc0bab266bb8645890c1d9b"
     },
     {
       "path": "videos/set_061-070/CR00555512349964894209_v1.mp4",
@@ -1013,9 +788,9 @@
       "sha256": "d750803d6dc1333af1eed85586b524c55913b37a50418be4d9cc7dd2be01f2b4"
     },
     {
-      "path": "videos/set_071-080/batch-results.json",
-      "size_bytes": 17074,
-      "sha256": "e8ac58b57827622010f1f05f28fb0bb3c9d42a33c2bc75853e7f9e008b8f5d43"
+      "path": "videos/set_061-070/batch-results.json",
+      "size_bytes": 15498,
+      "sha256": "a2deaf02110e1f5c064654882ec00eac21a5e950cf72762b4981c8f1fb7f794e"
     },
     {
       "path": "videos/set_071-080/CR00001126217734422529_v1.mp4",
@@ -1068,9 +843,9 @@
       "sha256": "ff90aeff2fe612dadcaaf17a42233c65dee999ddfe8b63185f32624a9bf9298b"
     },
     {
-      "path": "videos/set_081-090/batch-results.json",
-      "size_bytes": 16968,
-      "sha256": "435c394e318e7165381d9ad546a9cf2bb9d89f34ab8fec5085f1124c85e4023d"
+      "path": "videos/set_071-080/batch-results.json",
+      "size_bytes": 17074,
+      "sha256": "e8ac58b57827622010f1f05f28fb0bb3c9d42a33c2bc75853e7f9e008b8f5d43"
     },
     {
       "path": "videos/set_081-090/CR00705605307883061249_v1.mp4",
@@ -1123,9 +898,9 @@
       "sha256": "be07a9249d87225d1b6e8a1375a848649dcc7e633c3f52b0731319c890fb912f"
     },
     {
-      "path": "videos/set_091-100/batch-results.json",
-      "size_bytes": 15880,
-      "sha256": "309704a590944ceb72d330efe606b03aa01c7abd093bbc8740a0eb1be68427aa"
+      "path": "videos/set_081-090/batch-results.json",
+      "size_bytes": 16968,
+      "sha256": "435c394e318e7165381d9ad546a9cf2bb9d89f34ab8fec5085f1124c85e4023d"
     },
     {
       "path": "videos/set_091-100/CR02187430322776309761_v1.mp4",
@@ -1171,6 +946,11 @@
       "path": "videos/set_091-100/CR11172261112961826817_v1.mp4",
       "size_bytes": 1222951,
       "sha256": "bf30c96958505dc1db3200ffb43af904325e01e89040b24f4e7d68f8ae7a0a98"
+    },
+    {
+      "path": "videos/set_091-100/batch-results.json",
+      "size_bytes": 15880,
+      "sha256": "309704a590944ceb72d330efe606b03aa01c7abd093bbc8740a0eb1be68427aa"
     }
   ]
-}
+}\n
