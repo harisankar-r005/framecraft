@@ -28,6 +28,7 @@ for(const template of ['collage','before','styles','steps','showcase'])for(const
  for(let i=0;i<=100;i++){const t=duration()*i/100;assert(Math.abs(actualTimeAtProgress(sceneProgress(t))-t)<.00001,'Timing map is not invertible');timingCases++}
  const cuts=effectCuts();assert(cuts.every((c,i)=>c>=0&&c<=duration()+.001&&(!i||c>=cuts[i-1])),'Effect cuts escaped timeline');assert(Math.abs(effectEnd()*duration()-actualTimeAtProgress(.82+(template==='collage'&&upload?.12:0)))<.001,'End card timing mismatch');
 }
+ state.template='styles';images=[{width:400,height:600},{width:400,height:600}];const styleScene=sceneAtTime(actualTimeAtProgress(.46));motionClock=styleScene.start;const firstImageStart=imageTimelineProgress(0);motionClock=styleScene.start+styleScene.length/2;const firstImageEnd=imageTimelineProgress(0),secondImageStart=imageTimelineProgress(1);assert(firstImageStart<.001&&firstImageEnd>.999&&secondImageStart<.001,'Ken Burns did not reset per style-result image');
 let geometry=imageGeometry(1200,800,400,800,'cover',{zoom:1,x:0,y:50});assert(geometry.x===0&&geometry.w===1200,'Left crop incorrect');
 geometry=imageGeometry(1200,800,400,800,'cover',{zoom:1,x:100,y:50});assert(geometry.x===-800,'Right crop incorrect');
 geometry=imageGeometry(1200,800,400,800,'contain',{zoom:1});assert(Math.abs(geometry.w-400)<.001&&geometry.y>0,'Contain no longer fits');

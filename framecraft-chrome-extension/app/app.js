@@ -10,7 +10,7 @@ function setLayoutTransform(){const [w,h]=layoutSize(),scale=Math.min(canvas.wid
 // and 8% at the bottom (154 px at 1080x1920). They scale with output height.
 function safeAreaBounds(w,h){return {top:Math.round(h*.15),bottom:Math.round(h*.08),left:Math.round(w*.035),right:Math.round(w*.035)}}
 function clampToSafeArea(y,size,w,h){const safe=safeAreaBounds(w,h);return Math.max(safe.top,Math.min(h-safe.bottom-size*1.25,y))}
-const fields=['customWidth','customHeight','customLayout','loaderColorMode','loaderColor2','loaderGradientDirection','uploadHeadingVisible','uploadHeadingFont','uploadHeadingSize','uploadHeadingColor','uploadHeadingAlign','uploadHeadingY','uploadHeadingBox','uploadHeadingBoxColor','uploadHeadingBoxOpacity','uploadHeadingBorder','uploadHeadingBorderColor','uploadHeadingBorderWidth','uploadLayout','frameColor','frameWidth','frameTilt','frameConnector','frameGradientTop','frameGradientBottom','frameShadow','musicVolume','musicOffset','musicLoop','captionsEnabled','captionColor','captionBackground','captionSize','captionPosition','textAlign','watermarkText','watermarkFont','watermarkColor','watermarkSize','watermarkPosition','watermarkOpacity','watermarkOutline','watermarkOutlineColor','loaderStyle','loaderSpeed','loaderSize','effects','effectIntensity','effectSpeed','effectColor','hookTextColor','customHookTextColor','motion','uploadScene','uploadHeading','loaderColor','resolution','projectName','hook','hookSize','hookFont','hookPosition','hookY','duration','fit','disclosure'];
+const fields=['customWidth','customHeight','customLayout','loaderColorMode','loaderColor2','loaderGradientDirection','uploadHeadingVisible','uploadHeadingFont','uploadHeadingSize','uploadHeadingColor','uploadHeadingAlign','uploadHeadingY','uploadHeadingBox','uploadHeadingBoxColor','uploadHeadingBoxOpacity','uploadHeadingBorder','uploadHeadingBorderColor','uploadHeadingBorderWidth','uploadLayout','frameColor','frameWidth','frameTilt','frameConnector','frameGradientTop','frameGradientBottom','frameShadow','musicVolume','musicOffset','musicLoop','captionsEnabled','captionColor','captionBackground','captionSize','captionPosition','textAlign','watermarkText','watermarkFont','watermarkColor','watermarkSize','watermarkPosition','watermarkOpacity','watermarkOutline','watermarkOutlineColor','loaderStyle','loaderSpeed','loaderSize','effects','effectIntensity','effectSpeed','effectColor','zoomDirection','hookTextColor','customHookTextColor','motion','uploadScene','uploadHeading','loaderColor','resolution','projectName','hook','hookSize','hookFont','hookPosition','hookY','duration','fit','disclosure'];
 function defaultOverlayGradient(){return {enabled:true,direction:'top-down',top:{color:'#000000',opacity:80,position:0},bottom:{color:'#000000',opacity:0,position:100},vector:{x1:.5,y1:0,x2:.5,y2:.15}}}
 fields.unshift('safeAreaGuides');
 function normalizeOverlayGradient(value){const fallback=defaultOverlayGradient(),hex=color=>/^#[0-9a-f]{6}$/i.test(String(color||''))?String(color).toLowerCase():null,number=(input,fallback)=>{const value=Number(input);return Number.isFinite(value)?Math.max(0,Math.min(100,value)):fallback},unit=(input,fallback)=>{const value=Number(input);return Number.isFinite(value)?Math.max(0,Math.min(1,value)):fallback},stop=(raw,defaults)=>({color:hex(raw?.color)||defaults.color,opacity:number(raw?.opacity,defaults.opacity),position:number(raw?.position,defaults.position)}),vector=(raw,defaults)=>({x1:unit(raw?.x1,defaults.x1),y1:unit(raw?.y1,defaults.y1),x2:unit(raw?.x2,defaults.x2),y2:unit(raw?.y2,defaults.y2)});return {enabled:value?.enabled===undefined?fallback.enabled:!!value.enabled,direction:value?.direction==='bottom-up'?'bottom-up':'top-down',top:stop(value?.top,fallback.top),bottom:stop(value?.bottom,fallback.bottom),vector:vector(value?.vector,fallback.vector)}}
@@ -35,6 +35,8 @@ function sceneAge(t,p){
 }
 function premiumEase(value){const t=Math.max(0,Math.min(1,value));return t<.5?4*t*t*t:1-Math.pow(-2*t+2,3)/2}
 function swapPhoto(current,previous,x,y,w,h,age,index=0){
+ const fade=typeof fadeThroughBlackState==='function'?fadeThroughBlackState(motionClock):null;
+ if(fade){ctx.save();ctx.globalAlpha*=fade.imageOpacity;photo(current,x,y,w,h,1,index);ctx.restore();return}
  if(!motionOn()){photo(current,x,y,w,h,1,index);return}
  const delay=(index%6)*.022,blend=easeLoader((age-delay)/(motionStrong()?.24:.42));
  photo(previous,x,y,w,h,1,index);
@@ -43,11 +45,13 @@ function swapPhoto(current,previous,x,y,w,h,age,index=0){
 // Shared by portrait, square, and landscape style results. Canvas-only animation
 // keeps the preview smooth without forcing layout during playback.
 function styleSwapPhoto(current,previous,x,y,w,h,age,index=0,radius=16){
+ const fade=typeof fadeThroughBlackState==='function'?fadeThroughBlackState(motionClock):null;
+ if(fade){ctx.save();ctx.globalAlpha*=fade.imageOpacity;photo(current,x,y,w,h,1,index,radius);ctx.restore();return}
  if(!motionOn()){photo(current,x,y,w,h,1,index,radius);return}
  const delay=(index%5)*.018,blend=premiumEase((age-delay)/(motionStrong()?.32:.52));
  // Use a two-stage dissolve instead of crossfading faces on top of each other.
  // Each transition frame contains exactly one photo layer and a neutral canvas.
- if(blend<.5){ctx.save();ctx.globalAlpha*=1-blend*2;photo(previous,x,y,w,h,1,index,radius);ctx.restore();return}
+ if(blend<.5){ctx.save();ctx.globalAlpha*=1-blend*2;photo(previous,x,y,w,h,1,Math.max(0,index-1),radius);ctx.restore();return}
  ctx.save();ctx.globalAlpha*=(blend-.5)*2;photo(current,x,y,w,h,1,index,radius);ctx.restore();
 }
 function ctaButton(x,y,w,h,label,fontSize){
@@ -65,12 +69,44 @@ let deferredTypography=null,drawingForegroundTypography=false;
 function hookTextSize(fallback){return Math.max(18,Math.min(96,Number($('hookSize')?.value)||fallback))}
 function text(str,x,y,size=40,color='#202822',max=620,align='center'){if(deferredTypography){deferredTypography.push([str,x,y,size,color,max,align]);return 0}const hookText=str===$('hook').value,supportText=str===$('instruction').value||str===$('appName').value||String(str).startsWith($('cta').value);if(hookText&&$('customHookTextColor').checked)color=$('hookTextColor').value;else if(supportText&&$('customSupportTextColor').checked)color=$('supportTextColor').value;const hookPosition=hookText?$('hookPosition').value:'template';if(hookPosition!=='template'){const[,frameHeight]=layoutSize(),customY=Math.max(5,Math.min(80,Number($('hookY').value)||18));y=hookPosition==='top'?Math.max(26,frameHeight*.06):hookPosition==='center'?(frameHeight-size*1.22)/2:hookPosition==='bottom'?frameHeight-size*1.55:frameHeight*customY/100}ctx.save();if(!drawingForegroundTypography&&motionOn()&&str!=='AI generated'&&str!=='YOUR RESULT'){let e=easeLoader(motionAge/.42);ctx.globalAlpha*=.45+.55*e;y+=(1-e)*(motionStrong()?22:12)}ctx.fillStyle=color;const fontName=hookText&&$('hookFont').value?$('hookFont').value:$('textFont').value;ctx.font=`700 ${size}px ${chosenFont(fontName)}`;if($('textAlign').value!=='template'&&[ $('hook').value,$('instruction').value,$('uploadHeading').value,$('appName').value,...(state.clips||[]).map(c=>c.hook) ].includes(str)){const left=align==='center'?x-max/2:align==='right'?x-max:x;align=$('textAlign').value;x=align==='left'?left:align==='right'?left+max:left+max/2}ctx.textAlign=align;ctx.textBaseline='top';let words=String(str).split(/\s+/),lines=[],line='';for(let w of words){let next=line?line+' '+w:w;if(ctx.measureText(next).width>max&&line){lines.push(line);line=w}else line=next}if(line)lines.push(line);lines.slice(0,4).forEach((l,i)=>{if(typeof specialEffectActive==='function'&&specialEffectActive('sparkle',motionClock/duration())&&str!=='AI generated'&&size>=27&&!drawingForegroundTypography)effectRevealText(l,x,y+i*size*1.22,size,align);else paintText(l,x,y+i*size*1.22)});ctx.restore();return Math.min(4,lines.length)*size*1.22}
 function demo(i,x,y,w,h){const unit=Math.min(w,h),icon=Math.min(unit*.62,h*.52),cx=x+w/2,cy=y+h*.50,head=icon*.16,bodyW=icon*.60,bodyH=icon*.30,labelY=y+h-Math.max(38,h*.10),labelSize=Math.max(16,Math.min(30,unit*.042));ctx.save();const background=ctx.createLinearGradient(x,y,x,y+h);background.addColorStop(0,'#151c1f');background.addColorStop(.34,'#697568');background.addColorStop(1,'#d2dbcf');ctx.fillStyle=background;ctx.fillRect(x,y,w,h);ctx.fillStyle='#9eaf96';ctx.beginPath();ctx.arc(cx,cy,icon*.5,0,Math.PI*2);ctx.fill();ctx.fillStyle='#e4e9e2';ctx.beginPath();ctx.arc(cx,cy-icon*.18,head,0,Math.PI*2);ctx.fill();round(cx-bodyW/2,cy+icon*.05,bodyW,bodyH,bodyH*.48);ctx.fill();ctx.fillStyle='#ffffff';ctx.font=`700 ${labelSize}px ${chosenFont($('textFont').value)}`;ctx.textAlign='center';ctx.textBaseline='top';ctx.fillText('YOUR RESULT',cx,labelY,w*.8);ctx.restore();}
-function photo(im,x,y,w,h,zoom=1,i=0,radius=16,keepRoundedInFullscreen=false){if(effectEnabled('zoom')&&$('fit').value==='cover')zoom*=1+effectAmount()*.065*(.5+.5*Math.sin(motionClock*.55+i*.6));ctx.save();mediaClip(x,y,w,h,radius,keepRoundedInFullscreen);ctx.clip();if(!im)demo(i,x,y,w,h);else {ctx.fillStyle=canvasBackground;ctx.fillRect(x,y,w,h);let scale=($('fit').value==='contain'?Math.min(w/im.width,h/im.height):Math.max(w/im.width,h/im.height))*zoom;let dw=im.width*scale,dh=im.height*scale;typeof drawCroppedImage==='function'?drawCroppedImage(ctx,im,x,y,w,h,zoom):ctx.drawImage(im,x+(w-dw)/2,y+(h-dh)/2,dw,dh)}ctx.restore()}
-function fullBleedPhoto(im,w,h,i=0,zoom=1){ctx.save();ctx.beginPath();ctx.rect(0,0,w,h);ctx.clip();if(!im){demo(i,0,0,w,h)}else if(typeof drawCroppedImage==='function')drawCroppedImage(ctx,im,0,0,w,h,zoom,'cover');else{const scale=Math.max(w/im.width,h/im.height)*zoom,dw=im.width*scale,dh=im.height*scale;ctx.drawImage(im,(w-dw)/2,(h-dh)/2,dw,dh)}ctx.restore()}
+// One deterministic Ken Burns transform drives preview and export. It is based
+// on the active scene's own progress (rather than wall-clock animation time),
+// so editing a scene duration keeps the motion perfectly in sync.
+function imageTimelineProgress(index=0){
+ const scene=typeof sceneAtTime==='function'&&state.template!=='framed'?sceneAtTime(motionClock):null;
+ // One photo, many styles has a serial result sequence; reset the transform for
+ // every result image rather than letting it run across the whole result scene.
+ if(scene?.definition?.[0]==='Style results')return Math.max(0,Math.min(1,scene.progress*styleResultCount()-index));
+ const cuts=typeof effectCuts==='function'?effectCuts():[0,duration()];
+ let start=0,end=duration();
+ for(let i=0;i<cuts.length;i++){if(cuts[i]<=motionClock)start=cuts[i];if(cuts[i]>motionClock){end=cuts[i];break}}
+ return Math.max(0,Math.min(1,(motionClock-start)/Math.max(.001,end-start)));
+}
+function kenBurnsState(index=0,progressOverride){
+ if(typeof effectEnabled!=='function'||!effectEnabled('zoom')||$('fit').value!=='cover')return null;
+ const progress=Math.max(0,Math.min(1,progressOverride??imageTimelineProgress(index)));
+ const eased=premiumEase(progress),amount=typeof effectAmount==='function'?effectAmount():.65;
+ const direction=$('zoomDirection')?.value||'in-center';
+ const zoomIn=direction!=='out-center',start=zoomIn?1.05:1.20,end=zoomIn?1.15+.05*amount:1.05;
+ const zoom=start+(end-start)*eased,base={x:50,y:50};
+ const drift=8*eased;
+ if(direction==='in-top-left'){base.x-=drift;base.y-=drift}
+ else if(direction==='in-bottom-right'){base.x+=drift;base.y+=drift}
+ // Center starts centered, then alternates a restrained pan per image so a
+ // sequence feels alive while retaining enough overscan to avoid edge exposure.
+ else {base.x+=(index%2?-1:1)*drift;base.y+=(index%3===1?-1:1)*drift*.38}
+ return {zoom,crop:base,progress};
+}
+function motionCrop(im,ken){const crop=typeof cropForImage==='function'?(cropForImage(im)||{}):{};if(!ken)return crop;return {...crop,x:Math.max(0,Math.min(100,(crop.x??50)+(ken.crop.x-50))),y:Math.max(0,Math.min(100,(crop.y??50)+(ken.crop.y-50)))} }
+function drawMotionImage(im,x,y,w,h,zoom,fit,ken){const crop=motionCrop(im,ken);if(typeof drawCroppedImage==='function'){drawCroppedImage(ctx,im,x,y,w,h,zoom,fit,crop);return}const scale=(fit==='contain'?Math.min(w/im.width,h/im.height):Math.max(w/im.width,h/im.height))*zoom,dw=im.width*scale,dh=im.height*scale;ctx.drawImage(im,x-Math.max(0,dw-w)*(crop.x??50)/100,y-Math.max(0,dh-h)*(crop.y??50)/100,dw,dh)}
+function photo(im,x,y,w,h,zoom=1,i=0,radius=16,keepRoundedInFullscreen=false){const ken=kenBurnsState(i);if(ken)zoom*=ken.zoom;ctx.save();mediaClip(x,y,w,h,radius,keepRoundedInFullscreen);ctx.clip();if(!im)demo(i,x,y,w,h);else {ctx.fillStyle=canvasBackground;ctx.fillRect(x,y,w,h);drawMotionImage(im,x,y,w,h,zoom,$('fit').value,ken)}ctx.restore()}
+function fullBleedPhoto(im,w,h,i=0,zoom=1){const ken=kenBurnsState(i);if(ken)zoom*=ken.zoom;ctx.save();ctx.beginPath();ctx.rect(0,0,w,h);ctx.clip();if(!im){demo(i,0,0,w,h)}else drawMotionImage(im,0,0,w,h,zoom,'cover',ken);ctx.restore()}
 function styleSwapFullBleed(current,previous,w,h,age,index=0){
+ const fade=typeof fadeThroughBlackState==='function'?fadeThroughBlackState(motionClock):null;
+ if(fade){ctx.save();ctx.globalAlpha*=fade.imageOpacity;fullBleedPhoto(current,w,h,index);ctx.restore();return}
  if(!motionOn()){fullBleedPhoto(current,w,h,index);return}
  const delay=(index%5)*.018,blend=premiumEase((age-delay)/(motionStrong()?.32:.52));
- if(blend<.5){ctx.save();ctx.globalAlpha*=1-blend*2;fullBleedPhoto(previous,w,h,index);ctx.restore();return}
+ if(blend<.5){ctx.save();ctx.globalAlpha*=1-blend*2;fullBleedPhoto(previous,w,h,Math.max(0,index-1));ctx.restore();return}
  ctx.save();ctx.globalAlpha*=(blend-.5)*2;fullBleedPhoto(current,w,h,index);ctx.restore();
 }
 function image(i){return images.length?images[((i%images.length)+images.length)%images.length]:null}

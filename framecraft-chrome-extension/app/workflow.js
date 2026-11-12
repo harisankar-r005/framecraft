@@ -27,7 +27,7 @@ function refreshAnimationPanels(){
  $('durationControl').style.gridColumn=state.template==='styles'?'1 / -1':'';
  $('uploadAnimationGroup').hidden=!upload;$('frameAnimationGroup').hidden=!framed;$('uploadUnavailable').hidden=upload||framed;
  const solid=$('loaderColorMode').value!=='gradient';$('loaderColor2').closest('label').hidden=solid;$('loaderGradientDirection').closest('label').hidden=solid;
- const hasEffect=$('effects').value!=='none';for(const id of ['effectIntensity','effectSpeed','effectColor'])$(id).closest('label').hidden=!hasEffect;
+ const hasEffect=$('effects').value!=='none';for(const id of ['effectIntensity','effectSpeed','effectColor'])$(id).closest('label').hidden=!hasEffect;$('zoomDirection').closest('label').hidden=!hasEffect||$('effects').value!=='zoom';
 }
 function previewAnimationTemplate(){if(exporting)return;$('restart').click();$('play').click()}
 $('previewFrameLayout').onclick=previewAnimationTemplate;
