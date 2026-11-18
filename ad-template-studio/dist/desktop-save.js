@@ -1,5 +1,16 @@
 /* Electron enhancement. The browser build keeps its normal download behavior. */
 (() => {
+  const button = document.getElementById('advancedEditor'), desktop = window.framecraftDesktop;
+  if (!button || !desktop?.advancedAvailable) return;
+  desktop.advancedAvailable().then(available => { button.hidden = !available; }).catch(() => {});
+  button.onclick = async () => {
+    if (exporting) return;
+    button.disabled = true;
+    try { await desktop.openAdvanced(); } catch (error) { message(error.message); }
+    finally { button.disabled = false; }
+  };
+})();
+(() => {
   if (!window.framecraftDesktop?.beginSave || typeof window.download !== 'function') return;
   const browserDownload = window.download;
   window.download = async (blob, name) => {

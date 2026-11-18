@@ -1,0 +1,27 @@
+name: Framecraft Advanced validation
+on:
+  push:
+    branches: [codex/openfilm-inspired-editor]
+  pull_request:
+jobs:
+  advanced:
+    runs-on: windows-latest
+    defaults:
+      run:
+        working-directory: advanced
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 9.15.9
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm build
+      - run: pnpm typecheck
+      - run: node --test apps/desktop/src/menu.test.mjs apps/desktop/src/flavor.test.mjs tests/framecraft.test.mjs
+      - run: node --test src/film-doc.test.mjs src/clip-motion.test.mjs src/overrides.test.mjs src/render-resume.test.mjs studio/server/film.test.mjs studio/server/ops.test.mjs
+        working-directory: advanced/packages/openfilm
+      - run: node ../ad-template-studio/tests/loading-smoke.cjs
+      - run: node ../ad-template-studio/tests/studio-regression.cjs

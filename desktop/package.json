@@ -6,6 +6,7 @@
   "main": "main.cjs",
   "private": true,
   "scripts": {
+    "advanced": "node ../advanced/apps/desktop/scripts/start.mjs",
     "prepare-app": "node scripts/prepare-app.cjs",
     "start": "node scripts/prepare-app.cjs && electron .",
     "dist": "node scripts/prepare-app.cjs && electron-builder --win nsis",

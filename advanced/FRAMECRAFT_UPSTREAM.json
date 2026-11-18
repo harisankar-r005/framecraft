@@ -1,0 +1,8 @@
+{
+  "repository": "https://github.com/openfilm/openfilm",
+  "commit": "589953539de2c8c8c119e29f9c6033c1e90ed1fd",
+  "upstreamVersion": "0.3.2",
+  "license": "MIT",
+  "copiedOn": "2026-11-18",
+  "localChanges": ["Framecraft branding and separate data/library folders", "Original Framecraft template editor available from the native menu", "Framecraft packaging includes template editor and upstream notices", "Official OpenFilm publishing and update feeds disabled"]
+}

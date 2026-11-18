@@ -1,6 +1,10 @@
 const { app, BrowserWindow, dialog, ipcMain } = require('electron');
 const fs = require('node:fs/promises');
 const path = require('node:path');
+const { createRequire } = require('node:module');
+const { spawn } = require('node:child_process');
+const advancedApp = path.resolve(__dirname, '../advanced/apps/desktop');
+let advancedProcess = null;
 const MAX_SAVE_BYTES = 1024 * 1024 * 1024;
 const pendingSaves = new Map();
 function saveToken() { return `${Date.now()}-${Math.random().toString(36).slice(2)}`; }
@@ -16,6 +20,19 @@ function createWindow() {
   window.loadFile(path.join(__dirname, 'app', 'index.html'));
 }
 app.whenReady().then(() => {
+  ipcMain.handle('framecraft:advanced-available', () => require('node:fs').existsSync(path.join(advancedApp, 'package.json')));
+  ipcMain.handle('framecraft:open-advanced', async event => {
+    if (!BrowserWindow.fromWebContents(event.sender) || event.senderFrame !== event.sender.mainFrame) throw Error('Open the advanced editor from the Framecraft window.');
+    if (!require('node:fs').existsSync(path.join(advancedApp, 'shell/dist/index.html'))) throw Error('Build Framecraft Advanced first. See advanced/FRAMECRAFT.md.');
+    const runtime = createRequire(path.join(advancedApp, 'package.json'))('electron');
+    const environment = { ...process.env, OPENFILM_DESKTOP_FLAVOR: 'dev' };
+    delete environment.ELECTRON_RUN_AS_NODE;
+    advancedProcess = spawn(runtime, [advancedApp], { cwd: advancedApp, windowsHide: true, stdio: 'ignore', env: environment });
+    await new Promise((resolve, reject) => { advancedProcess.once('spawn', resolve); advancedProcess.once('error', reject); });
+    const child = advancedProcess;
+    child.once('exit', () => { if (advancedProcess === child) advancedProcess = null; });
+    return { opened: true };
+  });
   ipcMain.handle('framecraft:begin-save', async (event, { name, mimeType, size }) => {
     if (!Number.isFinite(size) || size < 0 || size > MAX_SAVE_BYTES) throw new Error('Files larger than 1 GB cannot be saved.');
     const safeName = path.basename(String(name || 'framecraft-export'));

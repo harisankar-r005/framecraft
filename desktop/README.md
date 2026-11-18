@@ -1,5 +1,7 @@
 # Framecraft desktop build
 
+For the OpenFilm-based advanced editor, first follow [Framecraft Advanced setup](../advanced/FRAMECRAFT.md). After its dependencies are installed, `pnpm run advanced` launches it. A built advanced editor is also accessible from the template editor's **Advanced editor** button.
+
 This Electron wrapper packages the existing editor without changing its UI.
 
 ```powershell

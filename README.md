@@ -1,5 +1,7 @@
 # Framecraft Ad Studio
 
+**New development branch:** [Framecraft Advanced](advanced/FRAMECRAFT.md) reuses the OpenFilm desktop editor, AI chat and rendering core. It includes the multitrack timeline, direct editing, reusable media/effects and resumable FFmpeg rendering. The original template editor remains available from its File menu. See the linked setup guide to run or build it.
+
 A Windows desktop editor for making app promotional videos from your own finished images and clips.
 
 ## Start using it
